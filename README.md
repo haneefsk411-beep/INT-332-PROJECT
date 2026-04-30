@@ -27,20 +27,21 @@ A modern full-stack web application to explore anime using a clean UI and real-t
 
 ---
 
-## 📂 Project Structure
+``` ## 📂 Project Structure
 
 
-''' anime-discovery/
-│── src/
+anime-discovery/
+├── src/
 │ ├── main/
-│ │ ├── java/com/anime/app/
+│ │ ├── java/
+│ │ │ └── com/anime/app/
 │ │ ├── resources/
-│ │ ├── templates/
-│ │ ├── static/
-│── Dockerfile
-│── docker-compose.yml
-│── pom.xml '''
-
+│ │ │ ├── templates/
+│ │ │ └── static/
+├── Dockerfile
+├── docker-compose.yml
+├── pom.xml
+```
 
 ---
 
