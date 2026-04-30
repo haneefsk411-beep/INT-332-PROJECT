@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Anime Discovery</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>Anime Discovery ⭐</h2>
+
+    <form action="/search" method="get" class="search-box">
+        <input type="text" name="q" placeholder="Search anime...">
+    </form>
+
+    <button onclick="toggleTheme()" class="toggle-btn">🌙/☀️</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Discover Your Next Favorite Anime 🎬</h1>
+    <p>Explore trending, top-rated & categories</p>
+</div>
+
+<!-- CATEGORY SECTION -->
+<div class="container">
+    <h2>Browse Categories</h2>
+
+    <div class="grid">
+
+        <a href="/category/action" class="card">
+            <div class="card-inner action">
+                <h2>🔥 Action</h2>
+            </div>
+        </a>
+
+        <a href="/category/romance" class="card">
+            <div class="card-inner romance">
+                <h2>❤️ Romance</h2>
+            </div>
+        </a>
+
+        <a href="/category/comedy" class="card">
+            <div class="card-inner comedy">
+                <h2>😂 Comedy</h2>
+            </div>
+        </a>
+
+        <a href="/category/fantasy" class="card">
+            <div class="card-inner fantasy">
+                <h2>🧙 Fantasy</h2>
+            </div>
+        </a>
+
+        <a href="/category/sports" class="card">
+            <div class="card-inner sports">
+                <h2>⚽ Sports</h2>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<!-- TRENDING BUTTON -->
+<div class="container">
+    <a href="/top" class="btn">🔥 View Top Rated Anime</a>
+</div>
+<script>
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+</script>
+</body>
+</html>

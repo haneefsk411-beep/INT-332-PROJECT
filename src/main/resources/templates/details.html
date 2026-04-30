@@ -1,0 +1,10 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body style="background:black;color:white;text-align:center;">
+<h1 th:text="${anime.title}"></h1>
+<img th:src="${anime.images.jpg.image_url}" width="300">
+<p th:text="${anime.synopsis}"></p>
+<p>⭐ <span th:text="${anime.score}"></span></p>
+</body>
+</html>

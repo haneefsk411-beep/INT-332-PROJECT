@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Anime List</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>Anime Discovery ⭐</h2>
+
+    <form action="/search" method="get" class="search-box">
+        <input type="text" name="q" placeholder="Search anime...">
+    </form>
+</nav>
+
+<div class="container">
+    <h1>Anime List</h1>
+
+    <div class="grid">
+
+        <div th:each="a : ${animes}" class="anime-card">
+
+            <a th:href="@{/anime/{id}(id=${a.id})}">
+
+                <div class="image-box">
+
+                    <img th:src="${a.image}">
+
+                    <div class="overlay">
+                        <h3 th:text="${a.title}"></h3>
+                        <p>⭐ <span th:text="${a.rating}"></span></p>
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
