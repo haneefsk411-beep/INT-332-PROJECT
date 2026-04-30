@@ -30,7 +30,7 @@ A modern full-stack web application to explore anime using a clean UI and real-t
 ## 📂 Project Structure
 
 
-'''anime-discovery/
+''' anime-discovery/
 │── src/
 │ ├── main/
 │ │ ├── java/com/anime/app/
