@@ -1,0 +1,9 @@
+com\anime\app\AnimeService.class
+com\anime\app\JikanAnime.class
+com\anime\app\JikanSingleResponse.class
+com\anime\app\HomeController.class
+com\anime\app\JikanAnime$Images.class
+com\anime\app\JikanAnime$Jpg.class
+com\anime\app\Anime.class
+com\anime\app\JikanResponse.class
+com\anime\app\App.class
