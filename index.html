@@ -3,378 +3,324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AnimeVerse Neon Quantum Elite Pro AI</title>
+<title>AnimeVerse // Hawkins Telemetry Grid AI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=ITC+Benguiat:wght@700&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* --- CYBERPUNK ULTRA DESIGN SYSTEM & TOKENS --- */
+/* --- HAWKINS NATIONAL LABORATORY DESIGN TOKENS --- */
 :root {
-    --bg: #03000a;
-    --card: rgba(13, 10, 28, 0.45);
-    --card-border: rgba(0, 242, 254, 0.15);
-    --text: #f0f3ff;
-    --text-muted: #8a8da4;
-    --neon-cyan: #00f2fe;
-    --neon-pink: #fe019a;
-    --neon-purple: #9d4edd;
-    --neon-green: #05f2c7;
-    --neon-yellow: #fffb00;
-    --glass: rgba(13, 10, 28, 0.7);
-    --blur: blur(20px);
-    --glow: 0 0 15px var(--neon-cyan);
-    --glow-pink: 0 0 15px var(--neon-pink);
+    --bg: #0b0202;
+    --card: rgba(22, 11, 11, 0.65);
+    --card-border: rgba(229, 9, 20, 0.25);
+    --text: #f5f0f0;
+    --text-muted: #9c8e8e;
+    --neon-cyan: #e50914; /* Hawkins Signature Red */
+    --neon-pink: #facc15; /* Warning Amber */
+    --neon-purple: #b91c1c;
+    --neon-green: #34d399; /* Terminal Diagnostic Green */
+    --glass: rgba(15, 6, 6, 0.85);
+    --blur: blur(15px);
+    --glow: 0 0 12px rgba(229, 9, 20, 0.6);
+    --glow-amber: 0 0 12px rgba(250, 204, 21, 0.5);
+    --font-retro: 'Space Grotesk', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
 }
 
-body.vaporwave {
-    --bg: #1a0826;
-    --card: rgba(45, 15, 66, 0.5);
-    --card-border: rgba(254, 1, 154, 0.3);
-    --neon-cyan: #ff71ce;
-    --neon-pink: #01cdfe;
-    --neon-purple: #b967ff;
-    --neon-green: #05ffa1;
+body.void-mode {
+    --bg: #000000;
+    --card: rgba(10, 10, 15, 0.8);
+    --card-border: rgba(147, 51, 234, 0.4);
+    --neon-cyan: #a855f7; /* The Void Purple */
+    --neon-pink: #6366f1;
+    --glow: 0 0 15px rgba(147, 51, 234, 0.5);
 }
 
-body.matrix {
-    --bg: #020a02;
-    --card: rgba(5, 20, 5, 0.6);
-    --card-border: rgba(0, 255, 70, 0.3);
-    --neon-cyan: #00ff46;
-    --neon-pink: #008f11;
-    --neon-purple: #003b00;
-    --neon-green: #adff2f;
+body.terminal-classic {
+    --bg: #020703;
+    --card: rgba(5, 15, 7, 0.7);
+    --card-border: rgba(52, 211, 153, 0.3);
+    --neon-cyan: #34d399; /* 1983 Radar Green */
+    --neon-pink: #059669;
+    --glow: 0 0 12px rgba(52, 211, 153, 0.5);
 }
 
 * {
     margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-retro);
     scroll-behavior: smooth;
 }
 
 body {
     background: var(--bg); color: var(--text);
     overflow-x: hidden; min-height: 100vh;
-    transition: background 0.5s ease;
+    transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-h1, h2, h3, .logo, .orbitron {
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 1px;
+h1, h2, h3, .logo, .retro-header {
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    font-weight: 700;
 }
 
-/* --- PARTICLE CANVAS LAYER --- */
-#particleCanvas {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1; pointer-events: none; opacity: 0.6;
+.mono-display {
+    font-family: var(--font-mono) !important;
 }
 
-/* --- CUSTOM NEON SCROLLBARS --- */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--neon-cyan), var(--neon-pink));
-    border-radius: 10px;
+/* --- CRT MONITOR GLASS SCANLINE SIMULATOR OVERLAY --- */
+.crt-scanlines {
+    position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.12;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
 }
 
-/* --- GLASSMORPHISM NAVBAR MAP --- */
+/* --- VINTAGE LAB OVERLAY FRAME --- */
 .navbar {
     position: sticky; top: 0; z-index: 2000;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 40px; background: var(--glass);
+    padding: 18px 40px; background: var(--glass);
     backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-    border-bottom: 1px solid var(--card-border);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    border-bottom: 2px solid var(--neon-cyan);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
 }
 
 .logo {
-    font-size: 26px; font-weight: 900;
-    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    cursor: pointer; text-shadow: var(--glow);
+    font-size: 24px; font-weight: 900;
+    color: #fff; text-shadow: var(--glow);
+    border: 1px solid var(--neon-cyan);
+    padding: 4px 12px; border-radius: 4px;
+    background: rgba(229, 9, 20, 0.08);
 }
 
-.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links { display: flex; gap: 15px; align-items: center; }
 .nav-link {
-    color: #a3a6bd; text-decoration: none; font-size: 14px;
-    font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex; align-items: center; gap: 8px;
-    padding: 6px 12px; border-radius: 8px;
+    color: var(--text-muted); text-decoration: none; font-size: 13px;
+    font-family: var(--font-mono); font-weight: 600; cursor: pointer; transition: 0.2s;
+    display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 4px;
 }
 .nav-link:hover, .nav-link.active { 
-    color: #fff;
-    background: rgba(0, 242, 254, 0.1);
-    box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
-    border: 1px solid rgba(0, 242, 254, 0.3);
-    text-shadow: 0 0 8px var(--neon-cyan); 
+    color: #fff; background: rgba(229, 9, 20, 0.15);
+    border: 1px solid var(--neon-cyan); text-shadow: var(--glow);
 }
 
 .search-box { position: relative; }
 .search-box input {
     width: 260px; padding: 10px 16px 10px 35px; border: 1px solid var(--card-border);
-    outline: none; border-radius: 30px; background: rgba(0,0,0,0.4);
-    color: var(--text); font-size: 13px; transition: 0.4s;
+    outline: none; border-radius: 4px; background: rgba(0,0,0,0.6);
+    color: var(--text); font-family: var(--font-mono); font-size: 14px; transition: 0.3s;
 }
-.search-box input:focus { width: 340px; border-color: var(--neon-cyan); box-shadow: var(--glow); }
-.search-box i { position: absolute; left: 14px; top: 12px; color: var(--text-muted); }
+.search-box input:focus { width: 320px; border-color: var(--neon-cyan); box-shadow: var(--glow); }
+.search-box i { position: absolute; left: 14px; top: 13px; color: var(--neon-cyan); }
 
 .suggestions {
-    position: absolute; top: 50px; width: 100%; background: rgba(13,10,28,0.95);
-    border-radius: 15px; border: 1px solid var(--card-border); z-index: 3000;
-    max-height: 280px; overflow-y: auto; backdrop-filter: blur(10px);
+    position: absolute; top: 50px; width: 100%; background: #120505;
+    border-radius: 4px; border: 1px solid var(--neon-cyan); z-index: 3000;
+    max-height: 280px; overflow-y: auto;
 }
 .suggestion-item {
-    padding: 12px 16px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05);
-    display: flex; align-items: center; gap: 10px; transition: 0.2s;
+    padding: 12px 16px; cursor: pointer; font-family: var(--font-mono);
+    border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.2s;
 }
 .suggestion-item:hover { background: var(--neon-purple); color: #fff; }
 
 .engine-trigger {
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
-    border: none; padding: 10px 18px; border-radius: 20px; color: #fff;
-    font-weight: 600; cursor: pointer; font-size: 12px; transition: 0.3s;
+    background: transparent; border: 1px solid var(--neon-pink); padding: 10px 18px; 
+    border-radius: 4px; color: var(--neon-pink); font-family: var(--font-mono);
+    font-weight: 600; cursor: pointer; font-size: 12px; transition: 0.2s;
 }
-.engine-trigger:hover { box-shadow: var(--glow-pink); transform: translateY(-2px); }
+.engine-trigger:hover { background: var(--neon-pink); color: #000; box-shadow: var(--glow-amber); }
 
-/* --- HERO THEATER BLOCK --- */
+/* --- TELEMETRY CONSOLE HERO RADAR --- */
 .hero-theater {
-    position: relative; height: 50vh; width: 100%; display: flex;
+    position: relative; height: 450px; width: 100%; display: flex;
     align-items: center; padding: 0 60px; overflow: hidden;
-    background: radial-gradient(circle at 80%, transparent, var(--bg));
-}
-.hero-video-bg {
-    position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;
-    z-index: -2; opacity: 0.35; filter: saturate(1.5);
+    border-bottom: 1px solid var(--card-border);
+    background: linear-gradient(90deg, #0b0202 35%, rgba(11,2,2,0.6)), url('https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=1920') no-repeat center center/cover;
 }
 .hero-content { max-width: 650px; z-index: 10; }
 .hero-tag {
-    display: inline-block; padding: 4px 12px; background: rgba(0,242,254,0.15);
-    border: 1px solid var(--neon-cyan); border-radius: 20px; color: var(--neon-cyan);
+    display: inline-block; padding: 4px 10px; background: rgba(229,9,20,0.15);
+    border: 1px solid var(--neon-cyan); font-family: var(--font-mono); color: var(--neon-cyan);
     font-size: 12px; font-weight: 600; margin-bottom: 15px;
 }
-.hero-content h1 { font-size: 44px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
-.hero-content p { color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
+.hero-content h1 { font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: #fff; }
+.hero-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; }
 .hero-actions { display: flex; gap: 15px; }
-.btn-cyber {
-    padding: 12px 25px; border-radius: 30px; font-weight: 700; font-size: 14px;
-    cursor: pointer; display: flex; align-items: center; gap: 8px; border: none; transition: 0.3s;
-}
-.btn-cyan { background: var(--neon-cyan); color: #000; }
-.btn-cyan:hover { box-shadow: var(--glow); transform: translateY(-2px); }
-.btn-outline { background: transparent; border: 1px solid var(--text); color: var(--text); }
-.btn-outline:hover { background: rgba(255,255,255,0.1); }
 
-/* --- CORE NETFLIX SLIDERS --- */
+/* --- DATA CAROUSEL PANEL MATRICES --- */
 .slider-container { padding: 40px; position: relative; }
 .slider-header {
     display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
 }
-.slider-title { font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.slider-title { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .slider-title span { color: var(--neon-cyan); }
 .slider-arrows { display: flex; gap: 10px; }
 .arrow {
-    width: 35px; height: 35px; border-radius: 50%; background: var(--card);
+    width: 36px; height: 36px; border-radius: 4px; background: var(--card);
     border: 1px solid var(--card-border); color: #fff; display: flex;
-    justify-content: center; align-items: center; cursor: pointer; transition: 0.3s;
+    justify-content: center; align-items: center; cursor: pointer; transition: 0.2s;
 }
 .arrow:hover { border-color: var(--neon-cyan); box-shadow: var(--glow); }
 
 .slider-wrapper {
-    display: flex; gap: 20px; overflow-x: auto; padding: 15px 5px;
+    display: flex; gap: 24px; overflow-x: auto; padding: 15px 5px;
     scroll-snap-type: x mandatory; scrollbar-width: none;
 }
 .slider-wrapper::-webkit-scrollbar { display: none; }
 
-/* --- 3D TRANSFORM HUD CARDS --- */
+/* --- 3D TRANSFORM COLD WAR RADAR CARDS --- */
 .anime-card-3d {
-    flex: 0 0 240px; height: 360px; background: var(--card);
-    border-radius: 16px; border: 1px solid var(--card-border);
+    flex: 0 0 230px; height: 350px; background: var(--card);
+    border-radius: 4px; border: 1px solid var(--card-border);
     position: relative; overflow: hidden; cursor: pointer;
-    scroll-snap-align: start; transition: transform 0.5s cubic-bezier(0.2, 1, 0.2, 1), box-shadow 0.4s;
-    transform-style: preserve-3d; perspective: 1000px;
+    scroll-snap-align: start; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+    transform-style: preserve-3d; perspective: 800px;
 }
 .anime-card-3d:hover {
-    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.2);
-    border-color: var(--neon-cyan);
+    border-color: var(--neon-cyan); box-shadow: var(--glow);
 }
-.card-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.anime-card-3d:hover .card-img { transform: scale(1.08) translateZ(20px); filter: brightness(0.7); }
+.card-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: 0.4s; }
+.anime-card-3d:hover .card-img { transform: scale(1.05); filter: grayscale(0%) brightness(0.6); }
 
 .card-overlay-hud {
-    position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,0,10,0.95) 20%, rgba(3,0,10,0.4) 60%, transparent);
+    position: absolute; inset: 0; background: linear-gradient(to top, #0b0202 90%, transparent);
     padding: 15px; display: flex; flex-direction: column; justify-content: flex-end;
-    opacity: 0; transition: 0.3s; transform: translateZ(30px);
+    opacity: 0; transition: 0.3s;
 }
 .anime-card-3d:hover .card-overlay-hud { opacity: 1; }
-.card-hud-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; color: #fff; }
-.card-hud-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--neon-cyan); }
+.card-hud-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+.card-hud-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--neon-pink); }
 .progress-bar-wrap {
-    width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 8px; overflow: hidden;
+    width: 100%; height: 3px; background: rgba(255,255,255,0.08); margin-top: 8px; overflow: hidden;
 }
-.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink)); width: 0%; }
+.progress-bar-fill { height: 100%; background: var(--neon-cyan); width: 0%; }
 
-/* --- DATA LABS & ANALYTICS RADAR CHASSIS --- */
+/* --- DIAGNOSTIC STATS GRID SYSTEM --- */
 .analytics-grid {
-    display: grid; grid-template-columns: 2fr 1fr; gap: 30px; padding: 40px;
+    display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 30px; padding: 40px;
 }
 .panel-box {
-    background: var(--card); border: 1px solid var(--card-border);
-    border-radius: 20px; padding: 25px; backdrop-filter: var(--blur);
+    background: var(--card); border: 2px solid var(--card-border);
+    border-radius: 4px; padding: 25px; backdrop-filter: var(--blur);
 }
-.panel-title { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-.panel-title i { color: var(--neon-pink); }
+.panel-title { font-size: 16px; font-family: var(--font-mono); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--neon-pink); }
 
-/* --- ADVANCED MODAL SCREEN INFRASTRUCTURE (NO TRAILER) --- */
+/* --- RETRO PROFILE SPECS SYSTEM DIALOG --- */
 .theater-modal {
-    position: fixed; inset: 0; background: rgba(3,0,10,0.96); z-index: 9999;
-    display: none; flex-direction: column; padding: 20px;
+    position: fixed; inset: 0; background: rgba(11,2,2,0.98); z-index: 9999;
+    display: none; flex-direction: column; padding: 25px;
 }
 .theater-header {
-    display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--card-border);
+    display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 2px solid var(--neon-cyan);
 }
 .theater-main {
-    flex: 1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; padding: 30px 20px; overflow-y: auto;
+    flex: 1; display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; padding-top: 25px; overflow-y: auto;
 }
 .modal-poster-wrap {
-    width: 100%; max-height: 520px; border-radius: 16px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: var(--glow);
+    width: 100%; max-height: 480px; border: 2px solid var(--neon-cyan); box-shadow: var(--glow); overflow: hidden;
 }
 .modal-poster-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-.gallery-strip { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 5px; }
-.gallery-thumb { width: 120px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid transparent; }
+/* --- TELEMETRIC SCAN SIGNAL CONSOLE LOGS --- */
+.chat-widget-inner { display: flex; flex-direction: column; height: 350px; }
+.chat-logs { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); font-size: 13px; }
+.chat-msg { padding: 10px 14px; border-radius: 2px; max-width: 90%; line-height: 1.4; }
+.msg-incoming { background: rgba(255,255,255,0.03); align-self: flex-start; border-left: 2px solid var(--neon-pink); color: var(--neon-pink); }
+.msg-outgoing { background: rgba(229,9,20,0.1); align-self: flex-end; border-right: 2px solid var(--neon-cyan); color: var(--text); }
 
-/* --- DYNAMIC TRANSITION LOG CHAT PLATFORM --- */
-.chat-widget-inner {
-    display: flex; flex-direction: column; height: 350px;
-}
-.chat-logs { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 12px; }
-.chat-msg { padding: 8px 12px; border-radius: 12px; max-width: 85%; line-height: 1.4; word-wrap: break-word; }
-.msg-incoming { background: rgba(255,255,255,0.05); align-self: flex-start; border-left: 2px solid var(--neon-pink); }
-.msg-outgoing { background: rgba(0,242,254,0.15); align-self: flex-end; border-right: 2px solid var(--neon-cyan); }
-.chat-input-wrap { display: flex; gap: 10px; margin-top: 10px; }
-.chat-input-wrap input {
-    flex: 1; background: rgba(0,0,0,0.4); border: 1px solid var(--card-border);
-    padding: 10px 15px; border-radius: 20px; color: #fff; font-size: 12px; outline: none;
-}
-
-/* --- FLOATING SMART AI CHATBOT HUD --- */
-.ai-bot-floating {
-    position: fixed; bottom: 85px; right: 30px; z-index: 5000;
-}
+/* --- HAWKINS INTELLIGENCE CHAT CORE WIDGET --- */
+.ai-bot-floating { position: fixed; bottom: 85px; right: 30px; z-index: 5000; }
 .ai-trigger-sphere {
-    width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    width: 55px; height: 55px; border-radius: 4px; background: var(--card); border: 2px solid var(--neon-cyan);
     display: flex; justify-content: center; align-items: center; cursor: pointer;
     box-shadow: var(--glow); animation: pulseSphere 2s infinite alternate;
 }
 .ai-chat-window {
-    position: absolute; bottom: 75px; right: 0; width: 340px; height: 440px;
-    background: rgba(10,5,25,0.98); border: 1px solid var(--neon-green);
-    border-radius: 20px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 0 25px rgba(5, 242, 199, 0.3);
+    position: absolute; bottom: 70px; right: 0; width: 350px; height: 450px;
+    background: #0b0202; border: 2px solid var(--neon-cyan);
+    border-radius: 4px; display: none; flex-direction: column; overflow: hidden; box-shadow: var(--glow);
 }
 #aiLogs {
-    display: flex; flex-direction: column; gap: 12px; padding: 15px;
-    overflow-y: auto; flex: 1; max-height: 320px; scroll-behavior: smooth;
+    display: flex; flex-direction: column; gap: 12px; padding: 15px; font-family: var(--font-mono);
+    overflow-y: auto; flex: 1; max-height: 330px; scroll-behavior: smooth;
 }
 
-/* --- ANIMATED HUD MOBILE TAB BAR --- */
+/* --- MOBILE HUD BAR PLATFORM --- */
 .mobile-hud-bar {
     position: fixed; bottom: 0; left: 0; right: 0; height: 65px;
-    background: var(--glass); backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-    border-top: 1px solid var(--card-border); z-index: 8000;
+    background: var(--glass); backdrop-filter: var(--blur);
+    border-top: 2px solid var(--neon-cyan); z-index: 8000;
     display: none; justify-content: space-around; align-items: center;
 }
 .hud-tab {
     display: flex; flex-direction: column; align-items: center; gap: 4px;
-    background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; cursor: pointer;
+    background: none; border: none; color: var(--text-muted); font-size: 11px; font-family: var(--font-mono); cursor: pointer;
 }
 .hud-tab.active { color: var(--neon-cyan); text-shadow: var(--glow); }
-.hud-tab i { font-size: 18px; }
 
-/* --- TOAST SYSTEM INTERFACE --- */
-.toast-nexus {
-    position: fixed; top: 85px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;
-}
+.toast-nexus { position: fixed; top: 90px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
 .toast-node {
-    background: rgba(3,0,10,0.9); border-left: 4px solid var(--neon-cyan);
-    padding: 12px 20px; border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 10px;
-    animation: slideInToast 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #120505; border-left: 3px solid var(--neon-green); font-family: var(--font-mono);
+    padding: 12px 20px; font-size: 13px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: slideInToast 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#characterManifest div {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid var(--card-border);
-    transition: 0.2s ease-in-out;
-}
-#characterManifest div:hover {
-    border-color: var(--neon-pink);
-    background: rgba(254, 1, 154, 0.05) !important;
-}
-
-/* --- ANIMATIONS INDEX --- */
 @keyframes pulseSphere {
-    from { transform: scale(1); box-shadow: 0 0 10px var(--neon-cyan); }
-    to { transform: scale(1.08); box-shadow: 0 0 25px var(--neon-pink); }
+    from { transform: scale(1); box-shadow: 0 0 5px var(--neon-cyan); }
+    to { transform: scale(1.06); box-shadow: 0 0 18px var(--neon-cyan); }
 }
 @keyframes slideInToast {
     from { transform: translateX(120%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* --- ADAPTIVE GRID OVERRIDES --- */
-@media (max-width: 1024px) {
-    .analytics-grid { grid-template-columns: 1fr; }
-}
 @media (max-width: 768px) {
     .navbar { padding: 15px 20px; }
     .nav-links { display: none; }
-    .search-box input { width: 160px; }
-    .search-box input:focus { width: 200px; }
-    .hero-theater { height: 400px; padding: 0 20px; text-align: center; justify-content: center; }
-    .hero-content h1 { font-size: 32px; }
-    .slider-container { padding: 20px; }
+    .hero-theater { height: 360px; padding: 0 20px; text-align: center; justify-content: center; background-position: left center; }
+    .hero-content h1 { font-size: 28px; }
+    .analytics-grid { grid-template-columns: 1fr; padding: 20px; }
     .mobile-hud-bar { display: flex; }
     body { padding-bottom: 65px; }
     .theater-main { grid-template-columns: 1fr; gap: 20px; }
-    .modal-poster-wrap { max-height: 320px; }
 }
 </style>
 </head>
 <body>
 
+<div class="crt-scanlines"></div>
 <canvas id="particleCanvas"></canvas>
-
 <div class="toast-nexus" id="toastNexus"></div>
 
 <nav class="navbar">
-    <div class="logo" onclick="app.loadTrending()">ANIMEVERSE AI 🌌</div>
+    <div class="logo" onclick="app.loadTrending()">HAWKINS NET // AI 📡</div>
     <div class="nav-links">
-        <a class="nav-link active" onclick="app.switchView('trending', this)"><i class="fa-solid fa-fire"></i> Trending</a>
-        <a class="nav-link" onclick="app.switchView('manga', this)"><i class="fa-solid fa-book-open"></i> Manga</a>
-        <a class="nav-link" onclick="app.switchView('watchlist', this)"><i class="fa-solid fa-heart"></i> Watchlist</a>
-        <a class="nav-link" onclick="app.switchView('compare', this)"><i class="fa-solid fa-layer-group"></i> Analytics</a>
+        <a class="nav-link active" onclick="app.switchView('trending', this)"><i class="fa-solid fa-satellite"></i> Telemetry</a>
+        <a class="nav-link" onclick="app.switchView('manga', this)"><i class="fa-solid fa-folder-open"></i> Archive Files</a>
+        <a class="nav-link" onclick="app.switchView('watchlist', this)"><i class="fa-solid fa-radiation"></i> Secure Vault</a>
+        <a class="nav-link" onclick="app.switchView('compare', this)"><i class="fa-solid fa-wave-square"></i> Spectrogram</a>
     </div>
     <div class="nav-right">
         <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search database...">
+            <i class="fa-solid fa-terminal"></i>
+            <input type="text" id="searchInput" placeholder="Query data banks...">
             <div id="suggestions" class="suggestions"></div>
         </div>
     </div>
-    <button class="engine-trigger" onclick="app.rotateSkin()"><i class="fa-solid fa-palette"></i> Skin OS</button>
+    <button class="engine-trigger" onclick="app.rotateSkin()"><i class="fa-solid fa-circle-nodes"></i> Toggle Grid</button>
 </nav>
 
 <section class="hero-theater" id="heroTheater">
-    <video class="hero-video-bg" autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-subway-station-with-neon-lights-43958-large.mp4"></video>
     <div class="hero-content">
-        <div class="hero-tag" id="heroTag">SEASONAL CORE INDEX</div>
-        <h1 id="heroTitle">Attack on Titan</h1>
-        <p id="heroSynopsis">Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide behind enormous concentric walls.</p>
+        <div class="hero-tag" id="heroTag">HIGH VARIANCE ANOMALY DETECTED</div>
+        <h1 id="heroTitle">Loading Spectrum...</h1>
+        <p id="heroSynopsis">Awaiting secure handshake synchronization with centralized remote open-source index data logs.</p>
         <div class="hero-actions">
-            <button class="btn-cyber btn-cyan" id="heroPlayBtn"><i class="fa-solid fa-circle-info"></i> View Specifications</button>
-            <button class="btn-cyber btn-outline" onclick="app.triggerRandom()"><i class="fa-solid fa-shuffle"></i> Quantum Pick</button>
+            <button class="btn-cyber btn-cyan" id="heroPlayBtn"><i class="fa-solid fa-file-invoice"></i> Inspect Blueprint</button>
+            <button class="btn-cyber btn-outline" style="padding:12px 20px;" onclick="app.triggerRandom()"><i class="fa-solid fa-bezier-curve"></i> Random Sync</button>
         </div>
     </div>
 </section>
@@ -382,10 +328,10 @@ h1, h2, h3, .logo, .orbitron {
 <main id="mainContent">
     <section class="slider-container">
         <div class="slider-header">
-            <div class="slider-title">🔥 <span id="sliderTitleText">Trending</span> Telemetry Feed</div>
+            <div class="slider-title">📡 <span id="sliderTitleText">Active Scan</span> Receiver Channels</div>
             <div class="slider-arrows">
-                <div class="arrow" onclick="app.scrollSlider('trendingSlider', -1)"><i class="fa-solid fa-chevron-left"></i></div>
-                <div class="arrow" onclick="app.scrollSlider('trendingSlider', 1)"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="arrow" onclick="app.scrollSlider('trendingSlider', -1)"><i class="fa-solid fa-angle-left"></i></div>
+                <div class="arrow" onclick="app.scrollSlider('trendingSlider', 1)"><i class="fa-solid fa-angle-right"></i></div>
             </div>
         </div>
         <div class="slider-wrapper" id="trendingSlider"></div>
@@ -393,10 +339,10 @@ h1, h2, h3, .logo, .orbitron {
 
     <section class="slider-container">
         <div class="slider-header">
-            <div class="slider-title">📖 <span>Manga</span> Nexus Nodes</div>
+            <div class="slider-title">📜 <span>Manga</span> Data Compartments</div>
             <div class="slider-arrows">
-                <div class="arrow" onclick="app.scrollSlider('mangaSlider', -1)"><i class="fa-solid fa-chevron-left"></i></div>
-                <div class="arrow" onclick="app.scrollSlider('mangaSlider', 1)"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="arrow" onclick="app.scrollSlider('mangaSlider', -1)"><i class="fa-solid fa-angle-left"></i></div>
+                <div class="arrow" onclick="app.scrollSlider('mangaSlider', 1)"><i class="fa-solid fa-angle-right"></i></div>
             </div>
         </div>
         <div class="slider-wrapper" id="mangaSlider"></div>
@@ -404,22 +350,22 @@ h1, h2, h3, .logo, .orbitron {
 
     <section class="analytics-grid">
         <div class="panel-box">
-            <div class="panel-title"><i class="fa-solid fa-chart-radar"></i> Structural Index Analytics Radar</div>
+            <div class="panel-title"><i class="fa-solid fa-chart-area"></i> Telemetric Vector Radar Analysis</div>
             <div style="position: relative; height: 300px; width: 100%;">
                 <canvas id="analyticsChart"></canvas>
             </div>
         </div>
         
         <div class="panel-box">
-            <div class="panel-title"><i class="fa-solid fa-network-wired"></i> Global Node Chat Logs (Live)</div>
+            <div class="panel-title"><i class="fa-solid fa-tower-broadcast"></i> Mesh Network Broadcast Signals</div>
             <div class="chat-widget-inner">
                 <div class="chat-logs" id="chatLogs">
-                    <div class="chat-msg msg-incoming"><strong>Netrunner_01:</strong> Choom! Did you witness the animation sequencing inside the latest Chainsaw Man nodes?</div>
-                    <div class="chat-msg msg-incoming"><strong>Arasaka_Dev:</strong> Telemetry indicators signal unprecedented viewer metrics in the Q1 seasonal quadrant.</div>
+                    <div class="chat-msg msg-incoming"><strong>Radio_Operator:</strong> Signal trace confirmed inside the local sector. Broad-spectrum data streaming online.</div>
+                    <div class="chat-msg msg-incoming"><strong>Lab_Tech_04:</strong> Sync parameters adjusted. Safe Search filter protocol enforced onto incoming arrays.</div>
                 </div>
                 <div class="chat-input-wrap">
-                    <input type="text" id="chatInput" placeholder="Broadcast array message to mesh net...">
-                    <button class="btn-cyber btn-cyan" style="padding:10px 15px;" onclick="app.sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+                    <input type="text" class="mono-display" id="chatInput" placeholder="Inject broadcast message packet...">
+                    <button class="btn-cyber btn-cyan" style="padding:10px 15px; border-radius:4px;" onclick="app.sendChatMessage()"><i class="fa-solid fa-rss"></i></button>
                 </div>
             </div>
         </div>
@@ -428,25 +374,25 @@ h1, h2, h3, .logo, .orbitron {
 
 <div class="theater-modal" id="theaterModal">
     <div class="theater-header">
-        <h2 id="theaterModalTitle" class="orbitron" style="color:var(--neon-cyan);">Series Database Profile</h2>
-        <button class="btn-cyber btn-outline" style="padding: 8px 15px;" onclick="app.closeTheater()"><i class="fa-solid fa-xmark"></i> Terminate Matrix</button>
+        <h2 id="theaterModalTitle" style="color:var(--neon-cyan);">System Target Blueprint</h2>
+        <button class="btn-cyber btn-outline" style="padding: 8px 15px; border-radius:4px;" onclick="app.closeTheater()"><i class="fa-solid fa-power-off"></i> Close Matrix</button>
     </div>
     <div class="theater-main">
         <div style="display:flex; flex-direction:column;">
             <div class="modal-poster-wrap">
-                <img id="modalTargetImg" src="" alt="Target Node">
+                <img id="modalTargetImg" src="" alt="Target Frame">
             </div>
-            <h4 style="margin-top:20px; font-weight:600; color:var(--neon-pink); font-size:13px;">Capture Matrices (Graphic Nodes)</h4>
+            <h4 style="margin-top:20px; font-weight:700; color:var(--neon-pink); font-size:13px;" class="mono-display">// PHOTO CAPTURE MAP</h4>
             <div class="gallery-strip" id="screenshotGallery"></div>
         </div>
         <div style="display:flex; flex-direction:column; gap:20px;">
-            <div class="panel-box" style="background: rgba(255,255,255,0.02); padding:20px;">
-                <h3 style="color: var(--neon-cyan); margin-bottom:10px; font-size:16px;" class="orbitron">Synopsis Blueprint</h3>
-                <p id="theaterSynopsis" style="font-size:13px; color: var(--text-muted); line-height:1.6; max-height:150px; overflow-y:auto;"></p>
+            <div class="panel-box" style="background: rgba(255,255,255,0.01);">
+                <h3 style="color: var(--neon-cyan); margin-bottom:10px; font-size:16px;">Core Narrative Transcription</h3>
+                <p id="theaterSynopsis" style="font-size:13px; color: var(--text-muted); line-height:1.6; max-height:160px; overflow-y:auto;"></p>
             </div>
             
-            <div class="panel-box" style="background: rgba(255,255,255,0.02); flex:1; display:flex; flex-direction:column; padding:20px;">
-                <h3 style="color: var(--neon-pink); margin-bottom:12px; font-size:16px;" class="orbitron">Manifest Core Cast</h3>
+            <div class="panel-box" style="background: rgba(255,255,255,0.01); flex:1; display:flex; flex-direction:column;">
+                <h3 style="color: var(--neon-pink); margin-bottom:12px; font-size:16px;">Associated Persona Indices</h3>
                 <div id="characterManifest" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; overflow-y:auto; flex:1;"></div>
             </div>
         </div>
@@ -454,77 +400,74 @@ h1, h2, h3, .logo, .orbitron {
 </div>
 
 <div class="ai-bot-floating">
-    <div class="ai-trigger-sphere" onclick="app.toggleAIChat()"><i class="fa-solid fa-brain" style="font-size:24px; color:#fff;"></i></div>
+    <div class="ai-trigger-sphere" onclick="app.toggleAIChat()"><i class="fa-solid fa-tower-cell" style="font-size:22px; color:var(--neon-cyan);"></i></div>
     <div class="ai-chat-window" id="aiChatWindow">
-        <div style="background:var(--neon-purple); padding:15px; font-weight:700; font-family:'Orbitron'; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span>🤖 QUANTUM AI CORE v2.6</span>
-            <i class="fa-solid fa-circle" style="color:var(--neon-green); font-size:8px; animation: pulseSphere 1s infinite alternate;"></i>
+        <div style="background:var(--neon-purple); padding:15px; font-weight:700; font-family:var(--font-mono); display:flex; justify-content:space-between; align-items:center; font-size:13px; border-bottom:1px solid var(--neon-cyan);">
+            <span>📡 HAWKINS RECEPTOR CORE v2.6</span>
+            <i class="fa-solid fa-satellite-dish" style="color:var(--neon-green); font-size:10px;"></i>
         </div>
         <div class="chat-logs" id="aiLogs">
-            <div class="chat-msg msg-incoming"><strong>AI Core:</strong> Cryptographic index sync active. State your descriptive narrative interests, or say <em>"general"</em> for clean legendary masterpieces.</div>
+            <div class="chat-msg msg-incoming"><strong>Receiver Module:</strong> Sensory synchronization stable. State your preference variables or query index text (e.g. <em>"Cyberpunk"</em> or <em>"general"</em>) and I will filter high-reputation safe data streams.</div>
         </div>
         <div class="chat-input-wrap" style="padding:10px; background:rgba(0,0,0,0.5); margin:0;">
-            <input type="text" id="aiInput" placeholder="Type query ('general', 'cyberpunk')...">
-            <button class="btn-cyber btn-cyan" style="padding:10px 15px;" onclick="app.processAIRecommendation()"><i class="fa-solid fa-microchip"></i></button>
+            <input type="text" class="mono-display" id="aiInput" placeholder="Input telemetry criteria context...">
+            <button class="btn-cyber btn-cyan" style="padding:10px 15px; border-radius:4px;" onclick="app.processAIRecommendation()"><i class="fa-solid fa-bolt"></i></button>
         </div>
     </div>
 </div>
 
 <div class="mobile-hud-bar">
-    <button class="hud-tab active" onclick="app.switchView('trending', this)"><i class="fa-solid fa-fire"></i><span>Trending</span></button>
-    <button class="hud-tab" onclick="app.switchView('manga', this)"><i class="fa-solid fa-book-open"></i><span>Manga</span></button>
-    <button class="hud-tab" onclick="app.switchView('watchlist', this)"><i class="fa-solid fa-heart"></i><span>Collection</span></button>
-    <button class="hud-tab" onclick="app.rotateSkin()"><i class="fa-solid fa-palette"></i><span>Skins</span></button>
+    <button class="hud-tab active" onclick="app.switchView('trending', this)"><i class="fa-solid fa-satellite"></i><span>Scan</span></button>
+    <button class="hud-tab" onclick="app.switchView('manga', this)"><i class="fa-solid fa-folder-open"></i><span>Archive</span></button>
+    <button class="hud-tab" onclick="app.switchView('watchlist', this)"><i class="fa-solid fa-radiation"></i><span>Vault</span></button>
+    <button class="hud-tab" onclick="app.rotateSkin()"><i class="fa-solid fa-circle-nodes"></i><span>Grid</span></button>
 </div>
 
 <script>
-/* --- CORE FRAMEWORK ARCHITECTURE RUNTIME ENGINE --- */
-class AnimeVerseEngine {
+/* --- TELEMETRY CORE ENGINE INFRASTRUCTURE --- */
+class HawkinsTelemetryEngine {
     constructor() {
         this.jikanBase = "https://api.jikan.moe/v4";
-        this.skins = ['cyberpunk', 'vaporwave', 'matrix'];
+        this.skins = ['hawkins', 'void-mode', 'terminal-classic'];
         this.currentSkinIdx = 0;
-        this.watchlist = JSON.parse(localStorage.getItem('cyber_watchlist') || '[]');
+        this.watchlist = JSON.parse(localStorage.getItem('hawkins_vault') || '[]');
         this.chartInstance = null;
         this.cachedData = []; 
     }
 
     init() {
-        this.initCanvasBackground();
+        this.initCanvasParticles();
         this.loadTrending();
         this.loadManga();
         this.initRadarChart();
         this.bindEvents();
-        this.setupKeyboardShortcuts();
-        this.triggerSystemLog("Engine Operational. SFW Core Protocol Active.");
+        this.setupShortcuts();
+        this.triggerSystemLog("Sensory Receiver Grid Synchronized. Safe Content Enabled.");
     }
 
-    /* --- AMBIENT NEON CANVAS ENGINE BACKGROUND --- */
-    initCanvasBackground() {
+    /* --- IONIC BACKGROUND AMBIENT RENDERER --- */
+    initCanvasParticles() {
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         
-        const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
         window.addEventListener('resize', resize);
         resize();
 
-        for(let i=0; i<40; i++) {
+        for(let i=0; i<35; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 2,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4
+                radius: Math.random() * 1.5 + 0.5,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.5) * 0.25
             });
         }
 
         const animate = () => {
             ctx.clearRect(0,0, canvas.width, canvas.height);
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim() || '#00f2fe';
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim() || '#e50914';
             particles.forEach(p => {
                 p.x += p.vx; p.y += p.vy;
                 if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
@@ -538,15 +481,15 @@ class AnimeVerseEngine {
         animate();
     }
 
-    /* --- API DATA PIPELINES WITH SFW ENFORCEMENT --- */
+    /* --- DATA CHANNEL INGESTION MATRICES WITH POPULARITY WEIGHTING --- */
     async loadTrending() {
         try {
             const res = await fetch(`${this.jikanBase}/top/anime?limit=12&sfw=true`);
             const json = await res.json();
             this.cachedData = [...this.cachedData, ...json.data];
             this.renderCarousel(json.data, 'trendingSlider', 'anime');
-            if(json.data.length > 0) this.syncHeroTheater(json.data[0]);
-        } catch(e) { this.triggerSystemLog("Error syncing trending feed arrays.", true); }
+            if(json.data.length > 0) this.syncHeroDisplay(json.data[0]);
+        } catch(e) { this.triggerSystemLog("Error fetching primary matrix logs", true); }
     }
 
     async loadManga() {
@@ -555,13 +498,13 @@ class AnimeVerseEngine {
             const json = await res.json();
             this.cachedData = [...this.cachedData, ...json.data];
             this.renderCarousel(json.data, 'mangaSlider', 'manga');
-        } catch(e) { this.triggerSystemLog("Error syncing manga feed arrays.", true); }
+        } catch(e) { this.triggerSystemLog("Error fetching archive files", true); }
     }
 
-    syncHeroTheater(item) {
+    syncHeroDisplay(item) {
         document.getElementById('heroTitle').innerText = item.title;
-        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0,220) + '...' : 'Data matrix block empty.';
-        document.getElementById('heroTag').innerText = `TOP LOGGED CORE • VALUE SCORE: ${item.score || 'N/A'}`;
+        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0,210) + '...' : 'Blueprint specifications unlogged.';
+        document.getElementById('heroTag').innerText = `CRITICAL TELEMETRY SYNC // SCORE RANK: ${item.score || 'N/A'}`;
         document.getElementById('heroPlayBtn').onclick = () => this.openTheater(item.mal_id, 'anime');
     }
 
@@ -571,41 +514,39 @@ class AnimeVerseEngine {
         data.forEach(item => {
             const card = document.createElement('div');
             card.className = 'anime-card-3d';
-            const isWatchlisted = this.watchlist.some(w => w.mal_id === item.mal_id);
-            const scorePercent = item.score ? item.score * 10 : 70;
+            const isSaved = this.watchlist.some(w => w.mal_id === item.mal_id);
+            const filledPercent = item.score ? item.score * 10 : 75;
 
             card.innerHTML = `
-                <img class="card-img" src="${item.images.jpg.large_image_url || item.images.jpg.image_url}" alt="Asset Node" loading="lazy">
+                <img class="card-img" src="${item.images.jpg.large_image_url || item.images.jpg.image_url}" alt="File Node" loading="lazy">
                 <div class="card-overlay-hud">
                     <div class="card-hud-title">${item.title}</div>
                     <div class="card-hud-meta">
                         <span>⭐ ${item.score || 'N/A'}</span>
-                        <span onclick="event.stopPropagation(); app.toggleWatchlist(${item.mal_id}, '${type}')">
-                            <i class="${isWatchlisted ? 'fa-solid' : 'fa-regular'} fa-heart" style="color:var(--neon-pink);"></i>
+                        <span onclick="event.stopPropagation(); app.toggleVault(${item.mal_id}, '${type}')">
+                            <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark" style="color:var(--neon-pink);"></i>
                         </span>
                     </div>
                     <div class="progress-bar-wrap">
-                        <div class="progress-bar-fill" style="width: ${scorePercent}%"></div>
+                        <div class="progress-bar-fill" style="width: ${filledPercent}%"></div>
                     </div>
                 </div>
             `;
-            
+
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width/2);
                 const y = e.clientY - rect.top - (rect.height/2);
-                card.style.transform = `rotateY(${x * 0.1}deg) rotateX(${-y * 0.1}deg) translateY(-5px)`;
+                card.style.transform = `rotateY(${x * 0.08}deg) rotateX(${-y * 0.08}deg) translateY(-4px)`;
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0deg)`;
-            });
+            card.addEventListener('mouseleave', () => card.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0deg)`);
 
             card.onclick = () => this.openTheater(item.mal_id, type);
             wrapper.appendChild(card);
         });
     }
 
-    /* --- PROFILE MODAL ARCHIVE CHANNELS --- */
+    /* --- PROFILE SPECIFICATIONS GRID DIALOG --- */
     async openTheater(id, type) {
         const modal = document.getElementById('theaterModal');
         modal.style.display = 'flex';
@@ -617,21 +558,20 @@ class AnimeVerseEngine {
             const data = json.data;
 
             document.getElementById('theaterModalTitle').innerText = data.title;
-            document.getElementById('theaterSynopsis').innerText = data.synopsis || 'Comprehensive series profile logs empty.';
+            document.getElementById('theaterSynopsis').innerText = data.synopsis || 'Transcriptions empty inside secure cache framework.';
             document.getElementById('modalTargetImg').src = data.images.jpg.large_image_url || data.images.jpg.image_url;
 
             this.loadCastData(id, type);
-            this.loadScreenshotMatrix(id, type);
-            this.updateRadarData(data);
-            
-        } catch(e) { this.triggerSystemLog("Profile access channel failure.", true); }
+            this.loadScreenshots(id, type);
+            this.updateRadarChart(data);
+        } catch(e) { this.triggerSystemLog("Signal alignment failure.", true); }
     }
 
     async loadCastData(id, type) {
-        const castContainer = document.getElementById('characterManifest');
-        castContainer.innerHTML = '';
+        const container = document.getElementById('characterManifest');
+        container.innerHTML = '';
         if(type === 'manga') {
-            castContainer.innerHTML = '<p style="font-size:12px; opacity:0.5; padding:10px;">Cast mapping unavailable for text layouts.</p>';
+            container.innerHTML = '<p style="font-family:var(--font-mono); font-size:12px; opacity:0.5; padding:10px;">Archive registers layout as paper node.</p>';
             return;
         }
         try {
@@ -639,20 +579,20 @@ class AnimeVerseEngine {
             const json = await res.json();
             json.data.slice(0, 6).forEach(c => {
                 const row = document.createElement('div');
-                row.style = "display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.02); padding:6px; border-radius:8px;";
+                row.style = "display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.01); padding:6px; border:1px solid var(--card-border);";
                 row.innerHTML = `
-                    <img src="${c.character.images.jpg.image_url}" style="width:40px; height:40px; object-fit:cover; border-radius:50%; border:1px solid var(--neon-cyan);">
+                    <img src="${c.character.images.jpg.image_url}" style="width:38px; height:38px; object-fit:cover; border-radius:2px; border:1px solid var(--neon-cyan);">
                     <div>
                         <div style="font-size:11px; font-weight:700; color:#fff;">${c.character.name}</div>
-                        <div style="font-size:9px; color:var(--neon-pink);">${c.role}</div>
+                        <div style="font-family:var(--font-mono); font-size:10px; color:var(--neon-pink);">${c.role}</div>
                     </div>
                 `;
-                castContainer.appendChild(row);
+                container.appendChild(row);
             });
         } catch(e){}
     }
 
-    async loadScreenshotMatrix(id, type) {
+    async loadScreenshots(id, type) {
         const gallery = document.getElementById('screenshotGallery');
         gallery.innerHTML = '';
         try {
@@ -672,94 +612,85 @@ class AnimeVerseEngine {
         document.body.style.overflow = 'auto';
     }
 
-    /* --- ENHANCED QUANTUM AI CORE (SAFE SEARCH & POPULAR ANIME FALLBACK) --- */
+    /* --- REWRITTEN CONVERSATIONAL HAWKINS AI MATRIX (SAFE SEARCH CHANNELS) --- */
     processAIRecommendation() {
-        const promptInput = document.getElementById('aiInput');
-        let prompt = promptInput.value.toLowerCase().trim();
-        if (!prompt) return;
+        const input = document.getElementById('aiInput');
+        const prompt = input.value.toLowerCase().trim();
+        if(!prompt) return;
 
         const aiLogs = document.getElementById('aiLogs');
-        
-        // 1. Render user text message entry node
         const userMsg = document.createElement('div');
         userMsg.className = "chat-msg msg-outgoing";
-        userMsg.innerHTML = `<strong>User:</strong> ${prompt}`;
+        userMsg.innerHTML = `<strong>Telemetry Input:</strong> ${prompt}`;
         aiLogs.appendChild(userMsg);
-        promptInput.value = '';
+        input.value = '';
 
-        // 2. Set thinking buffer state
         const reply = document.createElement('div');
         reply.className = "chat-msg msg-incoming";
-        reply.innerHTML = `<strong>AI Core:</strong> Processing preference nodes with SFW filters active...`;
+        reply.innerHTML = `<strong>Receiver Core:</strong> Parsing telemetry grid variables under clean SFW constraint...`;
         aiLogs.appendChild(reply);
         aiLogs.scrollTop = aiLogs.scrollHeight;
 
-        this.triggerSystemLog("Filtering telemetry grid vectors...");
+        this.triggerSystemLog("Parsing signal anomalies...");
 
         setTimeout(async () => {
-            const greetings = ['hello', 'hi', 'hey', 'yo', 'sup', 'system', 'who are you'];
-            if (greetings.some(g => prompt === g || prompt.startsWith(g + ' '))) {
-                reply.innerHTML = `<strong>AI Core:</strong> Core operational. Enter tags like <em>"shonen"</em>, <em>"sci-fi"</em>, or say <em>"general"</em> to view worldwide high-rated masterpieces.`;
+            const intros = ['hello', 'hi', 'hey', 'yo', 'system', 'help', 'radar'];
+            if(intros.some(i => prompt === i || prompt.startsWith(i + ' '))) {
+                reply.innerHTML = `<strong>Receiver Core:</strong> Contact verified. Input generic descriptors like <em>"shonen"</em>, <em>"cyberpunk"</em>, or send <em>"general"</em> to pull mainstream masterpieces automatically sorted by popularity metrics.`;
                 aiLogs.scrollTop = aiLogs.scrollHeight;
                 return;
             }
 
-            // Route standard queries cleanly to avoid blank or obscure arrays
-            let isGeneralRequest = prompt.includes('general') || prompt.includes('normal') || prompt.includes('any') || prompt.length < 3;
-            let searchQuery = isGeneralRequest ? "shounen" : prompt;
+            let isGeneral = prompt.includes('general') || prompt.includes('normal') || prompt.includes('any') || prompt.length < 3;
+            let targetQuery = isGeneral ? "shounen" : prompt;
 
-            // Keyword Scraper against loaded repository data arrays
             let matches = [];
-            if (!isGeneralRequest && this.cachedData && this.cachedData.length > 0) {
+            if(!isGeneral && this.cachedData && this.cachedData.length > 0) {
                 matches = this.cachedData.filter(item => {
-                    const titleText = (item.title || '').toLowerCase();
-                    const synopsisText = (item.synopsis || '').toLowerCase();
-                    return titleText.includes(prompt) || synopsisText.includes(prompt);
+                    const text = ((item.title || '') + ' ' + (item.synopsis || '')).toLowerCase();
+                    return text.includes(prompt);
                 });
             }
 
-            if (matches.length > 0) {
+            if(matches.length > 0) {
                 const pick = matches[Math.floor(Math.random() * matches.length)];
-                reply.innerHTML = `<strong>AI Core Match:</strong> Isolated cached file: <strong>${pick.title}</strong>. Rating: ⭐ ${pick.score || 'N/A'}. High thematic alignment detected.`;
+                reply.innerHTML = `<strong>Receiver Core Match:</strong> Isolated tracking target inside cache: <strong>${pick.title}</strong>. Rating: ⭐ ${pick.score || 'N/A'}. Trace alignment stands nominal.`;
             } else {
-                // Force Clean SFW Search Sorted By Popularity Metrics
-                reply.innerHTML = `<strong>AI Core:</strong> Fetching high-reputation standard data matrix options for <em>"${searchQuery}"</em>...`;
-                
+                reply.innerHTML = `<strong>Receiver Core:</strong> Scanning outer grid index directories for high-popularity tracking profiles matched to <em>"${targetQuery}"</em>...`;
                 try {
-                    const response = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(searchQuery)}&limit=10&sfw=true&order_by=popularity&sort=asc`);
+                    const response = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(targetQuery)}&limit=10&sfw=true&order_by=popularity&sort=asc`);
                     const json = await response.json();
                     
-                    if (json.data && json.data.length > 0) {
+                    if(json.data && json.data.length > 0) {
                         this.renderCarousel(json.data, 'trendingSlider', 'anime');
-                        document.getElementById('sliderTitleText').innerText = "AI Computed Query Grid";
-                        
-                        const topPick = json.data[0];
-                        reply.innerHTML = `<strong>AI Core Link:</strong> Refreshed grid viewport with main stream indices! Highly recommend checking out <strong>${topPick.title}</strong> (Score: ⭐ ${topPick.score || 'N/A'}).`;
+                        document.getElementById('sliderTitleText').innerText = "AI Computed Target Grid";
+                        const topHit = json.data[0];
+                        reply.innerHTML = `<strong>Receiver Core Link:</strong> Transmitting data array directly into viewport carousel below. High signature recommendation: <strong>${topHit.title}</strong> (Score Metric: ⭐ ${topHit.score || 'N/A'}).`;
                     } else {
-                        reply.innerHTML = `<strong>AI Core:</strong> Scan complete. Zero safe data modules mapped to query string.`;
+                        reply.innerHTML = `<strong>Receiver Core:</strong> Outer index search fields returned entirely blank for clean records.`;
                     }
-                } catch (err) {
-                    reply.innerHTML = `<strong>AI Core Error:</strong> Live index telemetry dropped.`;
+                } catch(err) {
+                    reply.innerHTML = `<strong>Receiver Core Error:</strong> Network telemetry relay link failure.`;
                 }
             }
             aiLogs.scrollTop = aiLogs.scrollHeight;
-        }, 700);
+        }, 750);
     }
 
-    /* --- RADAR CHART LOGICS --- */
+    /* --- VECTOR ANALYTICS SPECTROGRAM CHART --- */
     initRadarChart() {
         const ctx = document.getElementById('analyticsChart').getContext('2d');
         this.chartInstance = new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ['Narrative Intensity', 'Structural Pacing', 'Acoustic Scoring', 'Visual Refraction', 'Casting Synthesis', 'Algorithmic Appeal'],
+                labels: ['Signal Amplitude', 'Frequency Spread', 'Pulse Density', 'Refraction Index', 'Phase Shift', 'Telemetry Appeal'],
                 datasets: [{
-                    label: 'Active Vector Evaluation',
-                    data: [80, 75, 85, 90, 70, 85],
-                    backgroundColor: 'rgba(0, 242, 254, 0.15)',
-                    borderColor: '#00f2fe',
+                    label: 'Anomalous Variance Profile',
+                    data: [75, 80, 70, 85, 90, 80],
+                    backgroundColor: 'rgba(229, 9, 20, 0.15)',
+                    borderColor: '#e50914',
                     borderWidth: 2,
-                    pointBackgroundColor: '#fe019a'
+                    pointBackgroundColor: '#facc15'
                 }]
             },
             options: {
@@ -770,7 +701,7 @@ class AnimeVerseEngine {
                         grid: { color: 'rgba(255, 255, 255, 0.08)' },
                         angleLines: { color: 'rgba(255, 255, 255, 0.08)' },
                         ticks: { display: false },
-                        pointLabels: { color: '#8a8da4', font: { size: 10 } }
+                        pointLabels: { color: '#9c8e8e', font: { size: 11, family: 'Share Tech Mono' } }
                     }
                 },
                 plugins: { legend: { display: false } }
@@ -778,17 +709,17 @@ class AnimeVerseEngine {
         });
     }
 
-    updateRadarData(item) {
+    updateRadarChart(item) {
         if(!this.chartInstance) return;
         const score = item.score || 7.5;
         this.chartInstance.data.datasets[0].data = [
-            Math.min(100, score * 11), Math.min(100, score * 9.5 + 4), Math.min(100, score * 10 + 2),
-            Math.min(100, score * 12 - 4), Math.min(100, score * 9 + 6), Math.min(100, score * 10.5)
+            Math.min(100, score * 11), Math.min(100, score * 9.8 + 2), Math.min(100, score * 10 + 1),
+            Math.min(100, score * 12 - 5), Math.min(100, score * 8.5 + 8), Math.min(100, score * 10.2)
         ];
         this.chartInstance.update();
     }
 
-    /* --- SYSTEM SETUP & CORE INTERFACES --- */
+    /* --- USER INTERFACE HANDSHAKE CONTROLLERS --- */
     bindEvents() {
         const search = document.getElementById('searchInput');
         let debounce;
@@ -818,30 +749,30 @@ class AnimeVerseEngine {
         });
 
         document.addEventListener('click', (e) => {
-            if (!document.querySelector('.search-box').contains(e.target)) {
+            if(!document.querySelector('.search-box').contains(e.target)) {
                 document.getElementById('suggestions').innerHTML = '';
             }
         });
 
         document.getElementById('aiInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.processAIRecommendation();
+            if(e.key === 'Enter') this.processAIRecommendation();
         });
     }
 
-    toggleWatchlist(id, type) {
+    toggleVault(id, type) {
         const idx = this.watchlist.findIndex(w => w.mal_id === id);
         if(idx === -1) {
             this.watchlist.push({ mal_id: id, type: type });
-            this.triggerSystemLog("Registered to workspace profile archive.");
+            this.triggerSystemLog("File locked down inside secure vault array.");
         } else {
             this.watchlist.splice(idx, 1);
-            this.triggerSystemLog("Removed from secure profile arrays.");
+            this.triggerSystemLog("File purged from storage compartment grids.");
         }
-        localStorage.setItem('cyber_watchlist', JSON.stringify(this.watchlist));
+        localStorage.setItem('hawkins_vault', JSON.stringify(this.watchlist));
     }
 
     triggerRandom() {
-        this.triggerSystemLog("Rerouting search proxy matrices...");
+        this.triggerSystemLog("Rerouting through signal proxy nodes...");
         fetch(`${this.jikanBase}/random/anime`)
             .then(res => res.json())
             .then(json => { if(json.data) this.openTheater(json.data.mal_id, 'anime'); });
@@ -854,7 +785,7 @@ class AnimeVerseEngine {
         const logs = document.getElementById('chatLogs');
         const msg = document.createElement('div');
         msg.className = 'chat-msg msg-outgoing';
-        msg.innerHTML = `<strong>You:</strong> ${txt}`;
+        msg.innerHTML = `<strong>Operator:</strong> ${txt}`;
         logs.appendChild(msg);
         input.value = '';
         logs.scrollTop = logs.scrollHeight;
@@ -864,8 +795,8 @@ class AnimeVerseEngine {
         document.body.classList.remove(...this.skins);
         this.currentSkinIdx = (this.currentSkinIdx + 1) % this.skins.length;
         const skin = this.skins[this.currentSkinIdx];
-        if(skin !== 'cyberpunk') document.body.classList.add(skin);
-        this.triggerSystemLog(`Active theme skin swapped: ${skin.toUpperCase()} LOADED`);
+        if(skin !== 'hawkins') document.body.classList.add(skin);
+        this.triggerSystemLog(`Radar array skinned to: ${skin.toUpperCase()}`);
     }
 
     scrollSlider(id, direction) {
@@ -875,7 +806,7 @@ class AnimeVerseEngine {
     switchView(target, btn) {
         document.querySelectorAll('.nav-link, .hud-tab').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
-        this.triggerSystemLog(`Workspace switched to ${target} domain context.`);
+        this.triggerSystemLog(`Sensory focus switched to ${target} grid.`);
     }
 
     toggleAIChat() {
@@ -883,23 +814,21 @@ class AnimeVerseEngine {
         win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    triggerSystemLog(msg, isError = false) {
+    triggerSystemLog(msg) {
         const nexus = document.getElementById('toastNexus');
         const toast = document.createElement('div');
         toast.className = 'toast-node';
-        toast.innerHTML = `<i class="fa-solid fa-microchip"></i> <span>${msg}</span>`;
+        toast.innerHTML = `<i class="fa-solid fa-satellite-dish"></i> <span>${msg}</span>`;
         nexus.appendChild(toast);
         setTimeout(() => toast.remove(), 4000);
     }
 
-    setupKeyboardShortcuts() {
-        window.addEventListener('keydown', (e) => {
-            if(e.key === 'Escape') this.closeTheater();
-        });
+    setupShortcuts() {
+        window.addEventListener('keydown', (e) => { if(e.key === 'Escape') this.closeTheater(); });
     }
 }
 
-const app = new AnimeVerseEngine();
+const app = new HawkinsTelemetryEngine();
 window.onload = () => app.init();
 </script>
 </body>
