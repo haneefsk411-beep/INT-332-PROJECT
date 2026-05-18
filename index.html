@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>AnimeVerse Neon Quantum Elite Pro AI</title>
 
-<!-- External CDNs: Google Fonts, Chart.js, FontAwesome -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -99,11 +98,18 @@ h1, h2, h3, .logo, .orbitron {
 
 .nav-links { display: flex; gap: 20px; align-items: center; }
 .nav-link {
-    color: var(--text-muted); text-decoration: none; font-size: 14px;
-    font-weight: 500; cursor: pointer; transition: 0.3s;
-    display: flex; align-items: center; gap: 6px;
+    color: #a3a6bd; text-decoration: none; font-size: 14px;
+    font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 8px;
 }
-.nav-link:hover, .nav-link.active { color: var(--neon-cyan); text-shadow: var(--glow); }
+.nav-link:hover, .nav-link.active { 
+    color: #fff;
+    background: rgba(0, 242, 254, 0.1);
+    box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    text-shadow: 0 0 8px var(--neon-cyan); 
+}
 
 .search-box { position: relative; }
 .search-box input {
@@ -134,7 +140,7 @@ h1, h2, h3, .logo, .orbitron {
 
 /* --- HERO THEATER BLOCK --- */
 .hero-theater {
-    position: relative; height: 65vh; width: 100%; display: flex;
+    position: relative; height: 50vh; width: 100%; display: flex;
     align-items: center; padding: 0 60px; overflow: hidden;
     background: radial-gradient(circle at 80%, transparent, var(--bg));
 }
@@ -148,7 +154,7 @@ h1, h2, h3, .logo, .orbitron {
     border: 1px solid var(--neon-cyan); border-radius: 20px; color: var(--neon-cyan);
     font-size: 12px; font-weight: 600; margin-bottom: 15px;
 }
-.hero-content h1 { font-size: 48px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
+.hero-content h1 { font-size: 44px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
 .hero-content p { color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
 .hero-actions { display: flex; gap: 15px; }
 .btn-cyber {
@@ -220,32 +226,31 @@ h1, h2, h3, .logo, .orbitron {
 .panel-title { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .panel-title i { color: var(--neon-pink); }
 
-/* --- ADVANCED FULLSCREEN THEATER DIALOG --- */
+/* --- ADVANCED MODAL SCREEN INFRASTRUCTURE (NO TRAILER) --- */
 .theater-modal {
-    position: fixed; inset: 0; background: rgba(3,0,10,0.98); z-index: 9999;
+    position: fixed; inset: 0; background: rgba(3,0,10,0.96); z-index: 9999;
     display: none; flex-direction: column; padding: 20px;
 }
 .theater-header {
-    display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;
+    display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--card-border);
 }
 .theater-main {
-    flex: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; padding: 20px; overflow-y: auto;
+    flex: 1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; padding: 30px 20px; overflow-y: auto;
 }
-.video-player-frame {
-    position: relative; width: 100%; background: #000; border-radius: 16px;
-    border: 1px solid var(--card-border); overflow: hidden; height: 450px;
+.modal-poster-wrap {
+    width: 100%; max-height: 520px; border-radius: 16px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: var(--glow);
 }
-.video-player-frame iframe { width: 100%; height: 100%; border: none; }
+.modal-poster-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
 .gallery-strip { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 5px; }
-.gallery-thumb { width: 120px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid transparent; cursor: pointer; }
-.gallery-thumb:hover { border-color: var(--neon-cyan); }
+.gallery-thumb { width: 120px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid transparent; }
 
 /* --- DYNAMIC TRANSITION LOG CHAT PLATFORM --- */
 .chat-widget-inner {
     display: flex; flex-direction: column; height: 350px;
 }
 .chat-logs { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 12px; }
-.chat-msg { padding: 8px 12px; border-radius: 12px; max-width: 85%; line-height: 1.4; }
+.chat-msg { padding: 8px 12px; border-radius: 12px; max-width: 85%; line-height: 1.4; word-wrap: break-word; }
 .msg-incoming { background: rgba(255,255,255,0.05); align-self: flex-start; border-left: 2px solid var(--neon-pink); }
 .msg-outgoing { background: rgba(0,242,254,0.15); align-self: flex-end; border-right: 2px solid var(--neon-cyan); }
 .chat-input-wrap { display: flex; gap: 10px; margin-top: 10px; }
@@ -254,7 +259,7 @@ h1, h2, h3, .logo, .orbitron {
     padding: 10px 15px; border-radius: 20px; color: #fff; font-size: 12px; outline: none;
 }
 
-/* --- FLOATING AI BOT INTELLIGENCE MATRIX --- */
+/* --- FLOATING SMART AI CHATBOT HUD --- */
 .ai-bot-floating {
     position: fixed; bottom: 85px; right: 30px; z-index: 5000;
 }
@@ -264,9 +269,13 @@ h1, h2, h3, .logo, .orbitron {
     box-shadow: var(--glow); animation: pulseSphere 2s infinite alternate;
 }
 .ai-chat-window {
-    position: absolute; bottom: 75px; right: 0; width: 320px; height: 420px;
-    background: rgba(10,5,25,0.98); border: 1px solid var(--neon-cyan);
-    border-radius: 20px; display: none; flex-direction: column; overflow: hidden; box-shadow: var(--glow);
+    position: absolute; bottom: 75px; right: 0; width: 340px; height: 440px;
+    background: rgba(10,5,25,0.98); border: 1px solid var(--neon-green);
+    border-radius: 20px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 0 25px rgba(5, 242, 199, 0.3);
+}
+#aiLogs {
+    display: flex; flex-direction: column; gap: 12px; padding: 15px;
+    overflow-y: auto; flex: 1; max-height: 320px; scroll-behavior: smooth;
 }
 
 /* --- ANIMATED HUD MOBILE TAB BAR --- */
@@ -294,6 +303,16 @@ h1, h2, h3, .logo, .orbitron {
     animation: slideInToast 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+#characterManifest div {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--card-border);
+    transition: 0.2s ease-in-out;
+}
+#characterManifest div:hover {
+    border-color: var(--neon-pink);
+    background: rgba(24e, 1, 154, 0.05) !important;
+}
+
 /* --- ANIMATIONS INDEX --- */
 @keyframes pulseSphere {
     from { transform: scale(1); box-shadow: 0 0 10px var(--neon-cyan); }
@@ -304,7 +323,7 @@ h1, h2, h3, .logo, .orbitron {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* --- ADAPTIVE GRID OVERRIDES (MOBILE & TABLET) --- */
+/* --- ADAPTIVE GRID OVERRIDES --- */
 @media (max-width: 1024px) {
     .analytics-grid { grid-template-columns: 1fr; }
 }
@@ -313,13 +332,13 @@ h1, h2, h3, .logo, .orbitron {
     .nav-links { display: none; }
     .search-box input { width: 160px; }
     .search-box input:focus { width: 200px; }
-    .hero-theater { height: 450px; padding: 0 20px; text-align: center; justify-content: center; }
+    .hero-theater { height: 400px; padding: 0 20px; text-align: center; justify-content: center; }
     .hero-content h1 { font-size: 32px; }
     .slider-container { padding: 20px; }
     .mobile-hud-bar { display: flex; }
     body { padding-bottom: 65px; }
-    .theater-main { grid-template-columns: 1fr; }
-    .video-player-frame { height: 260px; }
+    .theater-main { grid-template-columns: 1fr; gap: 20px; }
+    .modal-poster-wrap { max-height: 320px; }
 }
 </style>
 </head>
@@ -327,10 +346,8 @@ h1, h2, h3, .logo, .orbitron {
 
 <canvas id="particleCanvas"></canvas>
 
-<!-- TOAST HUB NODE -->
 <div class="toast-nexus" id="toastNexus"></div>
 
-<!-- MATRIX HEAD PLATFORM -->
 <nav class="navbar">
     <div class="logo" onclick="app.loadTrending()">ANIMEVERSE AI 🌌</div>
     <div class="nav-links">
@@ -342,14 +359,13 @@ h1, h2, h3, .logo, .orbitron {
     <div class="nav-right">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Voice / Text Query Matrix...">
+            <input type="text" id="searchInput" placeholder="Search database...">
             <div id="suggestions" class="suggestions"></div>
         </div>
     </div>
     <button class="engine-trigger" onclick="app.rotateSkin()"><i class="fa-solid fa-palette"></i> Skin OS</button>
 </nav>
 
-<!-- SYSTEM HERO SCREEN THEATER -->
 <section class="hero-theater" id="heroTheater">
     <video class="hero-video-bg" autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-subway-station-with-neon-lights-43958-large.mp4"></video>
     <div class="hero-content">
@@ -357,18 +373,16 @@ h1, h2, h3, .logo, .orbitron {
         <h1 id="heroTitle">Cyberpunk Edgerunners</h1>
         <p id="heroSynopsis">A street kid trying to survive in a technology and body modification-obsessed city of the future. Having everything to lose, he chooses to stay alive by becoming an edgerunner.</p>
         <div class="hero-actions">
-            <button class="btn-cyber btn-cyan" id="heroPlayBtn"><i class="fa-solid fa-play"></i> Access Theater</button>
+            <button class="btn-cyber btn-cyan" id="heroPlayBtn"><i class="fa-solid fa-circle-info"></i> View Specifications</button>
             <button class="btn-cyber btn-outline" onclick="app.triggerRandom()"><i class="fa-solid fa-shuffle"></i> Quantum Pick</button>
         </div>
     </div>
 </section>
 
-<!-- RENDER CAROUSEL ENGINE MATRIX -->
 <main id="mainContent">
-    <!-- TRENDING SLIDER SECTION -->
     <section class="slider-container">
         <div class="slider-header">
-            <div class="slider-title">🔥 <span>Trending</span> Telemetry Feed</div>
+            <div class="slider-title">🔥 <span id="sliderTitleText">Trending</span> Telemetry Feed</div>
             <div class="slider-arrows">
                 <div class="arrow" onclick="app.scrollSlider('trendingSlider', -1)"><i class="fa-solid fa-chevron-left"></i></div>
                 <div class="arrow" onclick="app.scrollSlider('trendingSlider', 1)"><i class="fa-solid fa-chevron-right"></i></div>
@@ -377,7 +391,6 @@ h1, h2, h3, .logo, .orbitron {
         <div class="slider-wrapper" id="trendingSlider"></div>
     </section>
 
-    <!-- MANGA SLIDER SECTION -->
     <section class="slider-container">
         <div class="slider-header">
             <div class="slider-title">📖 <span>Manga</span> Nexus Nodes</div>
@@ -389,9 +402,7 @@ h1, h2, h3, .logo, .orbitron {
         <div class="slider-wrapper" id="mangaSlider"></div>
     </section>
 
-    <!-- DATA EXPERIMENT CORE PACK -->
     <section class="analytics-grid">
-        <!-- GLOBAL ANALYTICS PANEL -->
         <div class="panel-box">
             <div class="panel-title"><i class="fa-solid fa-chart-radar"></i> Structural Index Analytics Radar</div>
             <div style="position: relative; height: 300px; width: 100%;">
@@ -399,7 +410,6 @@ h1, h2, h3, .logo, .orbitron {
             </div>
         </div>
         
-        <!-- TELEMETRY PUBLIC CONSOLE LOGS -->
         <div class="panel-box">
             <div class="panel-title"><i class="fa-solid fa-network-wired"></i> Global Node Chat Logs (Live)</div>
             <div class="chat-widget-inner">
@@ -416,52 +426,50 @@ h1, h2, h3, .logo, .orbitron {
     </section>
 </main>
 
-<!-- HIGH-TIER CINEMATIC THEATER MODAL -->
 <div class="theater-modal" id="theaterModal">
     <div class="theater-header">
         <h2 id="theaterModalTitle" class="orbitron" style="color:var(--neon-cyan);">Series Database Profile</h2>
         <button class="btn-cyber btn-outline" style="padding: 8px 15px;" onclick="app.closeTheater()"><i class="fa-solid fa-xmark"></i> Terminate Matrix</button>
     </div>
     <div class="theater-main">
-        <div>
-            <div class="video-player-frame" id="videoFrameContainer">
-                <!-- IFRAME LOADED ON DEMAND -->
+        <div style="display:flex; flex-direction:column;">
+            <div class="modal-poster-wrap">
+                <img id="modalTargetImg" src="" alt="Target Node">
             </div>
-            <h4 style="margin-top:20px; font-weight:600; color:var(--neon-pink);">Capture Matrices (Screenshot Nodes)</h4>
+            <h4 style="margin-top:20px; font-weight:600; color:var(--neon-pink); font-size:13px;">Capture Matrices (Graphic Nodes)</h4>
             <div class="gallery-strip" id="screenshotGallery"></div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:15px;">
-            <div class="panel-box" style="background: rgba(255,255,255,0.02);">
-                <h3 style="color: var(--neon-cyan); margin-bottom:10px;">Synopsis Blueprint</h3>
-                <p id="theaterSynopsis" style="font-size:13px; color: var(--text-muted); line-height:1.6; max-height:120px; overflow-y:auto;"></p>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+            <div class="panel-box" style="background: rgba(255,255,255,0.02); padding:20px;">
+                <h3 style="color: var(--neon-cyan); margin-bottom:10px; font-size:16px;" class="orbitron">Synopsis Blueprint</h3>
+                <p id="theaterSynopsis" style="font-size:13px; color: var(--text-muted); line-height:1.6; max-height:150px; overflow-y:auto;"></p>
             </div>
             
-            <div class="panel-box" style="background: rgba(255,255,255,0.02); flex:1; display:flex; flex-direction:column;">
-                <h3 style="color: var(--neon-pink); margin-bottom:10px;">Manifest Core Cast</h3>
-                <div id="characterManifest" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; overflow-y:auto; flex:1;"></div>
+            <div class="panel-box" style="background: rgba(255,255,255,0.02); flex:1; display:flex; flex-direction:column; padding:20px;">
+                <h3 style="color: var(--neon-pink); margin-bottom:12px; font-size:16px;" class="orbitron">Manifest Core Cast</h3>
+                <div id="characterManifest" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; overflow-y:auto; flex:1;"></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- FLOATING INTELLIGENCE ROBOT HUD -->
 <div class="ai-bot-floating">
     <div class="ai-trigger-sphere" onclick="app.toggleAIChat()"><i class="fa-solid fa-brain" style="font-size:24px; color:#fff;"></i></div>
     <div class="ai-chat-window" id="aiChatWindow">
-        <div style="background:var(--neon-purple); padding:15px; font-weight:700; font-family:'Orbitron'; display:flex; justify-content:between; align-items:center;">
-            <span>🤖 QUANTUM AI CORE</span>
+        <div style="background:var(--neon-purple); padding:15px; font-weight:700; font-family:'Orbitron'; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span>🤖 QUANTUM AI CORE v2.5</span>
+            <i class="fa-solid fa-circle" style="color:var(--neon-green); font-size:8px; animation: pulseSphere 1s infinite alternate;"></i>
         </div>
-        <div class="chat-logs" id="aiLogs" style="flex:1; padding:15px;">
-            <div class="chat-msg msg-incoming">System calibrated. Describe your narrative preference indices, and I shall compute matching anime profiles instantly.</div>
+        <div class="chat-logs" id="aiLogs">
+            <div class="chat-msg msg-incoming"><strong>AI Core:</strong> System calibrated. State your narrative criteria, keyword indexes, or query intents (e.g., <em>"Cyberpunk"</em> or <em>"Gory horror"</em>) and I will filter down tracking targets.</div>
         </div>
-        <div class="chat-input-wrap" style="padding:10px; background:rgba(0,0,0,0.4);">
-            <input type="text" id="aiInput" placeholder="Ask AI: 'Dark sci-fi thriller'...">
-            <button class="btn-cyber btn-cyan" style="padding:10px 15px;" onclick="app.processAIRecommendation()"><i class="fa-solid fa-processor"></i> Run</button>
+        <div class="chat-input-wrap" style="padding:10px; background:rgba(0,0,0,0.5); margin:0;">
+            <input type="text" id="aiInput" placeholder="Type query / greeting context...">
+            <button class="btn-cyber btn-cyan" style="padding:10px 15px;" onclick="app.processAIRecommendation()"><i class="fa-solid fa-microchip"></i></button>
         </div>
     </div>
 </div>
 
-<!-- NATIVE MOBILE TABULAR CONTROLLER HUD -->
 <div class="mobile-hud-bar">
     <button class="hud-tab active" onclick="app.switchView('trending', this)"><i class="fa-solid fa-fire"></i><span>Trending</span></button>
     <button class="hud-tab" onclick="app.switchView('manga', this)"><i class="fa-solid fa-book-open"></i><span>Manga</span></button>
@@ -470,7 +478,7 @@ h1, h2, h3, .logo, .orbitron {
 </div>
 
 <script>
-/* --- ARCHITECTURE ARCHETYPE SYSTEM ENGINE --- */
+/* --- CORE FRAMEWORK ARCHITECTURE RUNTIME ENGINE --- */
 class AnimeVerseEngine {
     constructor() {
         this.jikanBase = "https://api.jikan.moe/v4";
@@ -488,10 +496,10 @@ class AnimeVerseEngine {
         this.initRadarChart();
         this.bindEvents();
         this.setupKeyboardShortcuts();
-        this.triggerSystemLog("Engine Core Initialization Complete. Secure Link Established.");
+        this.triggerSystemLog("Engine Core Initialization Complete. Operational Linked Matrix Built.");
     }
 
-    /* --- BACKGROUND PARTICLES AMBIENT RUNTIME --- */
+    /* --- AMBIENT NEON CANVAS ENGINE BACKGROUND --- */
     initCanvasBackground() {
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
@@ -504,13 +512,13 @@ class AnimeVerseEngine {
         window.addEventListener('resize', resize);
         resize();
 
-        for(let i=0; i<50; i++) {
+        for(let i=0; i<40; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 radius: Math.random() * 2,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4
             });
         }
 
@@ -530,7 +538,7 @@ class AnimeVerseEngine {
         animate();
     }
 
-    /* --- NETFLIX SYSTEM DATA AGGREGATOR PIPELINES --- */
+    /* --- API DATA PIPELINES --- */
     async loadTrending() {
         try {
             const res = await fetch(`${this.jikanBase}/top/anime?limit=12`);
@@ -538,22 +546,23 @@ class AnimeVerseEngine {
             this.cachedData = [...this.cachedData, ...json.data];
             this.renderCarousel(json.data, 'trendingSlider', 'anime');
             if(json.data.length > 0) this.syncHeroTheater(json.data[0]);
-        } catch(e) { this.triggerSystemLog("Error rendering trending nodes pipeline", true); }
+        } catch(e) { this.triggerSystemLog("Error syncing trending feed arrays.", true); }
     }
 
     async loadManga() {
         try {
             const res = await fetch(`${this.jikanBase}/top/manga?limit=12`);
             const json = await res.json();
+            this.cachedData = [...this.cachedData, ...json.data];
             this.renderCarousel(json.data, 'mangaSlider', 'manga');
-        } catch(e) { this.triggerSystemLog("Error rendering manga nodes pipeline", true); }
+        } catch(e) { this.triggerSystemLog("Error syncing manga feed arrays.", true); }
     }
 
     syncHeroTheater(item) {
         document.getElementById('heroTitle').innerText = item.title;
-        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0,220) + '...' : 'No data matrix sequence logs updated inside central index maps.';
-        document.getElementById('heroTag').innerText = `TOP TRACKED • CORE SCORE ${item.score || 'N/A'}`;
-        document.getElementById('heroPlayBtn').onclick = () => this.openTheater(item.mal_id, 'anime');
+        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0,220) + '...' : 'Data matrix block empty.';
+        document.getElementById('heroTag').innerText = `TOP LOGGED CORE • VALUE SCORE: ${item.score || 'N/A'}`;
+        document.getElementById('heroPlayBtn').onclick = () => this.openTheater(id, 'anime');
     }
 
     renderCarousel(data, containerId, type) {
@@ -562,9 +571,8 @@ class AnimeVerseEngine {
         data.forEach(item => {
             const card = document.createElement('div');
             card.className = 'anime-card-3d';
-            
             const isWatchlisted = this.watchlist.some(w => w.mal_id === item.mal_id);
-            const scorePercent = item.score ? item.score * 10 : 75;
+            const scorePercent = item.score ? item.score * 10 : 70;
 
             card.innerHTML = `
                 <img class="card-img" src="${item.images.jpg.large_image_url || item.images.jpg.image_url}" alt="Asset Node" loading="lazy">
@@ -582,7 +590,6 @@ class AnimeVerseEngine {
                 </div>
             `;
             
-            // Apply mouse move tracking mechanics for real 3D depth shifting
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width/2);
@@ -598,42 +605,33 @@ class AnimeVerseEngine {
         });
     }
 
-    /* --- CINEMATIC SYSTEM ADVANCED MATRIX OVERLAY --- */
+    /* --- PROFILE MODAL ARCHIVE CHANNELS (TRAILER HOOK REMOVED) --- */
     async openTheater(id, type) {
         const modal = document.getElementById('theaterModal');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
 
-        const videoContainer = document.getElementById('videoFrameContainer');
-        videoContainer.innerHTML = `<div style="padding:40px; text-align:center;" class="orbitron">SYNCHRONIZING SECURE FEED STREAM...</div>`;
-        
         try {
             const res = await fetch(`${this.jikanBase}/${type}/${id}`);
             const json = await res.json();
             const data = json.data;
 
             document.getElementById('theaterModalTitle').innerText = data.title;
-            document.getElementById('theaterSynopsis').innerText = data.synopsis || 'Comprehensive documentation arrays blank.';
+            document.getElementById('theaterSynopsis').innerText = data.synopsis || 'Comprehensive series profile logs empty.';
+            document.getElementById('modalTargetImg').src = data.images.jpg.large_image_url || data.images.jpg.image_url;
 
-            if(data.trailer && data.trailer.youtube_id) {
-                videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${data.trailer.youtube_id}?autoplay=1&enablejsapi=1" allowfullscreen></iframe>`;
-            } else {
-                videoContainer.innerHTML = `<div style="padding:80px; text-align:center; color:var(--neon-pink);" class="orbitron"><i class="fa-solid fa-triangle-exclamation"></i> TRAILER CIPHER ENCRYPTED OR ABSENT</div>`;
-            }
-
-            // Sync Cast Metrics Channels
             this.loadCastData(id, type);
             this.loadScreenshotMatrix(id, type);
             this.updateRadarData(data);
             
-        } catch(e) { this.triggerSystemLog("Error accessing theater server node", true); }
+        } catch(e) { this.triggerSystemLog("Profile access channel failure.", true); }
     }
 
     async loadCastData(id, type) {
         const castContainer = document.getElementById('characterManifest');
         castContainer.innerHTML = '';
         if(type === 'manga') {
-            castContainer.innerHTML = '<p style="font-size:12px; opacity:0.5; padding:10px;">Manga data structure defaults casting options to paper nodes.</p>';
+            castContainer.innerHTML = '<p style="font-size:12px; opacity:0.5; padding:10px;">Cast mapping unavailable for text layouts.</p>';
             return;
         }
         try {
@@ -641,11 +639,11 @@ class AnimeVerseEngine {
             const json = await res.json();
             json.data.slice(0, 6).forEach(c => {
                 const row = document.createElement('div');
-                row.style = "display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.02); padding:5px; border-radius:8px;";
+                row.style = "display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.02); padding:6px; border-radius:8px;";
                 row.innerHTML = `
                     <img src="${c.character.images.jpg.image_url}" style="width:40px; height:40px; object-fit:cover; border-radius:50%; border:1px solid var(--neon-cyan);">
                     <div>
-                        <div style="font-size:11px; font-weight:700;">${c.character.name}</div>
+                        <div style="font-size:11px; font-weight:700; color:#fff;">${c.character.name}</div>
                         <div style="font-size:9px; color:var(--neon-pink);">${c.role}</div>
                     </div>
                 `;
@@ -660,7 +658,7 @@ class AnimeVerseEngine {
         try {
             const res = await fetch(`${this.jikanBase}/${type}/${id}/pictures`);
             const json = await res.json();
-            json.data.slice(0, 5).forEach(p => {
+            json.data.slice(0, 4).forEach(p => {
                 const img = document.createElement('img');
                 img.className = 'gallery-thumb';
                 img.src = p.jpg.image_url;
@@ -671,11 +669,82 @@ class AnimeVerseEngine {
 
     closeTheater() {
         document.getElementById('theaterModal').style.display = 'none';
-        document.getElementById('videoFrameContainer').innerHTML = '';
         document.body.style.overflow = 'auto';
     }
 
-    /* --- CHART JS MATRIX TELEMETRY CONFIGS --- */
+    /* --- REWRITTEN WORKING QUANTUM AI CORE SYSTEM --- */
+    processAIRecommendation() {
+        const promptInput = document.getElementById('aiInput');
+        const prompt = promptInput.value.toLowerCase().trim();
+        if (!prompt) return;
+
+        const aiLogs = document.getElementById('aiLogs');
+        
+        // 1. Render user text message entry node
+        const userMsg = document.createElement('div');
+        userMsg.className = "chat-msg msg-outgoing";
+        userMsg.innerHTML = `<strong>User:</strong> ${prompt}`;
+        aiLogs.appendChild(userMsg);
+        promptInput.value = '';
+
+        // 2. Set thinking buffer state
+        const reply = document.createElement('div');
+        reply.className = "chat-msg msg-incoming";
+        reply.innerHTML = `<strong>AI Core:</strong> Analyzing semantic matrix parameters...`;
+        aiLogs.appendChild(reply);
+        aiLogs.scrollTop = aiLogs.scrollHeight;
+
+        this.triggerSystemLog("AI Core computing parameters...");
+
+        setTimeout(async () => {
+            // Conversational Intent Parsing Configuration
+            const greetings = ['hello', 'hi', 'hey', 'yo', 'sup', 'help', 'system', 'who are you'];
+            if (greetings.some(g => prompt === g || prompt.startsWith(g + ' '))) {
+                reply.innerHTML = `<strong>AI Core:</strong> Uplink established. I am your Quantum AI assistant. Provide thematic parameters, plot descriptors, or keywords (e.g. <em>"Cyberpunk"</em> or <em>"Gory thriller"</em>) and I will query targets instantly.`;
+                aiLogs.scrollTop = aiLogs.scrollHeight;
+                return;
+            }
+
+            // Keyword Scraper against loaded repository data arrays
+            let matches = [];
+            if (this.cachedData && this.cachedData.length > 0) {
+                matches = this.cachedData.filter(item => {
+                    const titleText = (item.title || '').toLowerCase();
+                    const synopsisText = (item.synopsis || '').toLowerCase();
+                    const genresText = item.genres ? item.genres.map(g => g.name.toLowerCase()).join(' ') : '';
+                    return titleText.includes(prompt) || synopsisText.includes(prompt) || genresText.includes(prompt);
+                });
+            }
+
+            // Render matching evaluations
+            if (matches.length > 0) {
+                const pick = matches[Math.floor(Math.random() * matches.length)];
+                const typeLabel = pick.type ? pick.type.toUpperCase() : 'NODE';
+                reply.innerHTML = `<strong>AI Core Match:</strong> Profile isolated! Look into <strong>${pick.title}</strong> [${typeLabel}]. Quality Score: ⭐ ${pick.score || 'N/A'}. This file exhibits an excellent contextual match to your prompt profile.`;
+            } else {
+                // Global remote array bypass execution
+                reply.innerHTML = `<strong>AI Core:</strong> Context absent in local memory cache. Pinging deep global server logs for: <em>"${prompt}"</em>...`;
+                
+                try {
+                    const response = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(prompt)}&limit=8`);
+                    const json = await response.json();
+                    
+                    if (json.data && json.data.length > 0) {
+                        this.renderCarousel(json.data, 'trendingSlider', 'anime');
+                        document.getElementById('sliderTitleText').innerText = "AI Computed Query Grid";
+                        reply.innerHTML = `<strong>AI Core Link:</strong> Multi-platform search complete. Located <strong>${json.data.length} profiles</strong> across remote servers and forced an immediate workspace layout update below!`;
+                    } else {
+                        reply.innerHTML = `<strong>AI Core:</strong> Scan complete. Zero data modules mapped to query string <em>"${prompt}"</em> across local or global indices.`;
+                    }
+                } catch (err) {
+                    reply.innerHTML = `<strong>AI Core Error:</strong> Live index telemetry dropped.`;
+                }
+            }
+            aiLogs.scrollTop = aiLogs.scrollHeight;
+        }, 700);
+    }
+
+    /* --- RADAR CHART LOGICS --- */
     initRadarChart() {
         const ctx = document.getElementById('analyticsChart').getContext('2d');
         this.chartInstance = new Chart(ctx, {
@@ -684,8 +753,8 @@ class AnimeVerseEngine {
                 labels: ['Narrative Intensity', 'Structural Pacing', 'Acoustic Scoring', 'Visual Refraction', 'Casting Synthesis', 'Algorithmic Appeal'],
                 datasets: [{
                     label: 'Active Vector Evaluation',
-                    data: [85, 72, 90, 95, 80, 88],
-                    backgroundColor: 'rgba(0, 242, 254, 0.2)',
+                    data: [80, 75, 85, 90, 70, 85],
+                    backgroundColor: 'rgba(0, 242, 254, 0.15)',
                     borderColor: '#00f2fe',
                     borderWidth: 2,
                     pointBackgroundColor: '#fe019a'
@@ -696,8 +765,8 @@ class AnimeVerseEngine {
                 maintainAspectRatio: false,
                 scales: {
                     r: {
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                        angleLines: { color: 'rgba(255, 255, 255, 0.08)' },
                         ticks: { display: false },
                         pointLabels: { color: '#8a8da4', font: { size: 10 } }
                     }
@@ -710,80 +779,14 @@ class AnimeVerseEngine {
     updateRadarData(item) {
         if(!this.chartInstance) return;
         const score = item.score || 7.5;
-        // Seed dynamic, mathematically algorithmic shifts using structural score tracking parameters
-        const newData = [
-            Math.min(100, score * 11),
-            Math.min(100, score * 9.5 + (item.rank ? 2 : 5)),
-            Math.min(100, score * 10 + 4),
-            Math.min(100, score * 12 - 5),
-            Math.min(100, score * 8.8 + 10),
-            Math.min(100, score * 10)
+        this.chartInstance.data.datasets[0].data = [
+            Math.min(100, score * 11), Math.min(100, score * 9.5 + 4), Math.min(100, score * 10 + 2),
+            Math.min(100, score * 12 - 4), Math.min(100, score * 9 + 6), Math.min(100, score * 10.5)
         ];
-        this.chartInstance.data.datasets[0].data = newData;
         this.chartInstance.update();
     }
 
-    /* --- LOCAL NATURAL VECTOR AI MATCHING SYSTEM --- */
-    processAIRecommendation() {
-        const prompt = document.getElementById('aiInput').value.toLowerCase().trim();
-        if(!prompt) return;
-
-        const aiLogs = document.getElementById('aiLogs');
-        const userMsg = document.createElement('div');
-        userMsg.className = "chat-msg msg-outgoing";
-        userMsg.innerText = prompt;
-        aiLogs.appendChild(userMsg);
-        document.getElementById('aiInput').value = '';
-
-        this.triggerSystemLog("Computing natural language semantic arrays...");
-
-        setTimeout(() => {
-            let matches = this.cachedData.filter(item => {
-                const text = ((item.title || '') + ' ' + (item.synopsis || '')).toLowerCase();
-                return text.includes(prompt) || (item.genres && item.genres.some(g => prompt.includes(g.name.toLowerCase())));
-            });
-
-            const reply = document.createElement('div');
-            reply.className = "chat-msg msg-incoming";
-
-            if(matches.length > 0) {
-                const pick = matches[Math.floor(Math.random() * matches.length)];
-                reply.innerHTML = `<strong>Matrix Computation Complete:</strong> Try accessing <strong>${pick.title}</strong> (Score: ${pick.score || 'N/A'}). Synopsis indicates high vector synchronization with your prompt index.`;
-            } else {
-                reply.innerText = "Quantum match arrays returned empty for local index. Re-routing optimization to global search indexing systems below.";
-                this.executeGlobalMatrixSearch(prompt);
-            }
-            aiLogs.appendChild(reply);
-            aiLogs.scrollTop = aiLogs.scrollHeight;
-        }, 800);
-    }
-
-    async executeGlobalMatrixSearch(query) {
-        try {
-            const res = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(query)}&limit=5`);
-            const json = await res.json();
-            if(json.data && json.data.length > 0) {
-                this.renderCarousel(json.data, 'trendingSlider', 'anime');
-                this.triggerSystemLog("Global search pipeline refreshed viewports.");
-            }
-        } catch(e){}
-    }
-
-    /* --- LOCALPERSISTENCE WORKSPACE CHANNELS --- */
-    toggleWatchlist(id, type) {
-        const idx = this.watchlist.findIndex(w => w.mal_id === id);
-        if(idx === -1) {
-            this.watchlist.push({ mal_id: id, type: type });
-            this.triggerSystemLog("Item successfully bound to persistent profile repository.");
-        } else {
-            this.watchlist.splice(idx, 1);
-            this.triggerSystemLog("Item purged from persistent profile data blocks.");
-        }
-        localStorage.setItem('cyber_watchlist', JSON.stringify(this.watchlist));
-        this.loadTrending(); 
-    }
-
-    /* --- SEARCH ENGINE SUGGESTION LOGICS --- */
+    /* --- SYSTEM SETUP & CORE INTERFACES --- */
     bindEvents() {
         const search = document.getElementById('searchInput');
         let debounce;
@@ -811,16 +814,35 @@ class AnimeVerseEngine {
                 }
             }, 300);
         });
+
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.search-box').contains(e.target)) {
+                document.getElementById('suggestions').innerHTML = '';
+            }
+        });
+
+        document.getElementById('aiInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.processAIRecommendation();
+        });
     }
 
-    /* --- EXTRA SMART COMPONENT MATRIX TRIPPERS --- */
+    toggleWatchlist(id, type) {
+        const idx = this.watchlist.findIndex(w => w.mal_id === id);
+        if(idx === -1) {
+            this.watchlist.push({ mal_id: id, type: type });
+            this.triggerSystemLog("Item registered into secure local watchlist profiles.");
+        } else {
+            this.watchlist.splice(idx, 1);
+            this.triggerSystemLog("Item removed from secure profile arrays.");
+        }
+        localStorage.setItem('cyber_watchlist', JSON.stringify(this.watchlist));
+    }
+
     triggerRandom() {
-        this.triggerSystemLog("Rerouting through random proxy node...");
+        this.triggerSystemLog("Rerouting search proxy matrices...");
         fetch(`${this.jikanBase}/random/anime`)
             .then(res => res.json())
-            .then(json => {
-                if(json.data) this.openTheater(json.data.mal_id, 'anime');
-            });
+            .then(json => { if(json.data) this.openTheater(json.data.mal_id, 'anime'); });
     }
 
     sendChatMessage() {
@@ -841,18 +863,17 @@ class AnimeVerseEngine {
         this.currentSkinIdx = (this.currentSkinIdx + 1) % this.skins.length;
         const skin = this.skins[this.currentSkinIdx];
         if(skin !== 'cyberpunk') document.body.classList.add(skin);
-        this.triggerSystemLog(`Active theme skinned to: ${skin.toUpperCase()} OS`);
+        this.triggerSystemLog(`Active theme skin swapped: ${skin.toUpperCase()} LOADED`);
     }
 
     scrollSlider(id, direction) {
-        const el = document.getElementById(id);
-        el.scrollBy({ left: direction * 300, behavior: 'smooth' });
+        document.getElementById(id).scrollBy({ left: direction * 300, behavior: 'smooth' });
     }
 
     switchView(target, btn) {
         document.querySelectorAll('.nav-link, .hud-tab').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
-        this.triggerSystemLog(`Viewport switched to ${target} domain.`);
+        this.triggerSystemLog(`Workspace switched to ${target} domain context.`);
     }
 
     toggleAIChat() {
@@ -864,8 +885,7 @@ class AnimeVerseEngine {
         const nexus = document.getElementById('toastNexus');
         const toast = document.createElement('div');
         toast.className = 'toast-node';
-        if(isError) toast.style.borderLeftColor = 'var(--neon-red)';
-        toast.innerHTML = `<i class="fa-solid ${isError ? 'fa-triangle-exclamation':'fa-microchip'}"></i> <span>${msg}</span>`;
+        toast.innerHTML = `<i class="fa-solid fa-microchip"></i> <span>${msg}</span>`;
         nexus.appendChild(toast);
         setTimeout(() => toast.remove(), 4000);
     }
@@ -873,12 +893,10 @@ class AnimeVerseEngine {
     setupKeyboardShortcuts() {
         window.addEventListener('keydown', (e) => {
             if(e.key === 'Escape') this.closeTheater();
-            if(e.ctrlKey && e.key === 'q') this.triggerRandom();
         });
     }
 }
 
-// Instantiate engine on core load configuration matrix
 const app = new AnimeVerseEngine();
 window.onload = () => app.init();
 </script>
