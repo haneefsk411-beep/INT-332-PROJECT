@@ -202,6 +202,7 @@ body.purple .hero { background: linear-gradient(rgba(30, 27, 75, 0.85), rgba(30,
 .hero-btns button{ padding:14px 24px; border:none; border-radius:15px; font-size:15px; font-weight:700; cursor:pointer; transition:.3s; }
 .explore-btn{ background:var(--green); color:white; }
 .trending-btn{ background:var(--red); color:white; }
+.random-btn{ background:var(--accent2); color:white; }
 
 /* --- PERFORMANCE & METRICS ENGINE --- */
 .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; padding:40px; }
@@ -222,7 +223,7 @@ body.light .stat-card { border: 1px solid rgba(0,0,0,.05); }
     transition:.4s; background-size:cover; background-position:center;
 }
 .category-card::before{ content:''; position:absolute; inset:0; background:rgba(0,0,0,.6); transition: 0.3s; }
-.category-card span{ position:relative; z-index:2; color: #ffffff; }
+.category-card span{ position:relative; z-index:2; color: #ffffff; text-align:center; padding:5px; }
 .category-card:hover{ transform:translateY(-4px); box-shadow:0 8px 20px rgba(56,189,248,0.25); }
 .category-card.active { box-shadow: 0 0 0 4px var(--accent); }
 
@@ -231,6 +232,10 @@ body.light .stat-card { border: 1px solid rgba(0,0,0,.05); }
 .comedy{ background-image:url('https://images.unsplash.com/photo-1531259683007-016a7b628fc3?q=80&w=400'); }
 .fantasy{ background-image:url('https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?q=80&w=400'); }
 .sports{ background-image:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=400'); }
+.scifi{ background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400'); }
+.horror{ background-image:url('https://images.unsplash.com/photo-1505635552518-3448ff116af3?q=80&w=400'); }
+.mystery{ background-image:url('https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=400'); }
+.sliceoflife{ background-image:url('https://images.unsplash.com/photo-1516981879613-9f5da904015f?q=80&w=400'); }
 
 /* --- FILTER TOOLBARBAR --- */
 .filter-bar{ display:flex; justify-content:center; gap:15px; margin-bottom:35px; flex-wrap:wrap; background: var(--card2); padding: 15px 20px; border-radius: 18px; }
@@ -269,10 +274,18 @@ body.light .characters-section { border-top: 1px solid rgba(0,0,0,0.08); }
 .role-main { background: rgba(56, 189, 248, 0.2); color: var(--accent); }
 .role-supp { background: rgba(255,255,255,0.1); color: var(--text); opacity: 0.7; }
 
+/* --- WORKSPACE PERSONAL NOTES MANAGEMENT ARCHITECTURE --- */
+.notes-container { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+body.light .notes-container { border-top: 1px solid rgba(0,0,0,0.08); }
+.notes-textarea { width: 100%; height: 80px; background: var(--card2); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; color: var(--text); font-size: 14px; resize: none; outline: none; margin-top: 8px; }
+.save-note-btn { background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 8px; font-size: 13px; transition: 0.2s; }
+.save-note-btn:hover { opacity: 0.9; }
+
 /* --- PAGINATION CONFIGS --- */
-.pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 40px; }
-.pagination-btn { padding: 10px 20px; border-radius: 10px; border: none; background: var(--card); color: var(--text); cursor: pointer; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
+.pagination-container { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 40px; flex-wrap: wrap; }
+.pagination-btn { padding: 10px 18px; border-radius: 10px; border: none; background: var(--card); color: var(--text); cursor: pointer; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
 .pagination-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.page-nav-hub { display: flex; align-items: center; gap: 6px; }
 
 /* --- UTILITY NODES --- */
 .loader{ display:none; justify-content:center; padding:40px; }
@@ -355,10 +368,9 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
     .overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.85) 30%, transparent); padding: 8px; }
     .fav-action-btn { padding: 6px; font-size: 11px; margin-top: 4px; }
     
-    /* Transforming Modal Window to Native Overlay Sheet */
     .modal { padding: 0; background: var(--bg); }
     .mobile-modal-header { display: flex; }
-    .close { display: none; } /* Hide layout desktop close marker button */
+    .close { display: none; }
     .modal-content {
         flex-direction: column;
         align-items: stretch;
@@ -419,6 +431,7 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
     <div class="hero-btns">
         <button class="explore-btn" onclick="scrollToAnime()">🚀 Open Workspace</button>
         <button class="trending-btn" onclick="triggerTrending()">🔥 Top Global Rated</button>
+        <button class="random-btn" onclick="triggerRandomAnime()">🎲 Surprise Me</button>
     </div>
 </section>
 
@@ -426,18 +439,22 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
 <section class="stats">
     <div class="stat-card"><h2 id="statTotal">0</h2><p>Dataset Nodes Loaded</p></div>
     <div class="stat-card"><h2 id="statFavs">0 Items</h2><p>Saved to Collection</p></div>
-    <div class="stat-card"><h2>Jikan v4</h2><p>Active Engine Core</p></div>
+    <div class="stat-card"><h2 id="statGenre">Global</h2><p>Active Genre Focus</p></div>
 </section>
 
 <section class="section">
     <h2 class="section-title">Filter by Structural Genres</h2>
     <p class="section-subtitle">Select a category below to filter down options instantly via global lookup nodes.</p>
     <div class="category-grid" id="categoryGrid">
-        <div class="category-card action" data-genre="1" onclick="selectCategory(this)"><span>🔥 Action</span></div>
-        <div class="category-card romance" data-genre="22" onclick="selectCategory(this)"><span>❤️ Romance</span></div>
-        <div class="category-card comedy" data-genre="4" onclick="selectCategory(this)"><span>😂 Comedy</span></div>
-        <div class="category-card fantasy" data-genre="10" onclick="selectCategory(this)"><span>🧙 Fantasy</span></div>
-        <div class="category-card sports" data-genre="30" onclick="selectCategory(this)"><span>⚽ Sports</span></div>
+        <div class="category-card action" data-genre="1" data-label="Action" onclick="selectCategory(this)"><span>🔥 Action</span></div>
+        <div class="category-card romance" data-genre="22" data-label="Romance" onclick="selectCategory(this)"><span>❤️ Romance</span></div>
+        <div class="category-card comedy" data-genre="4" data-label="Comedy" onclick="selectCategory(this)"><span>😂 Comedy</span></div>
+        <div class="category-card fantasy" data-genre="10" data-label="Fantasy" onclick="selectCategory(this)"><span>🧙 Fantasy</span></div>
+        <div class="category-card sports" data-genre="30" data-label="Sports" onclick="selectCategory(this)"><span>⚽ Sports</span></div>
+        <div class="category-card scifi" data-genre="24" data-label="Sci-Fi" onclick="selectCategory(this)"><span>🚀 Sci-Fi</span></div>
+        <div class="category-card horror" data-genre="14" data-label="Horror" onclick="selectCategory(this)"><span>👻 Horror</span></div>
+        <div class="category-card mystery" data-genre="7" data-label="Mystery" onclick="selectCategory(this)"><span>🔍 Mystery</span></div>
+        <div class="category-card sliceoflife" data-genre="36" data-label="Slice of Life" onclick="selectCategory(this)"><span>🌿 Slice of Life</span></div>
     </div>
 </section>
 
@@ -471,6 +488,7 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
     <div class="anime-grid" id="animeGrid"></div>
 
     <div class="pagination-container">
+        <button class="pagination-btn" id="firstPageBtn" onclick="jumpToPage(1)">⏮ Page 1</button>
         <button class="pagination-btn" id="prevPageBtn" onclick="changePage(-1)" disabled>◀ Prev</button>
         <span id="pageIndicator" style="font-weight: 600; font-size:14px;">Page 1</span>
         <button class="pagination-btn" id="nextPageBtn" onclick="changePage(1)">Next ▶</button>
@@ -485,7 +503,6 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
 
 <!-- DATA ENTRY DETAIL INTERFACE WITH ADAPTIVE ACTION HEADER -->
 <div class="modal" id="modal" onclick="handleModalOutsideClick(event)">
-    <!-- Sticky back deck for small phone form factors -->
     <div class="mobile-modal-header" id="mobileModalHeader">
         <button class="mobile-back-action" onclick="closeModal()">← Back to Feed</button>
         <span style="margin-left: auto; font-weight: 700; font-size: 14px;">Details View</span>
@@ -510,6 +527,14 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
                 </div>
             </div>
 
+            <!-- Integrated Notebook Feature -->
+            <div class="notes-container">
+                <h4 style="font-weight:700;">Personal Workspace Notes</h4>
+                <p style="font-size:11px; opacity:0.6;">Write tracking status, favorite episodes, or individual grades.</p>
+                <textarea id="modalNotesArea" class="notes-textarea" placeholder="Start typing personal review logs here..."></textarea>
+                <button id="saveNoteBtn" class="save-note-btn">💾 Save Review Logs</button>
+            </div>
+
             <div id="trailerContainer"></div>
             <div id="videoPlayer"></div>
         </div>
@@ -531,6 +556,7 @@ const searchInput = document.getElementById('searchInput');
 const pageIndicator = document.getElementById('pageIndicator');
 const prevPageBtn = document.getElementById('prevPageBtn');
 const nextPageBtn = document.getElementById('nextPageBtn');
+const firstPageBtn = document.getElementById('firstPageBtn');
 
 let rawAnimeData = [];
 let processedAnimeData = [];
@@ -538,6 +564,7 @@ let currentQuery = '';
 let currentGenreId = '';
 let currentPage = 1;
 let currentMode = 'trending'; 
+let currentActiveAnimeId = null;
 
 // Themes available inside core workspace
 const themeCatalog = ['dark', 'light', 'purple'];
@@ -563,10 +590,12 @@ async function loadAnimeData() {
     if (currentMode === 'trending') {
         url = `https://api.jikan.moe/v4/top/anime?page=${currentPage}&limit=24`;
         document.getElementById('gridTitle').innerText = "Top Global Configurations";
+        document.getElementById('statGenre').innerText = "Global Trends";
     } else if (currentMode === 'genre') {
         url = `https://api.jikan.moe/v4/anime?genres=${currentGenreId}&page=${currentPage}&limit=24&order_by=score&sort=desc`;
     } else if (currentMode === 'search') {
         url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(currentQuery)}&page=${currentPage}&limit=24`;
+        document.getElementById('statGenre').innerText = "Search Result Matrix";
     }
 
     const payload = await fetchEngine(url);
@@ -575,6 +604,7 @@ async function loadAnimeData() {
         if(payload.pagination) {
             nextPageBtn.disabled = !payload.pagination.has_next_page;
             prevPageBtn.disabled = currentPage === 1;
+            firstPageBtn.disabled = currentPage === 1;
             pageIndicator.innerText = `Page ${currentPage}`;
         }
         document.getElementById('statTotal').innerText = rawAnimeData.length;
@@ -643,11 +673,30 @@ function renderAnimeGrid(data) {
     });
 }
 
+// Global random discovery engine trigger code
+async function triggerRandomAnime() {
+    loader.style.display = 'flex';
+    try {
+        const res = await fetch('https://api.jikan.moe/v4/random/anime');
+        const payload = await res.json();
+        if (payload && payload.data) {
+            showDetails(payload.data);
+            showToast("🎲 Random Discovery Packet Extracted Successfully!");
+        } else {
+            showToast("Failed to intercept random object node.");
+        }
+    } catch(err) {
+        showToast("Engine fault requesting random node.");
+    } finally {
+        loader.style.display = 'none';
+    }
+}
+
 async function showDetails(anime) {
+    currentActiveAnimeId = anime.mal_id;
     document.body.style.overflow = 'hidden';
     document.getElementById('modal').style.display = 'block';
     
-    // Adjust modal styling parameters depending on platform size variables
     if(window.innerWidth <= 850) {
         document.getElementById('modal').style.display = 'block';
     } else {
@@ -665,6 +714,10 @@ async function showDetails(anime) {
         <div class="badge">Popularity: #${anime.popularity || 'N/A'}</div>
     `;
 
+    // Load saved review note metrics if available
+    const savedNotes = JSON.parse(localStorage.getItem('animeWorkspaceNotes') || '{}');
+    document.getElementById('modalNotesArea').value = savedNotes[anime.mal_id] || '';
+
     const trailerContainer = document.getElementById('trailerContainer');
     document.getElementById('videoPlayer').innerHTML = '';
     trailerContainer.innerHTML = `
@@ -676,6 +729,16 @@ async function showDetails(anime) {
 
     fetchCharactersList(anime.mal_id);
 }
+
+// Integrated workspace notes persistent tracking setup
+document.getElementById('saveNoteBtn').onclick = function() {
+    if(!currentActiveAnimeId) return;
+    const notesText = document.getElementById('modalNotesArea').value;
+    const savedNotes = JSON.parse(localStorage.getItem('animeWorkspaceNotes') || '{}');
+    savedNotes[currentActiveAnimeId] = notesText;
+    localStorage.setItem('animeWorkspaceNotes', JSON.stringify(savedNotes));
+    showToast("💾 Local System Review Note Node Written Successfully!");
+};
 
 async function fetchCharactersList(animeId) {
     const container = document.getElementById('modalCharactersContainer');
@@ -718,7 +781,6 @@ function playTrailer(id) {
     player.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allowfullscreen></iframe>`;
 }
 
-// Global deep analytics tracker updater
 function refreshStats() {
     const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
     document.getElementById('statFavs').innerText = `${favs.length} Packs`;
@@ -738,6 +800,7 @@ function closeModal() {
     document.body.style.overflow = 'auto'; 
     document.getElementById('modal').style.display = 'none'; 
     document.getElementById('videoPlayer').innerHTML = ''; 
+    currentActiveAnimeId = null;
 }
 
 function handleModalOutsideClick(event) { 
@@ -748,9 +811,11 @@ function selectCategory(element) {
     document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
     element.classList.add('active');
     currentGenreId = element.getAttribute('data-genre');
+    const label = element.getAttribute('data-label');
     currentMode = 'genre';
     currentPage = 1;
-    document.getElementById('gridTitle').innerText = `Genre: ${element.querySelector('span').innerText}`;
+    document.getElementById('gridTitle').innerText = `Genre: ${label}`;
+    document.getElementById('statGenre').innerText = label;
     loadAnimeData();
     updateMobileActiveNav('explore');
     scrollToAnime();
@@ -767,6 +832,7 @@ function triggerTrending() {
 
 function resetExplore() { searchInput.value = ''; triggerTrending(); }
 function changePage(step) { currentPage += step; loadAnimeData(); scrollToAnime(); }
+function jumpToPage(targetPage) { currentPage = targetPage; loadAnimeData(); scrollToAnime(); }
 
 function handleMobileNav(target) {
     updateMobileActiveNav(target);
@@ -795,7 +861,6 @@ searchInput.addEventListener('input', function() {
         const suggestions = document.getElementById('suggestions');
         suggestions.innerHTML = '';
         
-        // Added clear header option directly inside suggestion array node
         const clearNode = document.createElement('div');
         clearNode.className = 'suggestion-item';
         clearNode.style.background = 'var(--card2)';
@@ -876,7 +941,6 @@ function showFavorites() {
     });
 }
 
-// Rotates skin options seamlessly across layout views
 function rotateTheme() {
     document.body.classList.remove('light', 'purple');
     activeThemeIndex = (activeThemeIndex + 1) % themeCatalog.length;
