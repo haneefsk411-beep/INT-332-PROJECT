@@ -77,7 +77,19 @@ h1, h2, h3, .logo, .retro-header {
     background-size: 100% 4px, 6px 100%;
 }
 
-/* --- VINTAGE LAB OVERLAY FRAME --- */
+/* --- SYSTEM BACKGROUND FLOATING CANVAS --- */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* --- VINTAGE LAB OVERLAY NAV FRAME --- */
 .navbar {
     position: sticky; top: 0; z-index: 2000;
     display: flex; justify-content: space-between; align-items: center;
@@ -151,7 +163,7 @@ h1, h2, h3, .logo, .retro-header {
 .hero-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; }
 .hero-actions { display: flex; gap: 15px; }
 
-/* --- PERMANENT GRID LAYOUT WORKSPACE --- */
+/* --- STATIC GRID REGION (12 TILES MAX) --- */
 .telemetry-grid-section {
     padding: 40px;
 }
@@ -162,13 +174,14 @@ h1, h2, h3, .logo, .retro-header {
 .grid-title { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .grid-title span { color: var(--neon-cyan); }
 
-.infinite-grid-container {
+.paginated-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 30px;
+    min-height: 720px;
 }
 
-/* --- 3D ROTATION TECH TELEMETRY CARDS --- */
+/* --- 3D INTERACTIVE METRIC CARDS --- */
 .anime-card-3d {
     height: 340px; background: var(--card);
     border-radius: 4px; border: 1px solid var(--card-border);
@@ -195,12 +208,22 @@ h1, h2, h3, .logo, .retro-header {
 }
 .progress-bar-fill { height: 100%; background: var(--neon-cyan); width: 0%; }
 
-/* --- WORKSPACE LOAD ELEMENT --- */
-.grid-sentinel {
-    grid-column: 1 / -1; padding: 40px; text-align: center;
-    font-family: var(--font-mono); color: var(--neon-pink); font-size: 14px;
+/* --- RETRO STEER PAGINATION CONTROLS NODE --- */
+.pagination-deck {
+    display: flex; justify-content: center; align-items: center; gap: 20px;
+    margin-top: 40px; padding-top: 20px; border-top: 1px dashed var(--card-border);
 }
-.grid-sentinel i { margin-right: 8px; animation: spin 1s infinite linear; }
+.page-btn {
+    background: var(--card); border: 1px solid var(--neon-cyan); color: #fff;
+    padding: 10px 24px; font-family: var(--font-mono); font-size: 14px; cursor: pointer;
+    border-radius: 4px; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.page-btn:hover:not(:disabled) {
+    background: var(--neon-cyan); box-shadow: var(--glow); text-shadow: 0 0 4px #000;
+}
+.page-btn:disabled {
+    opacity: 0.25; cursor: not-allowed; border-color: var(--card-border);
+}
 
 /* --- DIAGNOSTIC STATS GRID SYSTEM --- */
 .analytics-grid {
@@ -290,7 +313,6 @@ h1, h2, h3, .logo, .retro-header {
     from { transform: translateX(120%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 @media (max-width: 768px) {
     .navbar { padding: 15px 20px; }
@@ -341,17 +363,18 @@ h1, h2, h3, .logo, .retro-header {
     </div>
 </section>
 
-<section class="telemetry-grid-section">
+<section class="telemetry-grid-section" id="gridAnchor">
     <div class="grid-header">
-        <div class="grid-title">📡 <span id="gridContextLabel">Main Feed</span> Tracking Array</div>
-        <div class="mono-display" style="font-size: 13px; color: var(--neon-cyan);" id="pageConsoleCounter">PAGE STACK: 01</div>
+        <div class="grid-title">📡 <span id="gridContextLabel">Main Feed</span> Receiver Platform</div>
+        <div class="mono-display" style="font-size: 13px; color: var(--neon-cyan);" id="pageConsoleCounter">PAGE CHANNEL: 01</div>
     </div>
     
-    <div class="infinite-grid-container" id="infiniteGrid">
+    <div class="paginated-grid-container" id="telemetryGrid">
         </div>
     
-    <div class="grid-sentinel" id="gridSentinel">
-        <i class="fa-solid fa-compact-disc"></i> Scanning next page block vector channels...
+    <div class="pagination-deck">
+        <button class="page-btn" id="prevPageBtn" onclick="app.shiftPageOffset(-1)"><i class="fa-solid fa-angle-left"></i> Previous Stack</button>
+        <button class="page-btn" id="nextPageBtn" onclick="app.shiftPageOffset(1)">Next Stack <i class="fa-solid fa-angle-right"></i></button>
     </div>
 </section>
 
@@ -367,8 +390,8 @@ h1, h2, h3, .logo, .retro-header {
         <div class="panel-title"><i class="fa-solid fa-tower-broadcast"></i> Mesh Network Broadcast Signals</div>
         <div class="chat-widget-inner">
             <div class="chat-logs" id="chatLogs">
-                <div class="chat-msg msg-incoming"><strong>Radio_Operator:</strong> Continuous scrolling sequence loaded into visual raster grids.</div>
-                <div class="chat-msg msg-incoming"><strong>Lab_Tech_04:</strong> Safe search guard active. Popularity constraints forced onto the telemetry loader loop.</div>
+                <div class="chat-msg msg-incoming"><strong>Radio_Operator:</strong> Numbered page sequencing running natively on 12-item index stacks.</div>
+                <div class="chat-msg msg-incoming"><strong>Lab_Tech_04:</strong> Safe search guard active. Popularity sorting filters applied across network receivers.</div>
             </div>
             <div class="chat-input-wrap">
                 <input type="text" class="mono-display" id="chatInput" placeholder="Inject broadcast message packet...">
@@ -438,24 +461,22 @@ class HawkinsTelemetryEngine {
         this.currentSkinIdx = 0;
         this.watchlist = JSON.parse(localStorage.getItem('hawkins_vault') || '[]');
         this.chartInstance = null;
+        this.cachedData = [];
         
-        // Endless Grid States
+        // 12-Item Hard Pagination Configuration States
         this.currentDataType = 'anime'; 
         this.currentQueryMode = 'top'; 
         this.currentSearchString = '';
         this.currentPageNumber = 1;
-        this.isLoadingNextPage = false;
-        this.hasReachedTerminalEnd = false;
     }
 
     init() {
         this.initCanvasParticles();
-        this.setupInfiniteObserver();
-        this.loadGridDataBatch(true);
+        this.fetchPaginatedBatch();
         this.initRadarChart();
         this.bindEvents();
         this.setupShortcuts();
-        this.triggerSystemLog("Sensory Receiver Grid Active. Infinite Scroller Initialized.");
+        this.triggerSystemLog("Sensory Receiver Grid Synchronized. 12-Item Pagination Core Active.");
     }
 
     /* --- AMBIENT PARTICLES --- */
@@ -494,78 +515,55 @@ class HawkinsTelemetryEngine {
         animate();
     }
 
-    /* --- INTERSECTION OBSERVER PIPELINE (UNLIMITED PAGES) --- */
-    setupInfiniteObserver() {
-        const sentinel = document.getElementById('gridSentinel');
-        const options = { root: null, rootMargin: '250px', threshold: 0.1 };
+    /* --- CLASSIC RECEPTOR LOADER DECK --- */
+    async fetchPaginatedBatch() {
+        const grid = document.getElementById('telemetryGrid');
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; font-family:var(--font-mono); color:var(--neon-cyan); padding:100px 0;"><i class="fa-solid fa-satellite-dish fa-spin" style="margin-right:10px;"></i> TUNING MATRIX RECEIVER SIGNAL...</div>`;
+        
+        document.getElementById('pageConsoleCounter').innerText = `PAGE CHANNEL: ${String(this.currentPageNumber).padStart(2, '0')}`;
+        document.getElementById('prevPageBtn').disabled = (this.currentPageNumber === 1);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !this.isLoadingNextPage && !this.hasReachedTerminalEnd) {
-                    this.loadGridDataBatch(false);
-                }
-            });
-        }, options);
-
-        observer.observe(sentinel);
-    }
-
-    /* --- CENTRAL TELEMETRY DATA FETCH CONSOLE --- */
-    async loadGridDataBatch(isFreshReset = false) {
-        if (isFreshReset) {
-            this.currentPageNumber = 1;
-            this.hasReachedTerminalEnd = false;
-            document.getElementById('infiniteGrid').innerHTML = '';
-            this.triggerSystemLog(`Syncing primary data grid blocks...`);
-        }
-
-        this.isLoadingNextPage = true;
-        document.getElementById('gridSentinel').style.display = 'block';
-        document.getElementById('pageConsoleCounter').innerText = `PAGE STACK: ${String(this.currentPageNumber).padStart(2, '0')}`;
-
-        let requestEndpoint = '';
-
+        let endpointUrl = '';
         if (this.currentQueryMode === 'top') {
-            requestEndpoint = `${this.jikanBase}/top/${this.currentDataType}?page=${this.currentPageNumber}&limit=16&sfw=true`;
+            endpointUrl = `${this.jikanBase}/top/${this.currentDataType}?page=${this.currentPageNumber}&limit=12&sfw=true`;
         } else if (this.currentQueryMode === 'search') {
-            requestEndpoint = `${this.jikanBase}/${this.currentDataType}?q=${encodeURIComponent(this.currentSearchString)}&page=${this.currentPageNumber}&limit=16&sfw=true&order_by=popularity&sort=asc`;
+            endpointUrl = `${this.jikanBase}/${this.currentDataType}?q=${encodeURIComponent(this.currentSearchString)}&page=${this.currentPageNumber}&limit=12&sfw=true&order_by=popularity&sort=asc`;
         }
 
         try {
-            const response = await fetch(requestEndpoint);
+            const response = await fetch(endpointUrl);
             const json = await response.json();
 
             if (!json.data || json.data.length === 0) {
-                this.hasReachedTerminalEnd = true;
-                document.getElementById('gridSentinel').style.display = 'none';
-                this.triggerSystemLog("All index telemetry data parsed successfully.");
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; font-family:var(--font-mono); color:var(--neon-cyan); padding:100px 0;">NO TELEMETRIC RECORD PACKETS FOUND INSIDE MATRIX STACK.</div>`;
+                document.getElementById('nextPageBtn').disabled = true;
                 return;
             }
 
-            this.appendItemsToWorkspace(json.data);
-            
-            // Sync hero module backdrop to the top matching asset block
-            if (isFreshReset && json.data.length > 0 && this.currentDataType === 'anime') {
+            this.cachedData = json.data;
+            this.renderFixedGrid(json.data);
+
+            // Update Next controller based on API metadata pipelines
+            if (json.pagination) {
+                document.getElementById('nextPageBtn').disabled = !json.pagination.has_next_page;
+            } else {
+                document.getElementById('nextPageBtn').disabled = (json.data.length < 12);
+            }
+
+            // Keep hero header synchronized with the leading element of page one
+            if (this.currentPageNumber === 1 && json.data.length > 0 && this.currentDataType === 'anime') {
                 this.syncHeroDisplay(json.data[0]);
             }
 
-            if (json.pagination && json.pagination.has_next_page) {
-                this.currentPageNumber++;
-            } else {
-                this.hasReachedTerminalEnd = true;
-                document.getElementById('gridSentinel').style.display = 'none';
-            }
-
         } catch (error) {
-            this.triggerSystemLog("Error syncing pipeline stream packets", true);
-        } finally {
-            this.isLoadingNextPage = false;
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; font-family:var(--font-mono); color:var(--neon-cyan); padding:100px 0;"><i class="fa-solid fa-triangle-exclamation"></i> NETWORK REFRACTION FAILURE. SIGNAL LOSS DETECTED.</div>`;
         }
     }
 
-    appendItemsToWorkspace(dataset) {
-        const grid = document.getElementById('infiniteGrid');
-        
+    renderFixedGrid(dataset) {
+        const grid = document.getElementById('telemetryGrid');
+        grid.innerHTML = '';
+
         dataset.forEach(item => {
             const card = document.createElement('div');
             card.className = 'anime-card-3d';
@@ -574,7 +572,7 @@ class HawkinsTelemetryEngine {
             const imgSrc = item.images?.jpg?.large_image_url || item.images?.jpg?.image_url || 'https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400';
 
             card.innerHTML = `
-                <img class="card-img" src="${imgSrc}" alt="Data Module Frame" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400'">
+                <img class="card-img" src="${imgSrc}" alt="Telemetry Panel" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400'">
                 <div class="card-overlay-hud">
                     <div class="card-hud-title">${item.title}</div>
                     <div class="card-hud-meta">
@@ -589,7 +587,7 @@ class HawkinsTelemetryEngine {
                 </div>
             `;
 
-            // Dynamic layout translation logic
+            // Perspective tilt shift matrix
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width / 2);
@@ -603,14 +601,23 @@ class HawkinsTelemetryEngine {
         });
     }
 
+    shiftPageOffset(offsetValue) {
+        this.currentPageNumber += offsetValue;
+        if (this.currentPageNumber < 1) this.currentPageNumber = 1;
+        this.fetchPaginatedBatch();
+        
+        // Auto-scroll screen window directly to grid anchor header row elegantly
+        document.getElementById('gridAnchor').scrollIntoView({ behavior: 'smooth' });
+    }
+
     syncHeroDisplay(item) {
         document.getElementById('heroTitle').innerText = item.title;
-        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0, 210) + '...' : 'Specification matrix files empty.';
-        document.getElementById('heroTag').innerText = `TOP SIGNAL // HISTORICAL POPULARITY RATING: ${item.score || 'N/A'}`;
+        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0, 210) + '...' : 'Specification profile data unmapped.';
+        document.getElementById('heroTag').innerText = `CRITICAL TELEMETRY LEVEL // SCORE RANK: ${item.score || 'N/A'}`;
         document.getElementById('heroPlayBtn').onclick = () => this.openTheater(item.mal_id, 'anime');
     }
 
-    /* --- PROFILE SPECIFICATIONS MODAL VIEWER --- */
+    /* --- SPECS DIALOG SHEET CORES --- */
     async openTheater(id, type) {
         const modal = document.getElementById('theaterModal');
         modal.style.display = 'flex';
@@ -628,14 +635,14 @@ class HawkinsTelemetryEngine {
             this.loadCastData(id, type);
             this.loadScreenshots(id, type);
             this.updateRadarChart(data);
-        } catch(e) { this.triggerSystemLog("Signal alignment failure.", true); }
+        } catch(e) { this.triggerSystemLog("Signal configuration failure.", true); }
     }
 
     async loadCastData(id, type) {
         const container = document.getElementById('characterManifest');
         container.innerHTML = '';
         if(type === 'manga') {
-            container.innerHTML = '<p style="font-family:var(--font-mono); font-size:12px; opacity:0.5; padding:10px;">Persona configurations unavailable for print elements.</p>';
+            container.innerHTML = '<p style="font-family:var(--font-mono); font-size:12px; opacity:0.5; padding:10px;">Persona logs unavailable for print components.</p>';
             return;
         }
         try {
@@ -676,7 +683,7 @@ class HawkinsTelemetryEngine {
         document.body.style.overflow = 'auto';
     }
 
-    /* --- ENHANCED QUANTUM AI CORE (INFINITE GRID INJECTION CAPABLE) --- */
+    /* --- CONVERSATIONAL HAWKINS AI RECEIVER WIDGET CORE --- */
     processAIRecommendation() {
         const input = document.getElementById('aiInput');
         const prompt = input.value.toLowerCase().trim();
@@ -691,14 +698,14 @@ class HawkinsTelemetryEngine {
 
         const reply = document.createElement('div');
         reply.className = "chat-msg msg-incoming";
-        reply.innerHTML = `<strong>Receiver Core:</strong> Parsing preferencing matrix under safe search rules...`;
+        reply.innerHTML = `<strong>Receiver Core:</strong> Parsing preferencing matrix vectors under SFW filters...`;
         aiLogs.appendChild(reply);
         aiLogs.scrollTop = aiLogs.scrollHeight;
 
         setTimeout(async () => {
             const intros = ['hello', 'hi', 'hey', 'yo', 'system', 'help'];
             if(intros.some(i => prompt === i || prompt.startsWith(i + ' '))) {
-                reply.innerHTML = `<strong>Receiver Core:</strong> Link verified. Enter tags like <em>"mecha"</em>, <em>"fantasy"</em>, or say <em>"general"</em> to view top safe high-reputation configurations.`;
+                reply.innerHTML = `<strong>Receiver Core:</strong> Core operational. Enter tags like <em>"mecha"</em>, <em>"cyberpunk"</em>, or send <em>"general"</em> to pull mainstream masterpieces automatically sorted by popularity metrics.`;
                 aiLogs.scrollTop = aiLogs.scrollHeight;
                 return;
             }
@@ -707,17 +714,17 @@ class HawkinsTelemetryEngine {
             this.currentSearchString = isGeneral ? "shounen" : prompt;
             this.currentQueryMode = 'search';
             this.currentDataType = 'anime';
+            this.currentPageNumber = 1;
 
             document.getElementById('gridContextLabel').innerText = `AI Matrix: "${this.currentSearchString}"`;
-            reply.innerHTML = `<strong>Receiver Core:</strong> Query converted! Remapping your main infinite grid interface for: <em>"${this.currentSearchString}"</em> automatically sorted by popularity metrics...`;
+            reply.innerHTML = `<strong>Receiver Core:</strong> Matrix configured! Remapping your 12-item grid viewports to stream high-reputation standard data files for: <em>"${this.currentSearchString}"</em>...`;
             
-            // Re-trigger fresh reset on target infinite loader logic grids
-            this.loadGridDataBatch(true);
+            this.fetchPaginatedBatch();
             aiLogs.scrollTop = aiLogs.scrollHeight;
         }, 600);
     }
 
-    /* --- SPECTROGRAM CHART COMPONENT --- */
+    /* --- SPECTROGRAM CHART LABS --- */
     initRadarChart() {
         const ctx = document.getElementById('analyticsChart').getContext('2d');
         this.chartInstance = new Chart(ctx, {
@@ -759,7 +766,7 @@ class HawkinsTelemetryEngine {
         this.chartInstance.update();
     }
 
-    /* --- LOGISTIC FRAMEWORK ACTIONS --- */
+    /* --- LOGISTIC LISTENERS --- */
     bindEvents() {
         const search = document.getElementById('searchInput');
         let debounce;
@@ -803,24 +810,27 @@ class HawkinsTelemetryEngine {
         document.getElementById('searchInput').value = '';
         this.currentQueryMode = 'top';
         this.currentDataType = 'anime';
+        this.currentPageNumber = 1;
         document.getElementById('gridContextLabel').innerText = "Main Feed";
-        this.loadGridDataBatch(true);
+        document.getElementById('nextPageBtn').style.display = 'block';
+        document.getElementById('prevPageBtn').style.display = 'block';
+        this.fetchPaginatedBatch();
     }
 
     toggleVault(id, type) {
         const idx = this.watchlist.findIndex(w => w.mal_id === id);
         if(idx === -1) {
             this.watchlist.push({ mal_id: id, type: type });
-            this.triggerSystemLog("File cataloged inside secure vault array data blocks.");
+            this.triggerSystemLog("File cataloged into vault storage records.");
         } else {
             this.watchlist.splice(idx, 1);
-            this.triggerSystemLog("File purged from storage vault grids.");
+            this.triggerSystemLog("File purged from vault architecture grids.");
         }
         localStorage.setItem('hawkins_vault', JSON.stringify(this.watchlist));
     }
 
     triggerRandom() {
-        this.triggerSystemLog("Scrambling coordinate fields...");
+        this.triggerSystemLog("Scrambling vector coordinates...");
         fetch(`${this.jikanBase}/random/anime`)
             .then(res => res.json())
             .then(json => { if(json.data) this.openTheater(json.data.mal_id, 'anime'); });
@@ -844,13 +854,17 @@ class HawkinsTelemetryEngine {
         this.currentSkinIdx = (this.currentSkinIdx + 1) % this.skins.length;
         const skin = this.skins[this.currentSkinIdx];
         if(skin !== 'hawkins') document.body.classList.add(skin);
-        this.triggerSystemLog(`Radar interface skin mapped to: ${skin.toUpperCase()}`);
+        this.triggerSystemLog(`Radar module configuration skinned: ${skin.toUpperCase()}`);
     }
 
     switchView(target, btn) {
         document.querySelectorAll('.nav-link, .hud-tab').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
+        this.currentPageNumber = 1;
         
+        document.getElementById('nextPageBtn').style.display = 'block';
+        document.getElementById('prevPageBtn').style.display = 'block';
+
         if (target === 'trending') {
             this.currentDataType = 'anime'; this.currentQueryMode = 'top';
             document.getElementById('gridContextLabel').innerText = "Main Feed";
@@ -858,15 +872,16 @@ class HawkinsTelemetryEngine {
             this.currentDataType = 'manga'; this.currentQueryMode = 'top';
             document.getElementById('gridContextLabel').innerText = "Archive Manga Files";
         } else if (target === 'watchlist') {
-            // Render from secure local profile storage directly inside workspace grid views
-            document.getElementById('infiniteGrid').innerHTML = '';
             document.getElementById('gridContextLabel').innerText = "Secure Storage Vault";
-            document.getElementById('gridSentinel').style.display = 'none';
-            this.appendItemsToWorkspace(this.watchlist.map(w => ({ mal_id: w.mal_id, title: `Secure Node #${w.mal_id}`, score: 10 })));
+            document.getElementById('nextPageBtn').style.display = 'none';
+            document.getElementById('prevPageBtn').style.display = 'none';
+            document.getElementById('pageConsoleCounter').innerText = "PAGE CHANNEL: ROOT_LOCAL";
+            
+            this.renderFixedGrid(this.watchlist.map(w => ({ mal_id: w.mal_id, title: `Secure File Node #${w.mal_id}`, score: 10 })));
             return;
         }
 
-        this.loadGridDataBatch(true);
+        this.fetchPaginatedBatch();
     }
 
     toggleAIChat() {
