@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AnimeVerse Ultimate Pro</title>
+<title>AnimeVerse Ultimate Elite Pro</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -37,6 +37,15 @@ body.light{
     --accent2:#7c3aed;
 }
 
+body.purple{
+    --bg:#1e1b4b;
+    --card:#312e81;
+    --card2:#3730a3;
+    --text:#f5f3ff;
+    --accent:#f472b6;
+    --accent2:#c084fc;
+}
+
 body{
     background:var(--bg);
     color:var(--text);
@@ -48,13 +57,12 @@ body{
     width:8px;
     height:8px;
 }
-
 ::-webkit-scrollbar-thumb{
     background:var(--accent);
     border-radius:20px;
 }
 
-/* --- SYSTEM NAVBAR --- */
+/* --- NAV BAR --- */
 .navbar{
     position:sticky;
     top:0;
@@ -67,11 +75,8 @@ body{
     backdrop-filter:blur(20px);
     border-bottom:1px solid rgba(255,255,255,.05);
 }
-
-body.light .navbar {
-    background: rgba(248, 250, 252, 0.85);
-    border-bottom: 1px solid rgba(0,0,0,.05);
-}
+body.light .navbar { background: rgba(248, 250, 252, 0.85); border-bottom: 1px solid rgba(0,0,0,.05); }
+body.purple .navbar { background: rgba(30, 27, 75, 0.85); border-bottom: 1px solid rgba(255,255,255,.05); }
 
 .logo{
     font-size:32px;
@@ -92,7 +97,6 @@ body.light .navbar {
 .search-box{
     position:relative;
 }
-
 .search-box input{
     width:320px;
     padding:14px 18px;
@@ -104,10 +108,7 @@ body.light .navbar {
     font-size:15px;
     border: 1px solid rgba(255,255,255,.05);
 }
-
-body.light .search-box input {
-    border: 1px solid rgba(0,0,0,.1);
-}
+body.light .search-box input { border: 1px solid rgba(0,0,0,.1); }
 
 .suggestions{
     position:absolute;
@@ -128,11 +129,7 @@ body.light .search-box input {
     transition:.3s;
     border-bottom:1px solid rgba(255,255,255,.05);
 }
-
-.suggestion-item:hover{
-    background:var(--accent);
-    color: white;
-}
+.suggestion-item:hover{ background:var(--accent); color: white; }
 
 .nav-btn{
     padding:12px 18px;
@@ -146,7 +143,7 @@ body.light .search-box input {
     white-space: nowrap;
 }
 
-/* --- MOBILE NAVIGATION DOCK --- */
+/* --- MOBILE NAVIGATION DECK --- */
 .mobile-bottom-nav {
     display: none;
     position: fixed;
@@ -162,11 +159,8 @@ body.light .search-box input {
     align-items: center;
     padding: 0 10px;
 }
-
-body.light .mobile-bottom-nav {
-    background: rgba(255, 255, 255, 0.95);
-    border-top: 1px solid rgba(0,0,0,0.1);
-}
+body.light .mobile-bottom-nav { background: rgba(255, 255, 255, 0.95); border-top: 1px solid rgba(0,0,0,0.1); }
+body.purple .mobile-bottom-nav { background: rgba(49, 46, 129, 0.95); border-top: 1px solid rgba(255,255,255,0.1); }
 
 .mobile-nav-item {
     display: flex;
@@ -182,20 +176,12 @@ body.light .mobile-bottom-nav {
     border: none;
     cursor: pointer;
 }
-
-.mobile-nav-item.active {
-    opacity: 1;
-    color: var(--accent);
-}
-
-.mobile-nav-icon {
-    font-size: 20px;
-    margin-bottom: 2px;
-}
+.mobile-nav-item.active { opacity: 1; color: var(--accent); }
+.mobile-nav-icon { font-size: 20px; margin-bottom: 2px; }
 
 /* --- HERO COMPONENT --- */
 .hero{
-    height:60vh;
+    height:55vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -205,100 +191,36 @@ body.light .mobile-bottom-nav {
     background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.9)), url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1920') no-repeat center center;
     background-size:cover;
     position:relative;
-    overflow:hidden;
 }
+body.light .hero { background: linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.95)), url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1920') no-repeat center center; }
+body.purple .hero { background: linear-gradient(rgba(30, 27, 75, 0.85), rgba(30, 27, 75, 0.95)), url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1920') no-repeat center center; }
 
-body.light .hero {
-    background: linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.95)), url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1920') no-repeat center center;
-}
+.hero h1{ font-size:60px; font-weight:800; margin-bottom:15px; line-height: 1.1; animation:fadeUp 1s ease; }
+.hero p{ max-width:800px; line-height:1.7; font-size:18px; color:var(--text); opacity: 0.9; }
 
-.hero h1{
-    font-size:65px;
-    font-weight:800;
-    margin-bottom:20px;
-    line-height: 1.1;
-    animation:fadeUp 1s ease;
-}
-
-.hero p{
-    max-width:800px;
-    line-height:1.8;
-    font-size:20px;
-    color:var(--text);
-    opacity: 0.9;
-    animation:fadeUp 1.2s ease;
-}
-
-.hero-btns{
-    display:flex;
-    gap:15px;
-    margin-top:30px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.hero-btns button{
-    padding:14px 24px;
-    border:none;
-    border-radius:15px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.3s;
-}
-
+.hero-btns{ display:flex; gap:15px; margin-top:25px; flex-wrap:wrap; justify-content:center; }
+.hero-btns button{ padding:14px 24px; border:none; border-radius:15px; font-size:15px; font-weight:700; cursor:pointer; transition:.3s; }
 .explore-btn{ background:var(--green); color:white; }
 .trending-btn{ background:var(--red); color:white; }
 
-/* --- PERFORMANCE METRICS PANEL --- */
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    padding:40px;
-}
-
-.stat-card{
-    background:var(--card);
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    transition:.4s;
-    border: 1px solid rgba(255,255,255,.02);
-}
-
+/* --- PERFORMANCE & METRICS ENGINE --- */
+.stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; padding:40px; }
+.stat-card{ background:var(--card); padding:25px; border-radius:20px; text-align:center; transition:.4s; border: 1px solid rgba(255,255,255,.02); }
 body.light .stat-card { border: 1px solid rgba(0,0,0,.05); }
-
-.stat-card h2{
-    font-size:36px;
-    margin-bottom:8px;
-    color:var(--accent);
-}
+.stat-card h2{ font-size:32px; margin-bottom:6px; color:var(--accent); }
 
 /* --- SECTIONS DESIGN --- */
-.section{ padding:50px 40px; }
+.section{ padding:40px; }
 .section-title{ font-size:36px; margin-bottom:8px; text-align:center; font-weight:800; }
-.section-subtitle{ text-align: center; color: var(--text); opacity: 0.6; margin-bottom: 35px; font-size: 15px; }
+.section-subtitle{ text-align: center; color: var(--text); opacity: 0.6; margin-bottom: 30px; font-size: 15px; }
 
-/* --- SYSTEM CATEGORIES GRID --- */
-.category-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; }
-
+/* --- GENRE CHIPS MATRIX --- */
+.category-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px; }
 .category-card{
-    height:120px;
-    border-radius:18px;
-    overflow:hidden;
-    position:relative;
-    cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:20px;
-    font-weight:700;
-    transition:.4s;
-    background-size:cover;
-    background-position:center;
+    height:110px; border-radius:18px; overflow:hidden; position:relative; cursor:pointer;
+    display:flex; justify-content:center; align-items:center; font-size:18px; font-weight:700;
+    transition:.4s; background-size:cover; background-position:center;
 }
-
 .category-card::before{ content:''; position:absolute; inset:0; background:rgba(0,0,0,.6); transition: 0.3s; }
 .category-card span{ position:relative; z-index:2; color: #ffffff; }
 .category-card:hover{ transform:translateY(-4px); box-shadow:0 8px 20px rgba(56,189,248,0.25); }
@@ -310,200 +232,91 @@ body.light .stat-card { border: 1px solid rgba(0,0,0,.05); }
 .fantasy{ background-image:url('https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?q=80&w=400'); }
 .sports{ background-image:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=400'); }
 
-/* --- CONTROLS / MATRICES FILTER BAR --- */
-.filter-bar{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-bottom:35px;
-    flex-wrap:wrap;
-    background: var(--card2);
-    padding: 15px 20px;
-    border-radius: 18px;
-}
+/* --- FILTER TOOLBARBAR --- */
+.filter-bar{ display:flex; justify-content:center; gap:15px; margin-bottom:35px; flex-wrap:wrap; background: var(--card2); padding: 15px 20px; border-radius: 18px; }
+.filter-bar select{ padding:12px 16px; border:none; border-radius:10px; background:var(--card); color:var(--text); outline: none; min-width: 160px; cursor: pointer; font-size:14px; border: 1px solid rgba(255,255,255,0.05); }
 
-.filter-bar select{
-    padding:12px 16px;
-    border:none;
-    border-radius:10px;
-    background:var(--card);
-    color:var(--text);
-    outline: none;
-    min-width: 160px;
-    cursor: pointer;
-    font-size:14px;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-/* --- SYSTEM RUNTIME ANIME GRID --- */
+/* --- RUNTIME CORE GRIDS --- */
 .anime-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:25px; }
-
-.anime-card{
-    background:var(--card);
-    border-radius:20px;
-    overflow:hidden;
-    cursor:pointer;
-    transition:.4s;
-    position:relative;
-    border:1px solid rgba(255,255,255,.05);
-    display: flex;
-    flex-direction: column;
-}
-
+.anime-card{ background:var(--card); border-radius:20px; overflow:hidden; cursor:pointer; transition:.4s; position:relative; border:1px solid rgba(255,255,255,.05); display: flex; flex-direction: column; }
 body.light .anime-card { border: 1px solid rgba(0,0,0,.08); }
 .anime-card:hover{ transform:translateY(-8px); box-shadow:0 12px 30px rgba(56,189,248,.15); }
 .poster{ position:relative; overflow:hidden; height:340px; }
 .poster img{ width:100%; height:100%; object-fit:cover; transition:.5s; }
 
-.overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,.9) 10%,transparent 60%);
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    padding:15px;
-    opacity:0;
-    transition:.3s;
-}
-
+.overlay{ position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.9) 10%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:15px; opacity:0; transition:.3s; }
 .anime-card:hover .overlay{ opacity:1; }
 
-.fav-action-btn {
-    padding:10px;
-    border:none;
-    border-radius:10px;
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    margin-top:8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size:13px;
-}
-
+.fav-action-btn { padding:10px; border:none; border-radius:10px; color:white; font-weight:600; cursor:pointer; margin-top:8px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size:13px; }
 .add-fav { background: var(--green); }
 .rem-fav { background: var(--red); }
 
-.info{
-    padding:15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-}
-
-.info h3{
-    font-size:16px;
-    margin-bottom:10px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 48px;
-    line-height: 1.5;
-}
-
+.info{ padding:15px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+.info h3{ font-size:16px; margin-bottom:10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; line-height: 1.5; }
 .rating-container { display: flex; justify-content: space-between; align-items: center; }
 .rating{ color:var(--yellow); font-weight:700; font-size:14px; }
 .badges{ display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
 .badge{ padding:4px 10px; border-radius:20px; background:var(--card2); font-size:11px; font-weight: 500; }
 
-/* --- CHARACTERS COMPONENT STRUCTURE --- */
-.characters-section {
-    margin-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 20px;
-}
-
+/* --- CHARACTERS COMPONENT SLIDER --- */
+.characters-section { margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
 body.light .characters-section { border-top: 1px solid rgba(0,0,0,0.08); }
-
-.characters-slider {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    padding: 10px 5px;
-    scroll-snap-type: x mandatory;
-}
-
-.character-item-card {
-    flex: 0 0 130px;
-    background: var(--card2);
-    border-radius: 14px;
-    overflow: hidden;
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.03);
-    padding-bottom: 8px;
-    scroll-snap-align: start;
-}
-
-.character-item-card img {
-    width: 100% !important;
-    height: 140px !important;
-    object-fit: cover;
-    border-radius: 0 !important;
-}
-
-.character-item-card h4 {
-    font-size: 12px;
-    margin: 6px 4px 2px 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.char-role-badge {
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    display: inline-block;
-    font-weight: 600;
-}
-
+.characters-slider { display: flex; gap: 15px; overflow-x: auto; padding: 10px 5px; scroll-snap-type: x mandatory; }
+.character-item-card { flex: 0 0 130px; background: var(--card2); border-radius: 14px; overflow: hidden; text-align: center; border: 1px solid rgba(255,255,255,0.03); padding-bottom: 8px; scroll-snap-align: start; }
+.character-item-card img { width: 100% !important; height: 140px !important; object-fit: cover; border-radius: 0 !important; }
+.character-item-card h4 { font-size: 12px; margin: 6px 4px 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.char-role-badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; display: inline-block; font-weight: 600; }
 .role-main { background: rgba(56, 189, 248, 0.2); color: var(--accent); }
 .role-supp { background: rgba(255,255,255,0.1); color: var(--text); opacity: 0.7; }
 
-/* --- SYSTEM PAGINATION CONFIGURATIONS --- */
+/* --- PAGINATION CONFIGS --- */
 .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 40px; }
 .pagination-btn { padding: 10px 20px; border-radius: 10px; border: none; background: var(--card); color: var(--text); cursor: pointer; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
 .pagination-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-/* --- LOADER --- */
+/* --- UTILITY NODES --- */
 .loader{ display:none; justify-content:center; padding:40px; }
 .spinner{ width:50px; height:50px; border:4px solid rgba(255,255,255,.1); border-top:4px solid var(--accent); border-radius:50%; animation:spin 1s linear infinite; }
 
-/* --- MODAL DIALOGS --- */
+/* --- PERSISTENT MODAL SCREEN (SYSTEM INTERFACE) --- */
 .modal{ position:fixed; inset:0; background:rgba(2, 6, 23, 0.95); display:none; justify-content:center; align-items:center; padding:20px; z-index:6000; }
-
-.modal-content{
-    background:var(--card);
-    max-width:950px;
-    width:100%;
-    max-height: 85vh;
-    border-radius:24px;
-    padding:25px;
-    display:flex;
-    gap:25px;
-    position:relative;
-    animation:fadeUp .3s ease;
-    overflow-y: auto;
-}
-
+.modal-content{ background:var(--card); max-width:950px; width:100%; max-height: 85vh; border-radius:24px; padding:25px; display:flex; gap:25px; position:relative; animation:fadeUp .3s ease; overflow-y: auto; }
 .modal-content img{ width:280px; height: 380px; object-fit: cover; border-radius:16px; flex-shrink: 0; }
 .modal-info { flex:1; }
 .modal-info h2{ font-size:32px; margin-bottom:8px; line-height: 1.2; }
 .modal-info p{ line-height:1.7; margin-top:15px; color:var(--text); opacity: 0.8; font-size:15px; }
 .close{ position:absolute; right:20px; top:15px; font-size:35px; cursor:pointer; line-height: 1; z-index: 10; }
-.video-buttons{ display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
 
+/* MOBILE BACK DECK STRUCTURAL CHASSIS */
+.mobile-modal-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    padding: 12px 15px;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: center;
+}
+.mobile-back-action {
+    background: var(--card2);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.video-buttons{ display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
 .video-buttons button{ padding:12px 20px; border:none; border-radius:10px; color:white; font-weight:700; cursor:pointer; font-size:14px; }
 .trailer-btn{ background:var(--red); }
 .review-btn{ background:var(--accent); }
 iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20px; }
 
-/* --- TOAST & FOOTER --- */
 .toast{ position:fixed; bottom:30px; right:30px; background:var(--green); color: white; padding:14px 20px; border-radius:12px; display:none; z-index:7000; font-weight: 600; font-size:14px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
 .footer{ padding:40px; text-align:center; background:var(--card); margin-top:60px; border-top: 1px solid rgba(255,255,255,0.05); }
 
@@ -511,7 +324,7 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
 @keyframes fadeUp{ from{ opacity:0; transform:translateY(15px); } to{ opacity:1; transform:translateY(0); } }
 
 /* ==========================================
-   Adaptive Viewport Engine (Mobile Boundaries)
+   Adaptive Viewport Engine (Mobile Overrides)
    ========================================== */
 @media(max-width:850px){
     body { padding-bottom: 75px; }
@@ -522,45 +335,56 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
     .search-box input { width: 100%; padding: 10px 14px; font-size: 13px; border-radius: 10px; }
     .suggestions { top: 48px; }
     .mobile-bottom-nav { display: flex; }
-    .hero { height: auto; padding: 50px 15px 40px 15px; }
-    .hero h1 { font-size: 34px; }
-    .hero p { font-size: 15px; line-height: 1.6; }
-    .hero-btns { margin-top: 20px; width: 100%; flex-direction: column; gap: 10px; }
-    .hero-btns button { width: 100%; padding: 12px; }
-    .section { padding: 35px 15px; }
-    .section-title { font-size: 26px; }
-    .section-subtitle { margin-bottom: 25px; font-size: 13px; }
+    .hero { height: auto; padding: 40px 15px 30px 15px; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 14px; line-height: 1.5; }
+    .stats { padding: 15px; gap: 10px; grid-template-columns: repeat(2, 1fr); }
+    .stat-card { padding: 15px; }
+    .stat-card h2 { font-size: 24px; }
+    .section { padding: 30px 15px; }
+    .section-title { font-size: 24px; }
     .category-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .category-card { height: 90px; font-size: 16px; }
+    .category-card { height: 85px; font-size: 15px; }
     .filter-bar { flex-direction: column; padding: 12px; gap: 10px; }
     .filter-bar select { width: 100%; }
     .anime-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .poster { height: 210px; }
-    .info { padding: 10px; }
-    .info h3 { font-size: 14px; height: 42px; margin-bottom: 6px; }
+    .info h3 { font-size: 14px; height: 42px; }
     .rating-container { flex-direction: column; align-items: flex-start; gap: 4px; }
     .badges { display: none; }
     .overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.85) 30%, transparent); padding: 8px; }
     .fav-action-btn { padding: 6px; font-size: 11px; margin-top: 4px; }
     
-    .modal-content { flex-direction: column; align-items: stretch; padding: 15px; max-height: 90vh; gap: 15px; }
-    .modal-content img { width: 100%; height: 240px; }
+    /* Transforming Modal Window to Native Overlay Sheet */
+    .modal { padding: 0; background: var(--bg); }
+    .mobile-modal-header { display: flex; }
+    .close { display: none; } /* Hide layout desktop close marker button */
+    .modal-content {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 15px 40px 15px;
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
+        gap: 15px;
+        box-shadow: none;
+    }
+    .modal-content img { width: 100%; height: 260px; border-radius: 0 0 16px 16px; margin: 0 -15px; width: calc(100% + 30px); }
     .modal-info h2 { font-size: 22px; }
-    .modal-info p { font-size: 13px; }
-    iframe { height: 200px; }
+    iframe { height: 190px; }
     .toast { left: 15px; right: 15px; bottom: 85px; text-align: center; }
 }
 
 @media(max-width: 400px) {
     .anime-grid { grid-template-columns: 1fr; }
-    .poster { height: 300px; }
+    .poster { height: 280px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SYSTEM HEADER (Desktop Viewports Layout) -->
+<!-- HEADER LAYER MAP -->
 <nav class="navbar">
     <div class="logo" onclick="resetExplore()">AnimeVerse ✨</div>
     <div class="nav-right">
@@ -568,12 +392,12 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
             <input type="text" id="searchInput" placeholder="Search anime dynamically...">
             <div id="suggestions" class="suggestions"></div>
         </div>
-        <button class="nav-btn" onclick="toggleTheme()" id="themeBtn">🌙 Theme</button>
+        <button class="nav-btn" onclick="rotateTheme()" id="themeBtn">🎨 Engine Skin</button>
         <button class="nav-btn" onclick="scrollToFavorites()">❤️ Favorites</button>
     </div>
 </nav>
 
-<!-- NATIVE MOBILE PERSISTENT BOTTOM CONTROL DECK -->
+<!-- PERSISTENT TARGET STACK FOR PHONE TERMINALS -->
 <div class="mobile-bottom-nav">
     <button class="mobile-nav-item active" id="mNavExplore" onclick="handleMobileNav('explore')">
         <span class="mobile-nav-icon">🚀</span><span>Explore</span>
@@ -582,26 +406,27 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
         <span class="mobile-nav-icon">🔥</span><span>Trending</span>
     </button>
     <button class="mobile-nav-item" id="mNavFavs" onclick="handleMobileNav('favs')">
-        <span class="mobile-nav-icon">❤️</span><span>Favorites</span>
+        <span class="mobile-nav-icon">❤️</span><span>Collection</span>
     </button>
-    <button class="mobile-nav-item" onclick="toggleTheme()">
-        <span class="mobile-nav-icon">🌗</span><span>Mode</span>
+    <button class="mobile-nav-item" onclick="rotateTheme()">
+        <span class="mobile-nav-icon">🎨</span><span>Skins</span>
     </button>
 </div>
 
 <section class="hero">
-    <h1>AnimeVerse Ultimate</h1>
-    <p>Discover real-time trending anime, filter across genres, check official metrics, run trailers, and map casting structures cleanly.</p>
+    <h1>AnimeVerse Ultimate Elite</h1>
+    <p>Discover real-time trending anime, filter across genres, view core characters maps, check trailers, and toggle performance skins.</p>
     <div class="hero-btns">
-        <button class="explore-btn" onclick="scrollToAnime()">🚀 Explore Workspace</button>
+        <button class="explore-btn" onclick="scrollToAnime()">🚀 Open Workspace</button>
         <button class="trending-btn" onclick="triggerTrending()">🔥 Top Global Rated</button>
     </div>
 </section>
 
+<!-- REAL-TIME MATRIX RECAP COUNTERS -->
 <section class="stats">
-    <div class="stat-card"><h2>25K+</h2><p>Verified Records</p></div>
-    <div class="stat-card"><h2>Live</h2><p>Jikan Core Engines</p></div>
-    <div class="stat-card"><h2>HD</h2><p>Trailers Available</p></div>
+    <div class="stat-card"><h2 id="statTotal">0</h2><p>Dataset Nodes Loaded</p></div>
+    <div class="stat-card"><h2 id="statFavs">0 Items</h2><p>Saved to Collection</p></div>
+    <div class="stat-card"><h2>Jikan v4</h2><p>Active Engine Core</p></div>
 </section>
 
 <section class="section">
@@ -658,8 +483,14 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
     <div class="anime-grid" id="favoritesGrid"></div>
 </section>
 
-<!-- MODULE INSPECTION OVERLAY SHEET (Includes Character Maps) -->
+<!-- DATA ENTRY DETAIL INTERFACE WITH ADAPTIVE ACTION HEADER -->
 <div class="modal" id="modal" onclick="handleModalOutsideClick(event)">
+    <!-- Sticky back deck for small phone form factors -->
+    <div class="mobile-modal-header" id="mobileModalHeader">
+        <button class="mobile-back-action" onclick="closeModal()">← Back to Feed</button>
+        <span style="margin-left: auto; font-weight: 700; font-size: 14px;">Details View</span>
+    </div>
+
     <div class="modal-content">
         <span class="close" onclick="closeModal()">×</span>
         <img id="modalImage" alt="Poster Display">
@@ -668,14 +499,14 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
             <h3 id="modalRating" style="color: var(--yellow); font-size: 16px; margin-top:5px;"></h3>
             <div class="badges" id="modalBadges"></div>
             
-            <h4 style="margin-top:20px; font-weight:700;">Narrative Plot & Plot Matrix</h4>
+            <h4 style="margin-top:20px; font-weight:700;">Narrative Plot Matrix</h4>
             <p id="modalSynopsis" style="margin-top:5px;"></p>
             
-            <!-- Dynamic Characters Block -->
+            <!-- Dynamic Cast Components -->
             <div class="characters-section">
                 <h4 style="font-weight:700; margin-bottom:5px;">Key Character Manifest</h4>
                 <div class="characters-slider" id="modalCharactersContainer">
-                    <p style="font-size:12px; opacity:0.6;">Loading cast arrays from database...</p>
+                    <p style="font-size:12px; opacity:0.6;">Loading cast arrays...</p>
                 </div>
             </div>
 
@@ -685,11 +516,11 @@ iframe{ width:100%; height:340px; border:none; border-radius:14px; margin-top:20
     </div>
 </div>
 
-<div class="toast" id="toast">Collection parameters updated.</div>
+<div class="toast" id="toast">Log system processed successfully.</div>
 
 <footer class="footer">
     <h2>AnimeVerse Ultimate Pro</h2>
-    <p style="margin-top:15px; opacity: 0.6; font-size:13px;">Built Engine Architecture Framework • Responsive System Mapping</p>
+    <p style="margin-top:15px; opacity: 0.6; font-size:13px;">Built Engine Architecture Framework • Mobile Optimization Back Stack Overhaul 2026</p>
 </footer>
 
 <script>
@@ -708,15 +539,19 @@ let currentGenreId = '';
 let currentPage = 1;
 let currentMode = 'trending'; 
 
+// Themes available inside core workspace
+const themeCatalog = ['dark', 'light', 'purple'];
+let activeThemeIndex = 0;
+
 async function fetchEngine(url) {
     loader.style.display = 'flex';
     animeGrid.innerHTML = '';
     try {
         const response = await fetch(url);
-        if(!response.ok) throw new Error('Network failure.');
+        if(!response.ok) throw new Error();
         return await response.json();
     } catch (error) {
-        animeGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--red);"><h3>Failed to resolve data node strings from structural core.</h3></div>`;
+        animeGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--red);"><h3>Failed to load resource nodes from server index maps.</h3></div>`;
         return null;
     } finally {
         loader.style.display = 'none';
@@ -742,6 +577,7 @@ async function loadAnimeData() {
             prevPageBtn.disabled = currentPage === 1;
             pageIndicator.innerText = `Page ${currentPage}`;
         }
+        document.getElementById('statTotal').innerText = rawAnimeData.length;
         applyFiltersAndSort();
     }
 }
@@ -786,7 +622,7 @@ function renderAnimeGrid(data) {
         card.className = 'anime-card';
         card.innerHTML = `
             <div class="poster">
-                <img src="${anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url}" alt="Cover Image" loading="lazy">
+                <img src="${anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url}" alt="Cover Graphic" loading="lazy">
                 <div class="overlay">
                     <div class="rating" style="margin-bottom:auto;">⭐ ${anime.score || 'Unrated'}</div>
                     <button class="fav-action-btn ${isFav ? 'rem-fav' : 'add-fav'}" onclick="event.stopPropagation(); toggleFavorite(${JSON.stringify(anime).replace(/"/g, '&quot;')})">
@@ -809,7 +645,15 @@ function renderAnimeGrid(data) {
 
 async function showDetails(anime) {
     document.body.style.overflow = 'hidden';
-    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('modal').style.display = 'block';
+    
+    // Adjust modal styling parameters depending on platform size variables
+    if(window.innerWidth <= 850) {
+        document.getElementById('modal').style.display = 'block';
+    } else {
+        document.getElementById('modal').style.display = 'flex';
+    }
+
     document.getElementById('modalImage').src = anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url;
     document.getElementById('modalTitle').innerText = anime.title;
     document.getElementById('modalRating').innerText = `Global Score Architecture: ⭐ ${anime.score || 'Not Graded'}`;
@@ -830,7 +674,6 @@ async function showDetails(anime) {
         </div>
     `;
 
-    // Trigger Character Mapping Fetch Pipeline
     fetchCharactersList(anime.mal_id);
 }
 
@@ -849,7 +692,6 @@ async function fetchCharactersList(animeId) {
             return;
         }
 
-        // Output first 12 verified layout character records
         payload.data.slice(0, 12).forEach(item => {
             const charCard = document.createElement('div');
             charCard.className = 'character-item-card';
@@ -876,18 +718,31 @@ function playTrailer(id) {
     player.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allowfullscreen></iframe>`;
 }
 
+// Global deep analytics tracker updater
+function refreshStats() {
+    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+    document.getElementById('statFavs').innerText = `${favs.length} Packs`;
+}
+
 function playReview(title) {
     const query = encodeURIComponent(title + ' anime review breakdown');
     document.getElementById('videoPlayer').innerHTML = `
         <div style="margin-top:20px; padding:20px; background:var(--card2); border-radius:18px; text-align:center;">
-            <p style="margin-bottom:12px; font-size:13px; opacity:0.8;">Launch analysis feedback logs for this creation:</p>
+            <p style="margin-bottom:12px; font-size:13px; opacity:0.8;">Launch analysis tracking profiles for this creation:</p>
             <a href="https://www.youtube.com/results?search_query=${query}" target="_blank" style="display:inline-block; padding:10px 18px; background:var(--red); color:white; border-radius:10px; text-decoration:none; font-weight:700; font-size:13px;">Open Hub Viewport</a>
         </div>
     `;
 }
 
-function closeModal() { document.body.style.overflow = 'auto'; document.getElementById('modal').style.display = 'none'; document.getElementById('videoPlayer').innerHTML = ''; }
-function handleModalOutsideClick(event) { if(event.target.id === 'modal') closeModal(); }
+function closeModal() { 
+    document.body.style.overflow = 'auto'; 
+    document.getElementById('modal').style.display = 'none'; 
+    document.getElementById('videoPlayer').innerHTML = ''; 
+}
+
+function handleModalOutsideClick(event) { 
+    if(event.target.id === 'modal' && window.innerWidth > 850) closeModal(); 
+}
 
 function selectCategory(element) {
     document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
@@ -927,7 +782,7 @@ function updateMobileActiveNav(targetId) {
     if(targetId === 'favs') document.getElementById('mNavFavs').classList.add('active');
 }
 
-/* SEARCH SYSTEM */
+/* SEARCH SYSTEM ENGINE WITH INTEGRATED CLEAR MODULES */
 let debounceTimer;
 searchInput.addEventListener('input', function() {
     clearTimeout(debounceTimer);
@@ -935,11 +790,21 @@ searchInput.addEventListener('input', function() {
     if(value.length < 3) { document.getElementById('suggestions').innerHTML = ''; return; }
 
     debounceTimer = setTimeout(async () => {
-        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(value)}&limit=5`);
+        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(value)}&limit=6`);
         const result = await response.json();
         const suggestions = document.getElementById('suggestions');
         suggestions.innerHTML = '';
         
+        // Added clear header option directly inside suggestion array node
+        const clearNode = document.createElement('div');
+        clearNode.className = 'suggestion-item';
+        clearNode.style.background = 'var(--card2)';
+        clearNode.style.fontWeight = '700';
+        clearNode.style.color = 'var(--red)';
+        clearNode.innerText = '❌ Flush Active Search Context';
+        clearNode.onclick = () => { resetExplore(); suggestions.innerHTML = ''; };
+        suggestions.appendChild(clearNode);
+
         if(result.data) {
             result.data.forEach(anime => {
                 const div = document.createElement('div');
@@ -972,22 +837,23 @@ searchInput.addEventListener('keypress', function(e) {
 
 document.addEventListener('click', function(e) { if(!document.querySelector('.search-box').contains(e.target)) document.getElementById('suggestions').innerHTML = ''; });
 
-/* LOCAL STORAGE STORAGE WORKSPACES */
+/* LOCAL STORAGE & SYNC PIPELINES */
 function toggleFavorite(anime) {
     let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
     const index = favs.findIndex(a => a.mal_id === anime.mal_id);
     if(index === -1) { favs.push(anime); showToast("Logged into collection workspace!"); }
-    else { favs.splice(index, 1); showToast("Purged from profile parameters."); }
+    else { favs.splice(index, 1); showToast("Purged from configuration profiles."); }
     localStorage.setItem('favorites', JSON.stringify(favs));
     applyFiltersAndSort(); 
     showFavorites();
+    refreshStats();
 }
 
 function showFavorites() {
     let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
     favoritesGrid.innerHTML = '';
     if(favs.length === 0) {
-        favoritesGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; opacity:0.5; font-size:14px;">Your collection list buffer is currently empty.</div>`;
+        favoritesGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; opacity:0.5; font-size:14px;">Your repository collection tracking index is completely empty.</div>`;
         return;
     }
     favs.forEach(anime => {
@@ -1010,10 +876,17 @@ function showFavorites() {
     });
 }
 
-function toggleTheme() {
-    const isLight = document.body.classList.toggle('light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    document.getElementById('themeBtn').innerText = isLight ? "☀️ Light UI" : "🌙 Dark UI";
+// Rotates skin options seamlessly across layout views
+function rotateTheme() {
+    document.body.classList.remove('light', 'purple');
+    activeThemeIndex = (activeThemeIndex + 1) % themeCatalog.length;
+    const selectedSkin = themeCatalog[activeThemeIndex];
+    
+    if(selectedSkin === 'light') document.body.classList.add('light');
+    if(selectedSkin === 'purple') document.body.classList.add('purple');
+    
+    localStorage.setItem('savedWorkspaceSkin', selectedSkin);
+    showToast(`Active Theme: Contextual ${selectedSkin.toUpperCase()} Node Loaded.`);
 }
 
 function scrollToAnime() { document.getElementById('animeSection').scrollIntoView({ behavior: 'smooth' }); }
@@ -1021,10 +894,14 @@ function scrollToFavorites() { document.getElementById('favoritesSection').scrol
 function showToast(msg) { const toast = document.getElementById('toast'); toast.innerText = msg; toast.style.display = 'block'; setTimeout(() => { toast.style.display = 'none'; }, 2500); }
 
 window.onload = () => {
-    if(localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); document.getElementById('themeBtn').innerText = "☀️ Light UI"; }
-    else { document.getElementById('themeBtn').innerText = "🌙 Dark UI"; }
+    const cachedSkin = localStorage.getItem('savedWorkspaceSkin') || 'dark';
+    activeThemeIndex = themeCatalog.indexOf(cachedSkin);
+    if(cachedSkin === 'light') document.body.classList.add('light');
+    if(cachedSkin === 'purple') document.body.classList.add('purple');
+
     loadAnimeData();
     showFavorites();
+    refreshStats();
 };
 </script>
 
