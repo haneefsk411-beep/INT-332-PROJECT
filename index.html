@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>AnimeVerse // Hawkins Telemetry Grid AI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=ITC+Benguiat:wght@700&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -21,7 +21,7 @@
     --neon-pink: #facc15; /* Warning Amber */
     --neon-purple: #b91c1c;
     --neon-green: #34d399; /* Terminal Diagnostic Green */
-    --glass: rgba(15, 6, 6, 0.85);
+    --glass: rgba(15, 6, 6, 0.9);
     --blur: blur(15px);
     --glow: 0 0 12px rgba(229, 9, 20, 0.6);
     --glow-amber: 0 0 12px rgba(250, 204, 21, 0.5);
@@ -70,7 +70,7 @@ h1, h2, h3, .logo, .retro-header {
     font-family: var(--font-mono) !important;
 }
 
-/* --- CRT MONITOR GLASS SCANLINE SIMULATOR OVERLAY --- */
+/* --- CRT SCANLINE SIMULATOR OVERLAY --- */
 .crt-scanlines {
     position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.12;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
@@ -93,6 +93,7 @@ h1, h2, h3, .logo, .retro-header {
     border: 1px solid var(--neon-cyan);
     padding: 4px 12px; border-radius: 4px;
     background: rgba(229, 9, 20, 0.08);
+    cursor: pointer;
 }
 
 .nav-links { display: flex; gap: 15px; align-items: center; }
@@ -135,10 +136,10 @@ h1, h2, h3, .logo, .retro-header {
 
 /* --- TELEMETRY CONSOLE HERO RADAR --- */
 .hero-theater {
-    position: relative; height: 450px; width: 100%; display: flex;
+    position: relative; height: 380px; width: 100%; display: flex;
     align-items: center; padding: 0 60px; overflow: hidden;
     border-bottom: 1px solid var(--card-border);
-    background: linear-gradient(90deg, #0b0202 35%, rgba(11,2,2,0.6)), url('https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=1920') no-repeat center center/cover;
+    background: linear-gradient(90deg, #0b0202 45%, rgba(11,2,2,0.3)), url('https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=1920') no-repeat center center/cover;
 }
 .hero-content { max-width: 650px; z-index: 10; }
 .hero-tag {
@@ -146,61 +147,64 @@ h1, h2, h3, .logo, .retro-header {
     border: 1px solid var(--neon-cyan); font-family: var(--font-mono); color: var(--neon-cyan);
     font-size: 12px; font-weight: 600; margin-bottom: 15px;
 }
-.hero-content h1 { font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: #fff; }
+.hero-content h1 { font-size: 38px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: #fff; }
 .hero-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; }
 .hero-actions { display: flex; gap: 15px; }
 
-/* --- DATA CAROUSEL PANEL MATRICES --- */
-.slider-container { padding: 40px; position: relative; }
-.slider-header {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+/* --- PERMANENT GRID LAYOUT WORKSPACE --- */
+.telemetry-grid-section {
+    padding: 40px;
 }
-.slider-title { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.slider-title span { color: var(--neon-cyan); }
-.slider-arrows { display: flex; gap: 10px; }
-.arrow {
-    width: 36px; height: 36px; border-radius: 4px; background: var(--card);
-    border: 1px solid var(--card-border); color: #fff; display: flex;
-    justify-content: center; align-items: center; cursor: pointer; transition: 0.2s;
+.grid-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
+    border-bottom: 1px dashed var(--card-border); padding-bottom: 15px;
 }
-.arrow:hover { border-color: var(--neon-cyan); box-shadow: var(--glow); }
+.grid-title { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.grid-title span { color: var(--neon-cyan); }
 
-.slider-wrapper {
-    display: flex; gap: 24px; overflow-x: auto; padding: 15px 5px;
-    scroll-snap-type: x mandatory; scrollbar-width: none;
+.infinite-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
 }
-.slider-wrapper::-webkit-scrollbar { display: none; }
 
-/* --- 3D TRANSFORM COLD WAR RADAR CARDS --- */
+/* --- 3D ROTATION TECH TELEMETRY CARDS --- */
 .anime-card-3d {
-    flex: 0 0 230px; height: 350px; background: var(--card);
+    height: 340px; background: var(--card);
     border-radius: 4px; border: 1px solid var(--card-border);
     position: relative; overflow: hidden; cursor: pointer;
-    scroll-snap-align: start; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
     transform-style: preserve-3d; perspective: 800px;
 }
 .anime-card-3d:hover {
     border-color: var(--neon-cyan); box-shadow: var(--glow);
 }
-.card-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: 0.4s; }
-.anime-card-3d:hover .card-img { transform: scale(1.05); filter: grayscale(0%) brightness(0.6); }
+.card-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); transition: 0.4s; }
+.anime-card-3d:hover .card-img { transform: scale(1.04); filter: grayscale(0%) brightness(0.5); }
 
 .card-overlay-hud {
-    position: absolute; inset: 0; background: linear-gradient(to top, #0b0202 90%, transparent);
+    position: absolute; inset: 0; background: linear-gradient(to top, #0b0202 85%, transparent);
     padding: 15px; display: flex; flex-direction: column; justify-content: flex-end;
     opacity: 0; transition: 0.3s;
 }
 .anime-card-3d:hover .card-overlay-hud { opacity: 1; }
-.card-hud-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+.card-hud-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #fff; line-height: 1.3; }
 .card-hud-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--neon-pink); }
 .progress-bar-wrap {
     width: 100%; height: 3px; background: rgba(255,255,255,0.08); margin-top: 8px; overflow: hidden;
 }
 .progress-bar-fill { height: 100%; background: var(--neon-cyan); width: 0%; }
 
+/* --- WORKSPACE LOAD ELEMENT --- */
+.grid-sentinel {
+    grid-column: 1 / -1; padding: 40px; text-align: center;
+    font-family: var(--font-mono); color: var(--neon-pink); font-size: 14px;
+}
+.grid-sentinel i { margin-right: 8px; animation: spin 1s infinite linear; }
+
 /* --- DIAGNOSTIC STATS GRID SYSTEM --- */
 .analytics-grid {
-    display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 30px; padding: 40px;
+    display: grid; grid-template-columns: 1.7fr 1.3fr; gap: 30px; padding: 0 40px 40px 40px;
 }
 .panel-box {
     background: var(--card); border: 2px solid var(--card-border);
@@ -220,11 +224,14 @@ h1, h2, h3, .logo, .retro-header {
     flex: 1; display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; padding-top: 25px; overflow-y: auto;
 }
 .modal-poster-wrap {
-    width: 100%; max-height: 480px; border: 2px solid var(--neon-cyan); box-shadow: var(--glow); overflow: hidden;
+    width: 100%; max-height: 460px; border: 2px solid var(--neon-cyan); box-shadow: var(--glow); overflow: hidden;
 }
 .modal-poster-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- TELEMETRIC SCAN SIGNAL CONSOLE LOGS --- */
+.gallery-strip { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 5px; }
+.gallery-thumb { width: 120px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid var(--card-border); }
+
+/* --- CHAT LOG DISPLAY PACK --- */
 .chat-widget-inner { display: flex; flex-direction: column; height: 350px; }
 .chat-logs { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); font-size: 13px; }
 .chat-msg { padding: 10px 14px; border-radius: 2px; max-width: 90%; line-height: 1.4; }
@@ -268,6 +275,13 @@ h1, h2, h3, .logo, .retro-header {
     animation: slideInToast 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+#characterManifest div {
+    background: rgba(255, 255, 255, 0.01) !important;
+    border: 1px solid var(--card-border);
+    transition: 0.2s ease-in-out;
+}
+#characterManifest div:hover { border-color: var(--neon-pink); }
+
 @keyframes pulseSphere {
     from { transform: scale(1); box-shadow: 0 0 5px var(--neon-cyan); }
     to { transform: scale(1.06); box-shadow: 0 0 18px var(--neon-cyan); }
@@ -276,12 +290,14 @@ h1, h2, h3, .logo, .retro-header {
     from { transform: translateX(120%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 @media (max-width: 768px) {
     .navbar { padding: 15px 20px; }
     .nav-links { display: none; }
-    .hero-theater { height: 360px; padding: 0 20px; text-align: center; justify-content: center; background-position: left center; }
-    .hero-content h1 { font-size: 28px; }
+    .hero-theater { height: 320px; padding: 0 20px; text-align: center; justify-content: center; }
+    .hero-content h1 { font-size: 26px; }
+    .telemetry-grid-section { padding: 20px; }
     .analytics-grid { grid-template-columns: 1fr; padding: 20px; }
     .mobile-hud-bar { display: flex; }
     body { padding-bottom: 65px; }
@@ -296,7 +312,7 @@ h1, h2, h3, .logo, .retro-header {
 <div class="toast-nexus" id="toastNexus"></div>
 
 <nav class="navbar">
-    <div class="logo" onclick="app.loadTrending()">HAWKINS NET // AI 📡</div>
+    <div class="logo" onclick="app.resetTelemetryGrid()">HAWKINS NET // AI 📡</div>
     <div class="nav-links">
         <a class="nav-link active" onclick="app.switchView('trending', this)"><i class="fa-solid fa-satellite"></i> Telemetry</a>
         <a class="nav-link" onclick="app.switchView('manga', this)"><i class="fa-solid fa-folder-open"></i> Archive Files</a>
@@ -315,9 +331,9 @@ h1, h2, h3, .logo, .retro-header {
 
 <section class="hero-theater" id="heroTheater">
     <div class="hero-content">
-        <div class="hero-tag" id="heroTag">HIGH VARIANCE ANOMALY DETECTED</div>
-        <h1 id="heroTitle">Loading Spectrum...</h1>
-        <p id="heroSynopsis">Awaiting secure handshake synchronization with centralized remote open-source index data logs.</p>
+        <div class="hero-tag" id="heroTag">SAFE SEARCH SYNC ACTIVE</div>
+        <h1 id="heroTitle">Attack on Titan</h1>
+        <p id="heroSynopsis">Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide behind enormous concentric walls.</p>
         <div class="hero-actions">
             <button class="btn-cyber btn-cyan" id="heroPlayBtn"><i class="fa-solid fa-file-invoice"></i> Inspect Blueprint</button>
             <button class="btn-cyber btn-outline" style="padding:12px 20px;" onclick="app.triggerRandom()"><i class="fa-solid fa-bezier-curve"></i> Random Sync</button>
@@ -325,52 +341,42 @@ h1, h2, h3, .logo, .retro-header {
     </div>
 </section>
 
-<main id="mainContent">
-    <section class="slider-container">
-        <div class="slider-header">
-            <div class="slider-title">📡 <span id="sliderTitleText">Active Scan</span> Receiver Channels</div>
-            <div class="slider-arrows">
-                <div class="arrow" onclick="app.scrollSlider('trendingSlider', -1)"><i class="fa-solid fa-angle-left"></i></div>
-                <div class="arrow" onclick="app.scrollSlider('trendingSlider', 1)"><i class="fa-solid fa-angle-right"></i></div>
-            </div>
+<section class="telemetry-grid-section">
+    <div class="grid-header">
+        <div class="grid-title">📡 <span id="gridContextLabel">Main Feed</span> Tracking Array</div>
+        <div class="mono-display" style="font-size: 13px; color: var(--neon-cyan);" id="pageConsoleCounter">PAGE STACK: 01</div>
+    </div>
+    
+    <div class="infinite-grid-container" id="infiniteGrid">
         </div>
-        <div class="slider-wrapper" id="trendingSlider"></div>
-    </section>
+    
+    <div class="grid-sentinel" id="gridSentinel">
+        <i class="fa-solid fa-compact-disc"></i> Scanning next page block vector channels...
+    </div>
+</section>
 
-    <section class="slider-container">
-        <div class="slider-header">
-            <div class="slider-title">📜 <span>Manga</span> Data Compartments</div>
-            <div class="slider-arrows">
-                <div class="arrow" onclick="app.scrollSlider('mangaSlider', -1)"><i class="fa-solid fa-angle-left"></i></div>
-                <div class="arrow" onclick="app.scrollSlider('mangaSlider', 1)"><i class="fa-solid fa-angle-right"></i></div>
+<section class="analytics-grid">
+    <div class="panel-box">
+        <div class="panel-title"><i class="fa-solid fa-chart-area"></i> Telemetric Vector Radar Analysis</div>
+        <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="analyticsChart"></canvas>
+        </div>
+    </div>
+    
+    <div class="panel-box">
+        <div class="panel-title"><i class="fa-solid fa-tower-broadcast"></i> Mesh Network Broadcast Signals</div>
+        <div class="chat-widget-inner">
+            <div class="chat-logs" id="chatLogs">
+                <div class="chat-msg msg-incoming"><strong>Radio_Operator:</strong> Continuous scrolling sequence loaded into visual raster grids.</div>
+                <div class="chat-msg msg-incoming"><strong>Lab_Tech_04:</strong> Safe search guard active. Popularity constraints forced onto the telemetry loader loop.</div>
+            </div>
+            <div class="chat-input-wrap">
+                <input type="text" class="mono-display" id="chatInput" placeholder="Inject broadcast message packet...">
+                <button class="btn-cyber btn-cyan" style="padding:10px 15px; border-radius:4px;" onclick="app.sendChatMessage()"><i class="fa-rss fa-solid"></i></button>
             </div>
         </div>
-        <div class="slider-wrapper" id="mangaSlider"></div>
-    </section>
-
-    <section class="analytics-grid">
-        <div class="panel-box">
-            <div class="panel-title"><i class="fa-solid fa-chart-area"></i> Telemetric Vector Radar Analysis</div>
-            <div style="position: relative; height: 300px; width: 100%;">
-                <canvas id="analyticsChart"></canvas>
-            </div>
-        </div>
-        
-        <div class="panel-box">
-            <div class="panel-title"><i class="fa-solid fa-tower-broadcast"></i> Mesh Network Broadcast Signals</div>
-            <div class="chat-widget-inner">
-                <div class="chat-logs" id="chatLogs">
-                    <div class="chat-msg msg-incoming"><strong>Radio_Operator:</strong> Signal trace confirmed inside the local sector. Broad-spectrum data streaming online.</div>
-                    <div class="chat-msg msg-incoming"><strong>Lab_Tech_04:</strong> Sync parameters adjusted. Safe Search filter protocol enforced onto incoming arrays.</div>
-                </div>
-                <div class="chat-input-wrap">
-                    <input type="text" class="mono-display" id="chatInput" placeholder="Inject broadcast message packet...">
-                    <button class="btn-cyber btn-cyan" style="padding:10px 15px; border-radius:4px;" onclick="app.sendChatMessage()"><i class="fa-solid fa-rss"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+    </div>
+</section>
 
 <div class="theater-modal" id="theaterModal">
     <div class="theater-header">
@@ -380,9 +386,9 @@ h1, h2, h3, .logo, .retro-header {
     <div class="theater-main">
         <div style="display:flex; flex-direction:column;">
             <div class="modal-poster-wrap">
-                <img id="modalTargetImg" src="" alt="Target Frame">
+                <img id="modalTargetImg" src="" alt="Target Frame" onerror="this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400'">
             </div>
-            <h4 style="margin-top:20px; font-weight:700; color:var(--neon-pink); font-size:13px;" class="mono-display">// PHOTO CAPTURE MAP</h4>
+            <h4 style="margin-top:20px; font-weight:700; color:var(--neon-pink); font-size:13px;" class="mono-display">// GRAPHIC MATRIX LOGS</h4>
             <div class="gallery-strip" id="screenshotGallery"></div>
         </div>
         <div style="display:flex; flex-direction:column; gap:20px;">
@@ -407,7 +413,7 @@ h1, h2, h3, .logo, .retro-header {
             <i class="fa-solid fa-satellite-dish" style="color:var(--neon-green); font-size:10px;"></i>
         </div>
         <div class="chat-logs" id="aiLogs">
-            <div class="chat-msg msg-incoming"><strong>Receiver Module:</strong> Sensory synchronization stable. State your preference variables or query index text (e.g. <em>"Cyberpunk"</em> or <em>"general"</em>) and I will filter high-reputation safe data streams.</div>
+            <div class="chat-msg msg-incoming"><strong>Receiver Module:</strong> Sensory alignment active. State your descriptive interests or enter <em>"general"</em> to render top-rated safe tracking nodes.</div>
         </div>
         <div class="chat-input-wrap" style="padding:10px; background:rgba(0,0,0,0.5); margin:0;">
             <input type="text" class="mono-display" id="aiInput" placeholder="Input telemetry criteria context...">
@@ -432,20 +438,27 @@ class HawkinsTelemetryEngine {
         this.currentSkinIdx = 0;
         this.watchlist = JSON.parse(localStorage.getItem('hawkins_vault') || '[]');
         this.chartInstance = null;
-        this.cachedData = []; 
+        
+        // Endless Grid States
+        this.currentDataType = 'anime'; 
+        this.currentQueryMode = 'top'; 
+        this.currentSearchString = '';
+        this.currentPageNumber = 1;
+        this.isLoadingNextPage = false;
+        this.hasReachedTerminalEnd = false;
     }
 
     init() {
         this.initCanvasParticles();
-        this.loadTrending();
-        this.loadManga();
+        this.setupInfiniteObserver();
+        this.loadGridDataBatch(true);
         this.initRadarChart();
         this.bindEvents();
         this.setupShortcuts();
-        this.triggerSystemLog("Sensory Receiver Grid Synchronized. Safe Content Enabled.");
+        this.triggerSystemLog("Sensory Receiver Grid Active. Infinite Scroller Initialized.");
     }
 
-    /* --- IONIC BACKGROUND AMBIENT RENDERER --- */
+    /* --- AMBIENT PARTICLES --- */
     initCanvasParticles() {
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
@@ -455,13 +468,13 @@ class HawkinsTelemetryEngine {
         window.addEventListener('resize', resize);
         resize();
 
-        for(let i=0; i<35; i++) {
+        for(let i=0; i<30; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5 + 0.5,
-                vx: (Math.random() - 0.5) * 0.25,
-                vy: (Math.random() - 0.5) * 0.25
+                radius: Math.random() * 1.2 + 0.5,
+                vx: (Math.random() - 0.5) * 0.2,
+                vy: (Math.random() - 0.5) * 0.2
             });
         }
 
@@ -481,49 +494,92 @@ class HawkinsTelemetryEngine {
         animate();
     }
 
-    /* --- DATA CHANNEL INGESTION MATRICES WITH POPULARITY WEIGHTING --- */
-    async loadTrending() {
+    /* --- INTERSECTION OBSERVER PIPELINE (UNLIMITED PAGES) --- */
+    setupInfiniteObserver() {
+        const sentinel = document.getElementById('gridSentinel');
+        const options = { root: null, rootMargin: '250px', threshold: 0.1 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.isLoadingNextPage && !this.hasReachedTerminalEnd) {
+                    this.loadGridDataBatch(false);
+                }
+            });
+        }, options);
+
+        observer.observe(sentinel);
+    }
+
+    /* --- CENTRAL TELEMETRY DATA FETCH CONSOLE --- */
+    async loadGridDataBatch(isFreshReset = false) {
+        if (isFreshReset) {
+            this.currentPageNumber = 1;
+            this.hasReachedTerminalEnd = false;
+            document.getElementById('infiniteGrid').innerHTML = '';
+            this.triggerSystemLog(`Syncing primary data grid blocks...`);
+        }
+
+        this.isLoadingNextPage = true;
+        document.getElementById('gridSentinel').style.display = 'block';
+        document.getElementById('pageConsoleCounter').innerText = `PAGE STACK: ${String(this.currentPageNumber).padStart(2, '0')}`;
+
+        let requestEndpoint = '';
+
+        if (this.currentQueryMode === 'top') {
+            requestEndpoint = `${this.jikanBase}/top/${this.currentDataType}?page=${this.currentPageNumber}&limit=16&sfw=true`;
+        } else if (this.currentQueryMode === 'search') {
+            requestEndpoint = `${this.jikanBase}/${this.currentDataType}?q=${encodeURIComponent(this.currentSearchString)}&page=${this.currentPageNumber}&limit=16&sfw=true&order_by=popularity&sort=asc`;
+        }
+
         try {
-            const res = await fetch(`${this.jikanBase}/top/anime?limit=12&sfw=true`);
-            const json = await res.json();
-            this.cachedData = [...this.cachedData, ...json.data];
-            this.renderCarousel(json.data, 'trendingSlider', 'anime');
-            if(json.data.length > 0) this.syncHeroDisplay(json.data[0]);
-        } catch(e) { this.triggerSystemLog("Error fetching primary matrix logs", true); }
+            const response = await fetch(requestEndpoint);
+            const json = await response.json();
+
+            if (!json.data || json.data.length === 0) {
+                this.hasReachedTerminalEnd = true;
+                document.getElementById('gridSentinel').style.display = 'none';
+                this.triggerSystemLog("All index telemetry data parsed successfully.");
+                return;
+            }
+
+            this.appendItemsToWorkspace(json.data);
+            
+            // Sync hero module backdrop to the top matching asset block
+            if (isFreshReset && json.data.length > 0 && this.currentDataType === 'anime') {
+                this.syncHeroDisplay(json.data[0]);
+            }
+
+            if (json.pagination && json.pagination.has_next_page) {
+                this.currentPageNumber++;
+            } else {
+                this.hasReachedTerminalEnd = true;
+                document.getElementById('gridSentinel').style.display = 'none';
+            }
+
+        } catch (error) {
+            this.triggerSystemLog("Error syncing pipeline stream packets", true);
+        } finally {
+            this.isLoadingNextPage = false;
+        }
     }
 
-    async loadManga() {
-        try {
-            const res = await fetch(`${this.jikanBase}/top/manga?limit=12&sfw=true`);
-            const json = await res.json();
-            this.cachedData = [...this.cachedData, ...json.data];
-            this.renderCarousel(json.data, 'mangaSlider', 'manga');
-        } catch(e) { this.triggerSystemLog("Error fetching archive files", true); }
-    }
-
-    syncHeroDisplay(item) {
-        document.getElementById('heroTitle').innerText = item.title;
-        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0,210) + '...' : 'Blueprint specifications unlogged.';
-        document.getElementById('heroTag').innerText = `CRITICAL TELEMETRY SYNC // SCORE RANK: ${item.score || 'N/A'}`;
-        document.getElementById('heroPlayBtn').onclick = () => this.openTheater(item.mal_id, 'anime');
-    }
-
-    renderCarousel(data, containerId, type) {
-        const wrapper = document.getElementById(containerId);
-        wrapper.innerHTML = '';
-        data.forEach(item => {
+    appendItemsToWorkspace(dataset) {
+        const grid = document.getElementById('infiniteGrid');
+        
+        dataset.forEach(item => {
             const card = document.createElement('div');
             card.className = 'anime-card-3d';
             const isSaved = this.watchlist.some(w => w.mal_id === item.mal_id);
             const filledPercent = item.score ? item.score * 10 : 75;
+            const imgSrc = item.images?.jpg?.large_image_url || item.images?.jpg?.image_url || 'https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400';
 
             card.innerHTML = `
-                <img class="card-img" src="${item.images.jpg.large_image_url || item.images.jpg.image_url}" alt="File Node" loading="lazy">
+                <img class="card-img" src="${imgSrc}" alt="Data Module Frame" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400'">
                 <div class="card-overlay-hud">
                     <div class="card-hud-title">${item.title}</div>
                     <div class="card-hud-meta">
                         <span>⭐ ${item.score || 'N/A'}</span>
-                        <span onclick="event.stopPropagation(); app.toggleVault(${item.mal_id}, '${type}')">
+                        <span onclick="event.stopPropagation(); app.toggleVault(${item.mal_id}, '${this.currentDataType}')">
                             <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark" style="color:var(--neon-pink);"></i>
                         </span>
                     </div>
@@ -533,20 +589,28 @@ class HawkinsTelemetryEngine {
                 </div>
             `;
 
+            // Dynamic layout translation logic
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - (rect.width/2);
-                const y = e.clientY - rect.top - (rect.height/2);
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
                 card.style.transform = `rotateY(${x * 0.08}deg) rotateX(${-y * 0.08}deg) translateY(-4px)`;
             });
             card.addEventListener('mouseleave', () => card.style.transform = `rotateY(0deg) rotateX(0deg) translateY(0deg)`);
+            card.onclick = () => this.openTheater(item.mal_id, this.currentDataType);
 
-            card.onclick = () => this.openTheater(item.mal_id, type);
-            wrapper.appendChild(card);
+            grid.appendChild(card);
         });
     }
 
-    /* --- PROFILE SPECIFICATIONS GRID DIALOG --- */
+    syncHeroDisplay(item) {
+        document.getElementById('heroTitle').innerText = item.title;
+        document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0, 210) + '...' : 'Specification matrix files empty.';
+        document.getElementById('heroTag').innerText = `TOP SIGNAL // HISTORICAL POPULARITY RATING: ${item.score || 'N/A'}`;
+        document.getElementById('heroPlayBtn').onclick = () => this.openTheater(item.mal_id, 'anime');
+    }
+
+    /* --- PROFILE SPECIFICATIONS MODAL VIEWER --- */
     async openTheater(id, type) {
         const modal = document.getElementById('theaterModal');
         modal.style.display = 'flex';
@@ -559,7 +623,7 @@ class HawkinsTelemetryEngine {
 
             document.getElementById('theaterModalTitle').innerText = data.title;
             document.getElementById('theaterSynopsis').innerText = data.synopsis || 'Transcriptions empty inside secure cache framework.';
-            document.getElementById('modalTargetImg').src = data.images.jpg.large_image_url || data.images.jpg.image_url;
+            document.getElementById('modalTargetImg').src = data.images?.jpg?.large_image_url || data.images?.jpg?.image_url || '';
 
             this.loadCastData(id, type);
             this.loadScreenshots(id, type);
@@ -571,7 +635,7 @@ class HawkinsTelemetryEngine {
         const container = document.getElementById('characterManifest');
         container.innerHTML = '';
         if(type === 'manga') {
-            container.innerHTML = '<p style="font-family:var(--font-mono); font-size:12px; opacity:0.5; padding:10px;">Archive registers layout as paper node.</p>';
+            container.innerHTML = '<p style="font-family:var(--font-mono); font-size:12px; opacity:0.5; padding:10px;">Persona configurations unavailable for print elements.</p>';
             return;
         }
         try {
@@ -581,7 +645,7 @@ class HawkinsTelemetryEngine {
                 const row = document.createElement('div');
                 row.style = "display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.01); padding:6px; border:1px solid var(--card-border);";
                 row.innerHTML = `
-                    <img src="${c.character.images.jpg.image_url}" style="width:38px; height:38px; object-fit:cover; border-radius:2px; border:1px solid var(--neon-cyan);">
+                    <img src="${c.character.images?.jpg?.image_url}" style="width:38px; height:38px; object-fit:cover; border-radius:2px; border:1px solid var(--neon-cyan);" onerror="this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=100'">
                     <div>
                         <div style="font-size:11px; font-weight:700; color:#fff;">${c.character.name}</div>
                         <div style="font-family:var(--font-mono); font-size:10px; color:var(--neon-pink);">${c.role}</div>
@@ -612,7 +676,7 @@ class HawkinsTelemetryEngine {
         document.body.style.overflow = 'auto';
     }
 
-    /* --- REWRITTEN CONVERSATIONAL HAWKINS AI MATRIX (SAFE SEARCH CHANNELS) --- */
+    /* --- ENHANCED QUANTUM AI CORE (INFINITE GRID INJECTION CAPABLE) --- */
     processAIRecommendation() {
         const input = document.getElementById('aiInput');
         const prompt = input.value.toLowerCase().trim();
@@ -627,57 +691,33 @@ class HawkinsTelemetryEngine {
 
         const reply = document.createElement('div');
         reply.className = "chat-msg msg-incoming";
-        reply.innerHTML = `<strong>Receiver Core:</strong> Parsing telemetry grid variables under clean SFW constraint...`;
+        reply.innerHTML = `<strong>Receiver Core:</strong> Parsing preferencing matrix under safe search rules...`;
         aiLogs.appendChild(reply);
         aiLogs.scrollTop = aiLogs.scrollHeight;
 
-        this.triggerSystemLog("Parsing signal anomalies...");
-
         setTimeout(async () => {
-            const intros = ['hello', 'hi', 'hey', 'yo', 'system', 'help', 'radar'];
+            const intros = ['hello', 'hi', 'hey', 'yo', 'system', 'help'];
             if(intros.some(i => prompt === i || prompt.startsWith(i + ' '))) {
-                reply.innerHTML = `<strong>Receiver Core:</strong> Contact verified. Input generic descriptors like <em>"shonen"</em>, <em>"cyberpunk"</em>, or send <em>"general"</em> to pull mainstream masterpieces automatically sorted by popularity metrics.`;
+                reply.innerHTML = `<strong>Receiver Core:</strong> Link verified. Enter tags like <em>"mecha"</em>, <em>"fantasy"</em>, or say <em>"general"</em> to view top safe high-reputation configurations.`;
                 aiLogs.scrollTop = aiLogs.scrollHeight;
                 return;
             }
 
             let isGeneral = prompt.includes('general') || prompt.includes('normal') || prompt.includes('any') || prompt.length < 3;
-            let targetQuery = isGeneral ? "shounen" : prompt;
+            this.currentSearchString = isGeneral ? "shounen" : prompt;
+            this.currentQueryMode = 'search';
+            this.currentDataType = 'anime';
 
-            let matches = [];
-            if(!isGeneral && this.cachedData && this.cachedData.length > 0) {
-                matches = this.cachedData.filter(item => {
-                    const text = ((item.title || '') + ' ' + (item.synopsis || '')).toLowerCase();
-                    return text.includes(prompt);
-                });
-            }
-
-            if(matches.length > 0) {
-                const pick = matches[Math.floor(Math.random() * matches.length)];
-                reply.innerHTML = `<strong>Receiver Core Match:</strong> Isolated tracking target inside cache: <strong>${pick.title}</strong>. Rating: ⭐ ${pick.score || 'N/A'}. Trace alignment stands nominal.`;
-            } else {
-                reply.innerHTML = `<strong>Receiver Core:</strong> Scanning outer grid index directories for high-popularity tracking profiles matched to <em>"${targetQuery}"</em>...`;
-                try {
-                    const response = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(targetQuery)}&limit=10&sfw=true&order_by=popularity&sort=asc`);
-                    const json = await response.json();
-                    
-                    if(json.data && json.data.length > 0) {
-                        this.renderCarousel(json.data, 'trendingSlider', 'anime');
-                        document.getElementById('sliderTitleText').innerText = "AI Computed Target Grid";
-                        const topHit = json.data[0];
-                        reply.innerHTML = `<strong>Receiver Core Link:</strong> Transmitting data array directly into viewport carousel below. High signature recommendation: <strong>${topHit.title}</strong> (Score Metric: ⭐ ${topHit.score || 'N/A'}).`;
-                    } else {
-                        reply.innerHTML = `<strong>Receiver Core:</strong> Outer index search fields returned entirely blank for clean records.`;
-                    }
-                } catch(err) {
-                    reply.innerHTML = `<strong>Receiver Core Error:</strong> Network telemetry relay link failure.`;
-                }
-            }
+            document.getElementById('gridContextLabel').innerText = `AI Matrix: "${this.currentSearchString}"`;
+            reply.innerHTML = `<strong>Receiver Core:</strong> Query converted! Remapping your main infinite grid interface for: <em>"${this.currentSearchString}"</em> automatically sorted by popularity metrics...`;
+            
+            // Re-trigger fresh reset on target infinite loader logic grids
+            this.loadGridDataBatch(true);
             aiLogs.scrollTop = aiLogs.scrollHeight;
-        }, 750);
+        }, 600);
     }
 
-    /* --- VECTOR ANALYTICS SPECTROGRAM CHART --- */
+    /* --- SPECTROGRAM CHART COMPONENT --- */
     initRadarChart() {
         const ctx = document.getElementById('analyticsChart').getContext('2d');
         this.chartInstance = new Chart(ctx, {
@@ -719,7 +759,7 @@ class HawkinsTelemetryEngine {
         this.chartInstance.update();
     }
 
-    /* --- USER INTERFACE HANDSHAKE CONTROLLERS --- */
+    /* --- LOGISTIC FRAMEWORK ACTIONS --- */
     bindEvents() {
         const search = document.getElementById('searchInput');
         let debounce;
@@ -728,7 +768,7 @@ class HawkinsTelemetryEngine {
             const val = search.value.trim();
             if(val.length < 3) { document.getElementById('suggestions').innerHTML = ''; return; }
             debounce = setTimeout(async () => {
-                const res = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(val)}&limit=5&sfw=true`);
+                const res = await fetch(`${this.jikanBase}/${this.currentDataType}?q=${encodeURIComponent(val)}&limit=5&sfw=true`);
                 const json = await res.json();
                 const sug = document.getElementById('suggestions');
                 sug.innerHTML = '';
@@ -740,7 +780,7 @@ class HawkinsTelemetryEngine {
                         div.onclick = () => {
                             search.value = item.title;
                             sug.innerHTML = '';
-                            this.openTheater(item.mal_id, 'anime');
+                            this.openTheater(item.mal_id, this.currentDataType);
                         };
                         sug.appendChild(div);
                     });
@@ -759,20 +799,28 @@ class HawkinsTelemetryEngine {
         });
     }
 
+    resetTelemetryGrid() {
+        document.getElementById('searchInput').value = '';
+        this.currentQueryMode = 'top';
+        this.currentDataType = 'anime';
+        document.getElementById('gridContextLabel').innerText = "Main Feed";
+        this.loadGridDataBatch(true);
+    }
+
     toggleVault(id, type) {
         const idx = this.watchlist.findIndex(w => w.mal_id === id);
         if(idx === -1) {
             this.watchlist.push({ mal_id: id, type: type });
-            this.triggerSystemLog("File locked down inside secure vault array.");
+            this.triggerSystemLog("File cataloged inside secure vault array data blocks.");
         } else {
             this.watchlist.splice(idx, 1);
-            this.triggerSystemLog("File purged from storage compartment grids.");
+            this.triggerSystemLog("File purged from storage vault grids.");
         }
         localStorage.setItem('hawkins_vault', JSON.stringify(this.watchlist));
     }
 
     triggerRandom() {
-        this.triggerSystemLog("Rerouting through signal proxy nodes...");
+        this.triggerSystemLog("Scrambling coordinate fields...");
         fetch(`${this.jikanBase}/random/anime`)
             .then(res => res.json())
             .then(json => { if(json.data) this.openTheater(json.data.mal_id, 'anime'); });
@@ -796,17 +844,29 @@ class HawkinsTelemetryEngine {
         this.currentSkinIdx = (this.currentSkinIdx + 1) % this.skins.length;
         const skin = this.skins[this.currentSkinIdx];
         if(skin !== 'hawkins') document.body.classList.add(skin);
-        this.triggerSystemLog(`Radar array skinned to: ${skin.toUpperCase()}`);
-    }
-
-    scrollSlider(id, direction) {
-        document.getElementById(id).scrollBy({ left: direction * 300, behavior: 'smooth' });
+        this.triggerSystemLog(`Radar interface skin mapped to: ${skin.toUpperCase()}`);
     }
 
     switchView(target, btn) {
         document.querySelectorAll('.nav-link, .hud-tab').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
-        this.triggerSystemLog(`Sensory focus switched to ${target} grid.`);
+        
+        if (target === 'trending') {
+            this.currentDataType = 'anime'; this.currentQueryMode = 'top';
+            document.getElementById('gridContextLabel').innerText = "Main Feed";
+        } else if (target === 'manga') {
+            this.currentDataType = 'manga'; this.currentQueryMode = 'top';
+            document.getElementById('gridContextLabel').innerText = "Archive Manga Files";
+        } else if (target === 'watchlist') {
+            // Render from secure local profile storage directly inside workspace grid views
+            document.getElementById('infiniteGrid').innerHTML = '';
+            document.getElementById('gridContextLabel').innerText = "Secure Storage Vault";
+            document.getElementById('gridSentinel').style.display = 'none';
+            this.appendItemsToWorkspace(this.watchlist.map(w => ({ mal_id: w.mal_id, title: `Secure Node #${w.mal_id}`, score: 10 })));
+            return;
+        }
+
+        this.loadGridDataBatch(true);
     }
 
     toggleAIChat() {
@@ -814,10 +874,11 @@ class HawkinsTelemetryEngine {
         win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    triggerSystemLog(msg) {
+    triggerSystemLog(msg, isError = false) {
         const nexus = document.getElementById('toastNexus');
         const toast = document.createElement('div');
         toast.className = 'toast-node';
+        if (isError) toast.style.borderLeftColor = 'var(--neon-cyan)';
         toast.innerHTML = `<i class="fa-solid fa-satellite-dish"></i> <span>${msg}</span>`;
         nexus.appendChild(toast);
         setTimeout(() => toast.remove(), 4000);
