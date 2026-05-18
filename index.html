@@ -310,7 +310,7 @@ h1, h2, h3, .logo, .orbitron {
 }
 #characterManifest div:hover {
     border-color: var(--neon-pink);
-    background: rgba(24e, 1, 154, 0.05) !important;
+    background: rgba(254, 1, 154, 0.05) !important;
 }
 
 /* --- ANIMATIONS INDEX --- */
@@ -370,8 +370,8 @@ h1, h2, h3, .logo, .orbitron {
     <video class="hero-video-bg" autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-subway-station-with-neon-lights-43958-large.mp4"></video>
     <div class="hero-content">
         <div class="hero-tag" id="heroTag">SEASONAL CORE INDEX</div>
-        <h1 id="heroTitle">Cyberpunk Edgerunners</h1>
-        <p id="heroSynopsis">A street kid trying to survive in a technology and body modification-obsessed city of the future. Having everything to lose, he chooses to stay alive by becoming an edgerunner.</p>
+        <h1 id="heroTitle">Attack on Titan</h1>
+        <p id="heroSynopsis">Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide behind enormous concentric walls.</p>
         <div class="hero-actions">
             <button class="btn-cyber btn-cyan" id="heroPlayBtn"><i class="fa-solid fa-circle-info"></i> View Specifications</button>
             <button class="btn-cyber btn-outline" onclick="app.triggerRandom()"><i class="fa-solid fa-shuffle"></i> Quantum Pick</button>
@@ -457,14 +457,14 @@ h1, h2, h3, .logo, .orbitron {
     <div class="ai-trigger-sphere" onclick="app.toggleAIChat()"><i class="fa-solid fa-brain" style="font-size:24px; color:#fff;"></i></div>
     <div class="ai-chat-window" id="aiChatWindow">
         <div style="background:var(--neon-purple); padding:15px; font-weight:700; font-family:'Orbitron'; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span>🤖 QUANTUM AI CORE v2.5</span>
+            <span>🤖 QUANTUM AI CORE v2.6</span>
             <i class="fa-solid fa-circle" style="color:var(--neon-green); font-size:8px; animation: pulseSphere 1s infinite alternate;"></i>
         </div>
         <div class="chat-logs" id="aiLogs">
-            <div class="chat-msg msg-incoming"><strong>AI Core:</strong> System calibrated. State your narrative criteria, keyword indexes, or query intents (e.g., <em>"Cyberpunk"</em> or <em>"Gory horror"</em>) and I will filter down tracking targets.</div>
+            <div class="chat-msg msg-incoming"><strong>AI Core:</strong> Cryptographic index sync active. State your descriptive narrative interests, or say <em>"general"</em> for clean legendary masterpieces.</div>
         </div>
         <div class="chat-input-wrap" style="padding:10px; background:rgba(0,0,0,0.5); margin:0;">
-            <input type="text" id="aiInput" placeholder="Type query / greeting context...">
+            <input type="text" id="aiInput" placeholder="Type query ('general', 'cyberpunk')...">
             <button class="btn-cyber btn-cyan" style="padding:10px 15px;" onclick="app.processAIRecommendation()"><i class="fa-solid fa-microchip"></i></button>
         </div>
     </div>
@@ -496,7 +496,7 @@ class AnimeVerseEngine {
         this.initRadarChart();
         this.bindEvents();
         this.setupKeyboardShortcuts();
-        this.triggerSystemLog("Engine Core Initialization Complete. Operational Linked Matrix Built.");
+        this.triggerSystemLog("Engine Operational. SFW Core Protocol Active.");
     }
 
     /* --- AMBIENT NEON CANVAS ENGINE BACKGROUND --- */
@@ -538,10 +538,10 @@ class AnimeVerseEngine {
         animate();
     }
 
-    /* --- API DATA PIPELINES --- */
+    /* --- API DATA PIPELINES WITH SFW ENFORCEMENT --- */
     async loadTrending() {
         try {
-            const res = await fetch(`${this.jikanBase}/top/anime?limit=12`);
+            const res = await fetch(`${this.jikanBase}/top/anime?limit=12&sfw=true`);
             const json = await res.json();
             this.cachedData = [...this.cachedData, ...json.data];
             this.renderCarousel(json.data, 'trendingSlider', 'anime');
@@ -551,7 +551,7 @@ class AnimeVerseEngine {
 
     async loadManga() {
         try {
-            const res = await fetch(`${this.jikanBase}/top/manga?limit=12`);
+            const res = await fetch(`${this.jikanBase}/top/manga?limit=12&sfw=true`);
             const json = await res.json();
             this.cachedData = [...this.cachedData, ...json.data];
             this.renderCarousel(json.data, 'mangaSlider', 'manga');
@@ -562,7 +562,7 @@ class AnimeVerseEngine {
         document.getElementById('heroTitle').innerText = item.title;
         document.getElementById('heroSynopsis').innerText = item.synopsis ? item.synopsis.substring(0,220) + '...' : 'Data matrix block empty.';
         document.getElementById('heroTag').innerText = `TOP LOGGED CORE • VALUE SCORE: ${item.score || 'N/A'}`;
-        document.getElementById('heroPlayBtn').onclick = () => this.openTheater(id, 'anime');
+        document.getElementById('heroPlayBtn').onclick = () => this.openTheater(item.mal_id, 'anime');
     }
 
     renderCarousel(data, containerId, type) {
@@ -605,7 +605,7 @@ class AnimeVerseEngine {
         });
     }
 
-    /* --- PROFILE MODAL ARCHIVE CHANNELS (TRAILER HOOK REMOVED) --- */
+    /* --- PROFILE MODAL ARCHIVE CHANNELS --- */
     async openTheater(id, type) {
         const modal = document.getElementById('theaterModal');
         modal.style.display = 'flex';
@@ -672,10 +672,10 @@ class AnimeVerseEngine {
         document.body.style.overflow = 'auto';
     }
 
-    /* --- REWRITTEN WORKING QUANTUM AI CORE SYSTEM --- */
+    /* --- ENHANCED QUANTUM AI CORE (SAFE SEARCH & POPULAR ANIME FALLBACK) --- */
     processAIRecommendation() {
         const promptInput = document.getElementById('aiInput');
-        const prompt = promptInput.value.toLowerCase().trim();
+        let prompt = promptInput.value.toLowerCase().trim();
         if (!prompt) return;
 
         const aiLogs = document.getElementById('aiLogs');
@@ -690,51 +690,53 @@ class AnimeVerseEngine {
         // 2. Set thinking buffer state
         const reply = document.createElement('div');
         reply.className = "chat-msg msg-incoming";
-        reply.innerHTML = `<strong>AI Core:</strong> Analyzing semantic matrix parameters...`;
+        reply.innerHTML = `<strong>AI Core:</strong> Processing preference nodes with SFW filters active...`;
         aiLogs.appendChild(reply);
         aiLogs.scrollTop = aiLogs.scrollHeight;
 
-        this.triggerSystemLog("AI Core computing parameters...");
+        this.triggerSystemLog("Filtering telemetry grid vectors...");
 
         setTimeout(async () => {
-            // Conversational Intent Parsing Configuration
-            const greetings = ['hello', 'hi', 'hey', 'yo', 'sup', 'help', 'system', 'who are you'];
+            const greetings = ['hello', 'hi', 'hey', 'yo', 'sup', 'system', 'who are you'];
             if (greetings.some(g => prompt === g || prompt.startsWith(g + ' '))) {
-                reply.innerHTML = `<strong>AI Core:</strong> Uplink established. I am your Quantum AI assistant. Provide thematic parameters, plot descriptors, or keywords (e.g. <em>"Cyberpunk"</em> or <em>"Gory thriller"</em>) and I will query targets instantly.`;
+                reply.innerHTML = `<strong>AI Core:</strong> Core operational. Enter tags like <em>"shonen"</em>, <em>"sci-fi"</em>, or say <em>"general"</em> to view worldwide high-rated masterpieces.`;
                 aiLogs.scrollTop = aiLogs.scrollHeight;
                 return;
             }
 
+            // Route standard queries cleanly to avoid blank or obscure arrays
+            let isGeneralRequest = prompt.includes('general') || prompt.includes('normal') || prompt.includes('any') || prompt.length < 3;
+            let searchQuery = isGeneralRequest ? "shounen" : prompt;
+
             // Keyword Scraper against loaded repository data arrays
             let matches = [];
-            if (this.cachedData && this.cachedData.length > 0) {
+            if (!isGeneralRequest && this.cachedData && this.cachedData.length > 0) {
                 matches = this.cachedData.filter(item => {
                     const titleText = (item.title || '').toLowerCase();
                     const synopsisText = (item.synopsis || '').toLowerCase();
-                    const genresText = item.genres ? item.genres.map(g => g.name.toLowerCase()).join(' ') : '';
-                    return titleText.includes(prompt) || synopsisText.includes(prompt) || genresText.includes(prompt);
+                    return titleText.includes(prompt) || synopsisText.includes(prompt);
                 });
             }
 
-            // Render matching evaluations
             if (matches.length > 0) {
                 const pick = matches[Math.floor(Math.random() * matches.length)];
-                const typeLabel = pick.type ? pick.type.toUpperCase() : 'NODE';
-                reply.innerHTML = `<strong>AI Core Match:</strong> Profile isolated! Look into <strong>${pick.title}</strong> [${typeLabel}]. Quality Score: ⭐ ${pick.score || 'N/A'}. This file exhibits an excellent contextual match to your prompt profile.`;
+                reply.innerHTML = `<strong>AI Core Match:</strong> Isolated cached file: <strong>${pick.title}</strong>. Rating: ⭐ ${pick.score || 'N/A'}. High thematic alignment detected.`;
             } else {
-                // Global remote array bypass execution
-                reply.innerHTML = `<strong>AI Core:</strong> Context absent in local memory cache. Pinging deep global server logs for: <em>"${prompt}"</em>...`;
+                // Force Clean SFW Search Sorted By Popularity Metrics
+                reply.innerHTML = `<strong>AI Core:</strong> Fetching high-reputation standard data matrix options for <em>"${searchQuery}"</em>...`;
                 
                 try {
-                    const response = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(prompt)}&limit=8`);
+                    const response = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(searchQuery)}&limit=10&sfw=true&order_by=popularity&sort=asc`);
                     const json = await response.json();
                     
                     if (json.data && json.data.length > 0) {
                         this.renderCarousel(json.data, 'trendingSlider', 'anime');
                         document.getElementById('sliderTitleText').innerText = "AI Computed Query Grid";
-                        reply.innerHTML = `<strong>AI Core Link:</strong> Multi-platform search complete. Located <strong>${json.data.length} profiles</strong> across remote servers and forced an immediate workspace layout update below!`;
+                        
+                        const topPick = json.data[0];
+                        reply.innerHTML = `<strong>AI Core Link:</strong> Refreshed grid viewport with main stream indices! Highly recommend checking out <strong>${topPick.title}</strong> (Score: ⭐ ${topPick.score || 'N/A'}).`;
                     } else {
-                        reply.innerHTML = `<strong>AI Core:</strong> Scan complete. Zero data modules mapped to query string <em>"${prompt}"</em> across local or global indices.`;
+                        reply.innerHTML = `<strong>AI Core:</strong> Scan complete. Zero safe data modules mapped to query string.`;
                     }
                 } catch (err) {
                     reply.innerHTML = `<strong>AI Core Error:</strong> Live index telemetry dropped.`;
@@ -795,7 +797,7 @@ class AnimeVerseEngine {
             const val = search.value.trim();
             if(val.length < 3) { document.getElementById('suggestions').innerHTML = ''; return; }
             debounce = setTimeout(async () => {
-                const res = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(val)}&limit=5`);
+                const res = await fetch(`${this.jikanBase}/anime?q=${encodeURIComponent(val)}&limit=5&sfw=true`);
                 const json = await res.json();
                 const sug = document.getElementById('suggestions');
                 sug.innerHTML = '';
@@ -830,10 +832,10 @@ class AnimeVerseEngine {
         const idx = this.watchlist.findIndex(w => w.mal_id === id);
         if(idx === -1) {
             this.watchlist.push({ mal_id: id, type: type });
-            this.triggerSystemLog("Item registered into secure local watchlist profiles.");
+            this.triggerSystemLog("Registered to workspace profile archive.");
         } else {
             this.watchlist.splice(idx, 1);
-            this.triggerSystemLog("Item removed from secure profile arrays.");
+            this.triggerSystemLog("Removed from secure profile arrays.");
         }
         localStorage.setItem('cyber_watchlist', JSON.stringify(this.watchlist));
     }
