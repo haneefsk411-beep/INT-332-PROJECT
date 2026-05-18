@@ -1,0 +1,377 @@
+# index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anime Discovery</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#020617;
+color:white;
+}
+
+.navbar{
+background:#0f172a;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#38bdf8;
+}
+
+.search-box input{
+padding:10px;
+width:250px;
+border:none;
+border-radius:8px;
+outline:none;
+}
+
+.hero{
+height:60vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7)),url('https://wallpaperaccess.com/full/1567674.jpg');
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+color:#cbd5e1;
+}
+
+.categories{
+padding:40px;
+}
+
+.categories h2{
+margin-bottom:20px;
+}
+
+.category-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.category-card{
+height:150px;
+border-radius:15px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+transition:0.4s;
+background-size:cover;
+background-position:center;
+position:relative;
+overflow:hidden;
+}
+
+.category-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.5);
+}
+
+.category-card span{
+position:relative;
+z-index:1;
+}
+
+.category-card:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px #38bdf8;
+}
+
+.action{
+background-image:url('https://wallpaperaccess.com/full/17491.jpg');
+}
+
+.romance{
+background-image:url('https://wallpaperaccess.com/full/1567666.jpg');
+}
+
+.comedy{
+background-image:url('https://wallpaperaccess.com/full/809523.jpg');
+}
+
+.fantasy{
+background-image:url('https://wallpaperaccess.com/full/1567674.jpg');
+}
+
+.sports{
+background-image:url('https://wallpaperaccess.com/full/1312066.jpg');
+}
+
+.anime-section{
+padding:40px;
+}
+
+.anime-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.anime-card{
+background:#0f172a;
+border-radius:15px;
+overflow:hidden;
+transition:0.4s;
+position:relative;
+}
+
+.anime-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 25px #38bdf8;
+}
+
+.anime-card img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.anime-info{
+padding:15px;
+}
+
+.anime-info h3{
+margin-bottom:10px;
+font-size:18px;
+}
+
+.rating{
+color:#facc15;
+font-size:15px;
+}
+
+.details-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:999;
+}
+
+.modal-content{
+background:#0f172a;
+max-width:900px;
+width:100%;
+border-radius:20px;
+padding:25px;
+display:flex;
+gap:20px;
+position:relative;
+}
+
+.modal-content img{
+width:300px;
+border-radius:15px;
+}
+
+.modal-text{
+flex:1;
+}
+
+.modal-text h2{
+margin-bottom:15px;
+}
+
+.modal-text p{
+line-height:1.7;
+color:#cbd5e1;
+}
+
+.close-btn{
+position:absolute;
+right:20px;
+top:10px;
+font-size:30px;
+cursor:pointer;
+}
+
+.loader{
+display:flex;
+justify-content:center;
+padding:50px;
+}
+
+.spinner{
+width:50px;
+height:50px;
+border:5px solid #1e293b;
+border-top:5px solid #38bdf8;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+to{
+transform:rotate(360deg);
+}
+}
+
+@media(max-width:768px){
+.modal-content{
+flex-direction:column;
+align-items:center;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.search-box input{
+width:160px;
+}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+<div class="logo">Anime Discovery ⭐</div>
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search anime...">
+</div>
+</nav>
+
+<section class="hero">
+<h1>Discover Your Favorite Anime</h1>
+<p>Explore trending anime with ratings and details</p>
+</section>
+
+<section class="categories">
+<h2>Categories</h2>
+<div class="category-grid">
+<div class="category-card action" onclick="loadAnime('action')"><span>🔥 Action</span></div>
+<div class="category-card romance" onclick="loadAnime('romance')"><span>❤️ Romance</span></div>
+<div class="category-card comedy" onclick="loadAnime('comedy')"><span>😂 Comedy</span></div>
+<div class="category-card fantasy" onclick="loadAnime('fantasy')"><span>🧙 Fantasy</span></div>
+<div class="category-card sports" onclick="loadAnime('sports')"><span>⚽ Sports</span></div>
+</div>
+</section>
+
+<section class="anime-section">
+<h2>Anime List</h2>
+<div id="animeContainer" class="anime-grid"></div>
+<div class="loader" id="loader">
+<div class="spinner"></div>
+</div>
+</section>
+
+<div class="details-modal" id="detailsModal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal()">×</span>
+<img id="modalImage">
+<div class="modal-text">
+<h2 id="modalTitle"></h2>
+<h3 id="modalRating"></h3>
+<p id="modalSynopsis"></p>
+</div>
+</div>
+</div>
+
+<script>
+const container = document.getElementById('animeContainer');
+const loader = document.getElementById('loader');
+const searchInput = document.getElementById('searchInput');
+
+async function loadAnime(category='naruto'){
+loader.style.display='flex';
+container.innerHTML='';
+
+const response = await fetch(`https://api.jikan.moe/v4/anime?q=${category}`);
+const data = await response.json();
+
+loader.style.display='none';
+
+const animes = data.data.slice(0,20);
+
+animes.forEach(anime=>{
+const card = document.createElement('div');
+card.className='anime-card';
+
+card.innerHTML=`
+<img src="${anime.images.jpg.image_url}">
+<div class="anime-info">
+<h3>${anime.title}</h3>
+<div class="rating">⭐ ${anime.score || 'N/A'}</div>
+</div>
+`;
+
+card.onclick=()=>showDetails(anime);
+
+container.appendChild(card);
+});
+}
+
+function showDetails(anime){
+document.getElementById('detailsModal').style.display='flex';
+document.getElementById('modalImage').src=anime.images.jpg.image_url;
+document.getElementById('modalTitle').innerText=anime.title;
+document.getElementById('modalRating').innerText='⭐ Rating: '+anime.score;
+document.getElementById('modalSynopsis').innerText=anime.synopsis;
+}
+
+function closeModal(){
+document.getElementById('detailsModal').style.display='none';
+}
+
+searchInput.addEventListener('keypress',function(e){
+if(e.key==='Enter'){
+loadAnime(searchInput.value);
+}
+});
+
+loadAnime();
+</script>
+
+</body>
+</html>
+```
+
+# How to Run on GitHub Pages
+
+1. Create a repository on GitHub
+2. Upload index.html
+3. Go to Settings → Pages
+4. Select Deploy from branch
+5. Select main branch
+6. Save
+7. Your website will be live
